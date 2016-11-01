@@ -115,11 +115,17 @@ for i=0,w-1 do
 	end
 end
 
+-- Add writtne "howto" on wall.
+screen_settile(screen, 2, 1, tileset..":wall_bot_written")
+screen_settag(screen, 2, 1, "text", "To change the color of the crystal, set the floor tiles to the same color.")
+
+-- Add crystal and mosaic.
 screen_settile(screen, 1, 5, tileset..":mosaic_black")
 screen_settile(screen, 3, 3, tileset..":mosaic_black")
 screen_settile(screen, 5, 5, tileset..":mosaic_black")
 screen_settile(screen, 3, 5, tileset..":crystal_2")
 
+-- Enable ziggurat's mechanism.
 screen_setlandon(screen, 1, 5, "dofile(\"logic/ziggurat.lua\")")
 screen_setlandon(screen, 3, 3, "dofile(\"logic/ziggurat.lua\")")
 screen_setlandon(screen, 5, 5, "dofile(\"logic/ziggurat.lua\")")

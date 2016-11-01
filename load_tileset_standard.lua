@@ -127,6 +127,7 @@ row = row+8
 row = row+8
 
 -- Undef
+new_tile(prefix.."roof_bot_written", "Written Roof", row+7, false)
 row = row+8
 
 -- Big Door 1/2
@@ -134,6 +135,8 @@ new_tile(prefix.."bigdoor_toplft", "Wall", row+0, false)
 new_tile(prefix.."bigdoor_top", "Wall", row+1, false)
 new_tile(prefix.."bigdoor_toprgt", "Wall", row+2, false)
 new_tile(prefix.."bigdoor_closed", "Closed Door", row+3, false)
+--
+new_tile(prefix.."wall_written", "Written Wall", row+7, false)
 row = row+8
 
 -- Big Door 2/2
@@ -141,6 +144,8 @@ new_tile(prefix.."bigdoor_lft", "Wall", row+0, false)
 new_tile(prefix.."bigdoor", "Opened Door", row+1)
 new_tile(prefix.."bigdoor_rgt", "Wall", row+2, false)
 new_tile(prefix.."bigdoor_locked", "Locked Door", row+3, false)
+--
+new_tile(prefix.."wall_bot_written", "Written Wall", row+7, false)
 row = row+8
 
 verbose("Tileset '"..file.."' loaded.")
