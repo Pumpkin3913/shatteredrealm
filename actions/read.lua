@@ -4,20 +4,22 @@ local screen = player_getscreen(Player)
 local x = player_getx(Player)
 local y = player_gety(Player)
 
-if Arg == "north" then
-	y = y-1
-elseif Arg == "south" then
-	y = y+1
-elseif Arg == "east" then
-	x = x-1
-elseif Arg == "west" then
-	x = x+1
+local read = function (x, y)
+	local text = screen_gettag(screen, x, y, "text")
+
+	if text ~= "" then
+		player_message(Player, text)
+		return true
+	else
+		return false
+	end
 end
 
-local text = screen_gettag(screen, x, y, "text")
-
-if text == "" then
+if not read(x, y)
+and not read(x, y-1)
+and not read(x, y+1)
+and not read(x-1, y)
+and not read(x+1, y)
+then
 	player_message(Player, "There is nothing written here.")
-else
-	player_message(Player, text)
 end
