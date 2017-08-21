@@ -123,10 +123,10 @@ new_tile(prefix.."coffer_unique_open",  "Opened Unique Coffer", row+7, false)
 row = row+8
 
 -- Text
-new_tile(prefix.."book_a_open",  "Common Coffer",        row+0, false)
-new_tile(prefix.."book_a_close", "Opened Common Coffer", row+1, false)
-new_tile(prefix.."book_b_open",  "Hard Coffer",          row+2, false)
-new_tile(prefix.."book_b_close", "Opened Hard Coffer",   row+3, false)
+new_tile(prefix.."book_a_open",  "Book",        row+0, false)
+new_tile(prefix.."book_a_close", "Opened Book", row+1, false)
+new_tile(prefix.."book_b_open",  "Book",          row+2, false)
+new_tile(prefix.."book_b_close", "Opened Book",   row+3, false)
 row = row+8
 
 -- Blocks
