@@ -42,6 +42,7 @@ screen_settile(floor1, 6, 5, tileset..":book_b_close")
 screen_settag(floor1, 6, 5, "openclose_state", "close")
 screen_settag(floor1, 6, 5, "openclose_opentile", tileset..":book_b_open")
 screen_settag(floor1, 6, 5, "openclose_closetile", tileset..":book_b_close")
+screen_settag(floor1, 6, 5, "title", "Tome of Dark Magic")
 screen_settag(floor1, 6, 5, "text", "Elbereth")
 
 verbose("[WORLDGEN] Library build in "..screen..".");
