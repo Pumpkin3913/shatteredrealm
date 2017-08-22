@@ -5,11 +5,13 @@
 -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - --
 
 -- Get arguments.
-local tileset, screen, x_shift, y_shift = ...
-local w = 11
-local h = 7
-local roof_h = 3
-local entrance_x = 5
+local tileset, screen, x_shift, y_shift, w, h, roof_h, entrance_x = ...
+
+-- Set default values for unobtained arguments.
+if w == nil then w = 11 end
+if h == nil then h = 7 end
+if roof_h == nil then roof_h = 3 end
+if entrance_x == nil then entrance_x = math.floor(w/2) end
 
 -- Build extern building.
 
@@ -60,11 +62,15 @@ for x=0, w-1 do
 end
 
 -- Add decoration.
-for x=1, w-2 do
-	if x%2 == 1 then
-		screen_settile(screen, x_shift+x, y_shift+h-2, tileset..":wall_window")
-	else
-		screen_settile(screen, x_shift+x, y_shift+h-1, tileset..":wall_bot_window")
+for y = roof_h+1, h-1 do
+	for x=1, w-2 do
+		if x%2 == 1 then
+			if y == h-1 then
+				screen_settile(screen, x_shift+x, y_shift+y, tileset..":wall_bot_window")
+			elseif y%2 == 0 then
+				screen_settile(screen, x_shift+x, y_shift+y, tileset..":wall_window")
+			end
+		end
 	end
 end
 
