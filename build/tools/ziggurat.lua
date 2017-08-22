@@ -65,5 +65,12 @@ screen_settile(screen, x_shift+1, y_shift+6, tileset..":wall_botrgt")
 screen_settile(screen, x_shift+5, y_shift+6, tileset..":wall_botlft")
 screen_settile(screen, x_shift+6, y_shift+6, tileset..":wall_botrgt")
 
+-- Add open/close tags for entrance.
+local door_x = x_shift + 3
+local door_y = y_shift + 5
+screen_settag(screen, door_x, door_y, "openclose_state", "open")
+screen_settag(screen, door_x, door_y, "openclose_opentile", tileset..":bigdoor")
+screen_settag(screen, door_x, door_y, "openclose_closetile", tileset..":bigdoor_closed")
+
 -- Finish.
 return x_shift+3, y_shift+5

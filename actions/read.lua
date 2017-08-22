@@ -8,7 +8,13 @@ local fun = function (x, y)
 	local text = screen_gettag(screen, x, y, "text")
 
 	if text ~= "" then
-		player_message(Player, text)
+		-- Check if close
+		local state = screen_gettag(screen, x, y, "openclose_state")
+		if state == "close" then
+			player_message(Player, "This book is close.")
+		else
+			player_message(Player, text)
+		end
 		return true
 	else
 		return false

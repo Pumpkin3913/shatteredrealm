@@ -5,11 +5,11 @@ local x = player_getx(Player)
 local y = player_gety(Player)
 
 local fun = function (x, y)
-	local t = screen_gettile(screen, x, y)
-	local tileset, tile = string.match(t, "(.*):(.*)")
-
-	if tile == "bigdoor" then
-		screen_settile(screen, x, y, tileset..":".."bigdoor_closed")
+	local tag = screen_gettag(screen, x, y, "openclose_state")
+	if tag == "open" then
+		local tile = screen_gettag(screen, x, y, "openclose_closetile")
+		screen_settile(screen, x, y, tile)
+		screen_settag(screen, x, y, "openclose_state", "close")
 		return true
 	else
 		return false
@@ -22,5 +22,5 @@ and not fun(x, y+1)
 and not fun(x-1, y)
 and not fun(x+1, y)
 then
-	player_message(Player, "There is no door here.")
+	player_message(Player, "There is nothing to close here.")
 end
