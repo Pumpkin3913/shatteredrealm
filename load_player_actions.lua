@@ -7,6 +7,7 @@ add_script("clear", "actions/clear.lua")
 
 add_script("open", "actions/open.lua")
 add_script("close", "actions/close.lua")
+add_script("lock", "actions/lock.lua")
 
 add_script("search", "actions/search.lua")
 

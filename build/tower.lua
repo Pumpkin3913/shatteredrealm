@@ -14,6 +14,7 @@ screen_settile(screen, coffer_x, coffer_y, tileset..":coffer_common_close")
 screen_settag(screen, coffer_x, coffer_y, "openclose_state", "close")
 screen_settag(screen, coffer_x, coffer_y, "openclose_opentile", tileset..":coffer_common_open")
 screen_settag(screen, coffer_x, coffer_y, "openclose_closetile", tileset..":coffer_common_close")
+screen_settag(screen, coffer_x, coffer_y, "content", "Ziggurat's Key")
 
 loadfile("build/tools/link.lua")(screen, entrance_x, entrance_y, screen, hatch_x, hatch_y)
 
