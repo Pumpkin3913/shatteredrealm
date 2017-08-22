@@ -84,6 +84,5 @@ screen_settile(screen, x_shift+entrance_x+0, y_shift+h-1, tileset..":bigdoor")
 screen_settile(screen, x_shift+entrance_x+1, y_shift+h-1, tileset..":bigdoor_rgt")
 
 -- Finish.
-verbose("Building built in '"..screen.."'.")
 return x_shift+entrance_x+0, y_shift+h-1
 

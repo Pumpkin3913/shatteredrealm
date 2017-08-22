@@ -28,7 +28,3 @@ for j=1,h-4 do
 end
 screen_settile(screen, 0,   h-3, tileset..":pillar_bot")
 screen_settile(screen, w-1, h-3, tileset..":pillar_bot")
-
--- Finish.
--- verbose("'"..screen.."' built inside '"..extern_screen.."'.") -- XXX
-

@@ -66,5 +66,4 @@ screen_settile(screen, x_shift+5, y_shift+6, tileset..":wall_botlft")
 screen_settile(screen, x_shift+6, y_shift+6, tileset..":wall_botrgt")
 
 -- Finish.
-verbose("Ziggurat built in '"..screen.."'.")
 return x_shift+3, y_shift+5
