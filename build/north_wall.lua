@@ -2,7 +2,7 @@
 
 local tileset, screen = ...
 
-loadfile("build/tower.lua")(tileset, screen, 1,  3, "northwest")
+loadfile("build/corner_tower.lua")(tileset, screen, 1,  3, "northwest")
 loadfile("build/tools/h_wall.lua")(tileset, screen, 6, 6, 6, 5)
 loadfile("build/tower.lua")(tileset, screen, 12, 3, "left")
 loadfile("build/tools/h_wall.lua")(tileset, screen, 17, 4, 6, 7)
@@ -10,7 +10,7 @@ loadfile("build/lone_tower.lua")(tileset, screen, 23, 1)
 loadfile("build/tools/h_wall.lua")(tileset, screen, 28, 4, 6, 7)
 loadfile("build/tower.lua")(tileset, screen, 34, 3, "right")
 loadfile("build/tools/h_wall.lua")(tileset, screen, 39, 6, 6, 5)
-loadfile("build/tower.lua")(tileset, screen, 45, 3, "northeast")
+loadfile("build/corner_tower.lua")(tileset, screen, 45, 3, "northeast")
 
 screen_settile(screen, 16, 5, tileset..":roof")
 screen_settile(screen, 34, 5, tileset..":roof")
@@ -44,6 +44,10 @@ screen_settile("northeast_floor_1", 0, 3, tileset..":pillar_bot")
 screen_settile("northeast_floor_1", 0, 4, tileset..":mosaic_a")
 screen_settile(screen, 44, 7, tileset..":mosaic_a")
 loadfile("build/tools/link.lua")("northeast_floor_1", 0, 4, screen, 44, 7)
+
+-- Vertical walls.
+loadfile("build/tools/v_wall.lua")(tileset, screen, 2, 10, 3, 20) -- TODO: cut that length of 20 before
+loadfile("build/tools/v_wall.lua")(tileset, screen, 46, 10, 3, 20) -- TODO: cut that length of 20 before
 
 -- Add crystal and mosaic disseminated through the towers.
 local crystal_screen = "lone_tower_2"
