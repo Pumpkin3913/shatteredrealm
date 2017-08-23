@@ -45,6 +45,28 @@ screen_settile("northeast_floor_1", 0, 4, tileset..":mosaic_a")
 screen_settile(screen, 44, 7, tileset..":mosaic_a")
 loadfile("build/tools/link.lua")("northeast_floor_1", 0, 4, screen, 44, 7)
 
+-- Add crystal and mosaic disseminated through the towers.
+local crystal_screen = "lone_tower_2"
+local crystal_x = 4
+local crystal_y = 3
+screen_settile(crystal_screen, crystal_x, crystal_y, tileset..":crystal_2")
+
+local put_switch = function(n, screen, x, y)
+	local script = "loadfile(\"logic/switch_bw_crystal.lua\")(\""..crystal_screen.."\", "..crystal_x..", "..crystal_y..")"
+	screen_settile(screen, x, y, tileset..":mosaic_black")
+	screen_setlandon(screen, x, y, script)
+	screen_settag(
+		crystal_screen, crystal_x, crystal_y,
+		"controlling_mosaic_"..n,
+		screen .. "/" .. x .. "-" .. y
+	)
+end
+
+put_switch(1, "lone_tower_0", 2, 4)
+put_switch(2, "lone_tower_0", 6, 4)
+put_switch(3, "northwest_floor_1", 2, 6)
+put_switch(4, "northeast_floor_1", 6, 6)
+
 -- Seal off left tower's door.
 screen_settile(screen, 14, 11, tileset..":bigdoor_locked")
 screen_settile("left_floor_0", 4, 9, tileset..":block_a")
