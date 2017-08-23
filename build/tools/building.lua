@@ -83,12 +83,12 @@ screen_settile(screen, x_shift+entrance_x-1, y_shift+h-1, tileset..":bigdoor_lft
 screen_settile(screen, x_shift+entrance_x+0, y_shift+h-1, tileset..":bigdoor")
 screen_settile(screen, x_shift+entrance_x+1, y_shift+h-1, tileset..":bigdoor_rgt")
 
--- Add open/close tags for entrance.
-local door_x = x_shift + entrance_x
-local door_y = y_shift + h - 1
-screen_settag(screen, door_x, door_y, "openclose_state", "open")
-screen_settag(screen, door_x, door_y, "openclose_opentile", tileset..":bigdoor")
-screen_settag(screen, door_x, door_y, "openclose_closetile", tileset..":bigdoor_closed")
+-- -- Add open/close tags for entrance.
+-- local door_x = x_shift + entrance_x
+-- local door_y = y_shift + h - 1
+-- screen_settag(screen, door_x, door_y, "openclose_state", "open")
+-- screen_settag(screen, door_x, door_y, "openclose_opentile", tileset..":bigdoor")
+-- screen_settag(screen, door_x, door_y, "openclose_closetile", tileset..":bigdoor_closed")
 
 -- Finish.
 return x_shift+entrance_x+0, y_shift+h-1

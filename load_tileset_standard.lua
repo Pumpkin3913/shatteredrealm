@@ -125,8 +125,8 @@ row = row+8
 -- Text
 new_tile(prefix.."book_a_open",  "Book",        row+0, false)
 new_tile(prefix.."book_a_close", "Opened Book", row+1, false)
-new_tile(prefix.."book_b_open",  "Book",          row+2, false)
-new_tile(prefix.."book_b_close", "Opened Book",   row+3, false)
+new_tile(prefix.."book_b_open",  "Book",        row+2, false)
+new_tile(prefix.."book_b_close", "Opened Book", row+3, false)
 row = row+8
 
 -- Blocks
@@ -136,6 +136,8 @@ new_tile(prefix.."well", "Well", row+2, false)
 new_tile(prefix.."octahedron", "Octahedron", row+3, false)
 new_tile(prefix.."tombstone_cross", "Cross Tombstone", row+4, false)
 new_tile(prefix.."tombstone_slab", "Slab Tombstone", row+5, false)
+new_tile(prefix.."slab", "Slab", row+6, false)
+new_tile(prefix.."slab_passable", "Slab", row+6, true)
 row = row+8
 
 -- Undef

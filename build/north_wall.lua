@@ -45,3 +45,6 @@ screen_settile("northeast_floor_1", 0, 4, tileset..":mosaic_a")
 screen_settile(screen, 44, 7, tileset..":mosaic_a")
 loadfile("build/tools/link.lua")("northeast_floor_1", 0, 4, screen, 44, 7)
 
+-- Seal off left tower's door.
+screen_settile(screen, 14, 11, tileset..":bigdoor_locked")
+screen_settile("left_floor_0", 4, 9, tileset..":block_a")

@@ -11,9 +11,12 @@ add_script("lock", "actions/lock.lua")
 
 add_script("search", "actions/search.lua")
 
+add_script("cast", "actions/cast.lua")
+
 -- DM commands
 add_script("save", "actions/save.lua")
 add_script("load", "actions/load.lua")
 add_script("set", "actions/settile.lua")
+add_script("tp", "actions/tp.lua")
 
 verbose("Player actions loaded.")

@@ -14,6 +14,8 @@ screen_settag("ziggurat_1", 3, 1, "text", "To change the color of the crystal, s
 
 -- Lock the entrance.
 screen_settile(screen, x, y, tileset..":bigdoor_closed")
+screen_settag(screen, x, y, "openclose_opentile", tileset..":bigdoor")
+screen_settag(screen, x, y, "openclose_closetile", tileset..":bigdoor_closed")
 screen_settag(screen, x, y, "openclose_state", "locked")
 screen_settag(screen, x, y, "openclose_key", "Ziggurat's Key")
 
