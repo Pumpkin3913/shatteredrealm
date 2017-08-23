@@ -3,13 +3,13 @@
 local tileset, screen = ...
 
 loadfile("build/tower.lua")(tileset, screen, 1,  3, "northwest")
-loadfile("build/wall.lua")(tileset, screen, 6, 6, 5)
+loadfile("build/tools/h_wall.lua")(tileset, screen, 6, 6, 6, 5)
 loadfile("build/tower.lua")(tileset, screen, 12, 3, "left")
-loadfile("build/wall.lua")(tileset, screen, 17, 4, 7)
+loadfile("build/tools/h_wall.lua")(tileset, screen, 17, 4, 6, 7)
 loadfile("build/lone_tower.lua")(tileset, screen, 23, 1)
-loadfile("build/wall.lua")(tileset, screen, 28, 4, 7)
+loadfile("build/tools/h_wall.lua")(tileset, screen, 28, 4, 6, 7)
 loadfile("build/tower.lua")(tileset, screen, 34, 3, "right")
-loadfile("build/wall.lua")(tileset, screen, 39, 6, 5)
+loadfile("build/tools/h_wall.lua")(tileset, screen, 39, 6, 6, 5)
 loadfile("build/tower.lua")(tileset, screen, 45, 3, "northeast")
 
 screen_settile(screen, 16, 5, tileset..":roof")
