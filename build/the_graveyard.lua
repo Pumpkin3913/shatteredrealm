@@ -18,9 +18,9 @@ screen_settile(screen, x_shift+mid+1, y_shift+1, tileset..":wall_botlft")
 
 -- Add magical word to open/close.
 local script = "loadfile(\"logic/graveyard_door.lua\")(\""..screen.."\", "..x_shift+mid..", "..y_shift+1 ..")"
-screen_settag(screen, x_shift+mid, y_shift-1, "spellplace_word", "Sesam")
+screen_settag(screen, x_shift+mid, y_shift-1, "spellplace_word", "Sesame")
 screen_settag(screen, x_shift+mid, y_shift-1, "spellplace_script", script)
-screen_settag(screen, x_shift+mid, y_shift+2, "spellplace_word", "Sesam")
+screen_settag(screen, x_shift+mid, y_shift+2, "spellplace_word", "Sesame")
 screen_settag(screen, x_shift+mid, y_shift+2, "spellplace_script", script)
 
 -- Add book and path.

@@ -15,6 +15,6 @@ loadfile("build/north_wall.lua")(tileset, screen)
 loadfile("build/ziggurat_crystal.lua")(tileset, screen, 8, 15)
 loadfile("build/library.lua")(tileset, screen, w-8-11, 15) -- 8 is offset from right, 11 is library's length.
 loadfile("build/chalk_coffer.lua")(tileset, "lone_tower_1", 2, 3)
-loadfile("build/the_graveyard.lua")(tileset, screen, 17, 18)
+loadfile("build/the_graveyard.lua")(tileset, screen, 18, 18)
 
 verbose("[WORLDGEN] Castle finished.")
