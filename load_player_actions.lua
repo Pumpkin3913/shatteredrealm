@@ -12,6 +12,7 @@ add_script("lock", "actions/lock.lua")
 add_script("search", "actions/search.lua")
 
 add_script("cast", "actions/cast.lua")
+add_script("drain", "actions/crystal_drain.lua")
 
 -- DM commands
 add_script("save", "actions/save.lua")

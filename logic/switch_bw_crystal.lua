@@ -6,16 +6,14 @@ local crystal_screen, crystal_x, crystal_y = ...
 -- Change stepped-on mosaic's color.
 dofile("logic/switch_bw_mosaic.lua")
 
-local screen = player_getscreen(Player)
 local switch = {}
 
-local n = 1;
+local n=1
 local tag = screen_gettag(crystal_screen, crystal_x, crystal_y, "controlling_mosaic_"..n)
 while tag ~= "" do
 	local mosaic_screen, mosaic_x, mosaic_y = string.match(tag, "(.*)/(.*)-(.*)")
-	switch[n] = screen_gettile(mosaic_screen, mosaic_x, mosaic_y)
-
-	n = n+1;
+	table.insert(switch, screen_gettile(mosaic_screen, mosaic_x, mosaic_y))
+	n = n+1
 	tag = screen_gettag(crystal_screen, crystal_x, crystal_y, "controlling_mosaic_"..n)
 end
 
@@ -23,8 +21,7 @@ local file
 local all_white = true
 local all_black = true
 
-for i=1,n-1 do
-
+for i=1,#switch do
 	local color
 	file, color = string.match(switch[i], "(.*):mosaic_(.*)")
 
