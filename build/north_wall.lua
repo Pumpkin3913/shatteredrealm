@@ -46,8 +46,8 @@ screen_settile(screen, 44, 7, tileset..":mosaic_a")
 loadfile("build/tools/link.lua")("northeast_floor_1", 0, 4, screen, 44, 7)
 
 -- Vertical walls.
-loadfile("build/tools/v_wall.lua")(tileset, screen, 2, 10, 3, 20) -- TODO: cut that length of 20 before
-loadfile("build/tools/v_wall.lua")(tileset, screen, 46, 10, 3, 20) -- TODO: cut that length of 20 before
+loadfile("build/tools/v_wall.lua")(tileset, screen, 2, 10, 3, 30) -- TODO: cut the length
+loadfile("build/tools/v_wall.lua")(tileset, screen, 46, 10, 3, 30) -- TODO: cut the length
 
 -- Add crystal and mosaic disseminated through the towers.
 local crystal_screen = "lone_tower_2"
@@ -70,6 +70,11 @@ put_switch(1, "lone_tower_0", 2, 4)
 put_switch(2, "lone_tower_0", 6, 4)
 put_switch(3, "northwest_floor_1", 2, 6)
 put_switch(4, "northeast_floor_1", 6, 6)
+
+-- Add advice on the wall, near the crystal.
+screen_settile(crystal_screen, 3, 1, tileset..":wall_bot_written")
+screen_settag(crystal_screen, 3, 1, "text", "To change the color of the crystal, set the floor tiles to the same color.")
+screen_settag(crystal_screen, 3, 1, "text_type", "chalk")
 
 -- Seal off left tower's door.
 screen_settile(screen, 14, 11, tileset..":bigdoor_locked")

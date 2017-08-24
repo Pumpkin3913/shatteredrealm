@@ -7,8 +7,16 @@ local y = player_gety(Player)
 local fun = function (x, y)
 	local tileset, tile = string.match(screen_gettile(screen, x, y), "(.*):(.*)")
 	if tile == "wall_bot_written" then
-		screen_settag(screen, x, y, "text", "")
-		screen_settile(screen, x, y, tileset..":wall_bot")
+		if screen_gettag(screen, x, y, "text_type") == "chalk" then
+			screen_settag(screen, x, y, "text", "")
+			screen_settile(screen, x, y, tileset..":wall_bot")
+			local script = screen_gettag(screen, x, y, "text_clear_trigger")
+			if script and script ~= "" then
+				loadstring(script)()
+			end
+		else
+			player_message(Player, "This message wasn't written with chalk and cannot be /clear.")
+		end
 		return true
 	else
 		return false

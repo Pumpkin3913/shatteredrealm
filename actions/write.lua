@@ -18,6 +18,7 @@ local fun = function (x, y)
 	local tileset, tile = string.match(screen_gettile(screen, x, y), "(.*):(.*)")
 	if tile == "wall_bot" then
 		screen_settag(screen, x, y, "text", Arg)
+		screen_settag(screen, x, y, "text_type", "chalk")
 		screen_settile(screen, x, y, tileset..":wall_bot_written")
 		return true
 	else

@@ -11,6 +11,7 @@ loadfile("build/tools/link.lua")(screen, x, y, interior, 4, 9)
 -- Add writing on the wall.
 screen_settile(interior, 3, 1, tileset..":wall_bot_written")
 screen_settag(interior, 3, 1, "text", "To change the color of the crystal, set the floor tiles to the same color.")
+screen_settag(interior, 3, 1, "text_type", "chalk")
 
 -- Lock the entrance.
 screen_settile(screen, x, y, tileset..":bigdoor_closed")
