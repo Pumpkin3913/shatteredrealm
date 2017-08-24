@@ -16,6 +16,7 @@ loadfile("build/ziggurat_crystal.lua")(tileset, screen, 8, 15)
 loadfile("build/ziggurat_portal.lua")(tileset, screen, 8, 24)
 loadfile("build/library.lua")(tileset, screen, w-8-11, 15) -- 8 is offset from right, 11 is library's length.
 loadfile("build/the_graveyard.lua")(tileset, screen, 18, 18)
+loadfile("build/writeme_wall.lua")(tileset, screen, 17, 13)
 
 -- Dispatch treasures.
 

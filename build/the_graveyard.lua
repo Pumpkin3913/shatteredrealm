@@ -16,12 +16,10 @@ screen_settile(screen, x_shift+mid-1, y_shift+1, tileset..":wall_botrgt")
 screen_settile(screen, x_shift+mid,   y_shift+1, tileset..":pillar_bot")
 screen_settile(screen, x_shift+mid+1, y_shift+1, tileset..":wall_botlft")
 
--- Add magical word to open/close.
-local script = "loadfile(\"logic/sesame_spell.lua\")(\""..screen.."\", "..x_shift+mid..", "..y_shift+1 ..")"
-screen_settag(screen, x_shift+mid, y_shift-1, "spellplace_word", "Sesame")
-screen_settag(screen, x_shift+mid, y_shift-1, "spellplace_script", script)
-screen_settag(screen, x_shift+mid, y_shift+2, "spellplace_word", "Sesame")
-screen_settag(screen, x_shift+mid, y_shift+2, "spellplace_script", script)
+-- Add Sesame spell's tags.
+local target = screen.."/"..x_shift+mid.."-"..y_shift+1
+screen_settag(screen, x_shift+mid, y_shift-1, "sesame", target)
+screen_settag(screen, x_shift+mid, y_shift+2, "sesame", target)
 
 -- Add book and path.
 
@@ -47,7 +45,7 @@ screen_settile(screen, x, y, tileset..":book_b_open")
 screen_settag(screen, x, y, "openclose_state", "open")
 screen_settag(screen, x, y, "openclose_opentile", tileset..":book_b_open")
 screen_settag(screen, x, y, "openclose_closetile", tileset..":book_b_close")
-screen_settag(screen, x, y, "text", "Astaroth")
+screen_settag(screen, x, y, "text", "Ashflame Range")
 
 -- Finish
 verbose("[WORLDGEN] Graveyard build in "..screen..".");

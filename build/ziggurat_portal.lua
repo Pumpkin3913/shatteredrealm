@@ -21,4 +21,14 @@ loadfile("build/tools/interior.lua")(secret_tileset, secret_room, "Secret Room",
 loadfile("build/tools/doorway.lua")(secret_tileset, secret_room, 4, 9)
 loadfile("build/tools/link.lua")(interior, 4, 1, secret_room, 4, 9)
 
+-- Add secret spellbook.
+local state = "close"
+screen_settile(secret_room, 4, 5, secret_tileset..":book_a_"..state)
+screen_settag (secret_room, 4, 5, "openclose_state", state)
+screen_settag (secret_room, 4, 5, "openclose_opentile", secret_tileset..":book_a_open")
+screen_settag (secret_room, 4, 5, "openclose_closetile", secret_tileset..":book_a_close")
+screen_settag (secret_room, 4, 5, "title", "Trans-Shard Portals")
+screen_settag (secret_room, 4, 5, "text", "/write the Name on a /clear wall and /cast Portal.")
+
+
 verbose("[WORLDGEN] Portal's ziggurat build in "..screen..".");

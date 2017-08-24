@@ -10,6 +10,12 @@ local fun = function (x, y)
 		local tile = screen_gettag(screen, x, y, "openclose_closetile")
 		screen_settile(screen, x, y, tile)
 		screen_settag(screen, x, y, "openclose_state", "close")
+
+		local script = screen_gettag(screen, x, y, "openclose_closetrigger")
+		if script and script ~= "" then
+			loadstring(script)()
+		end
+
 		return true
 	else
 		return false

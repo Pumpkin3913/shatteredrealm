@@ -23,7 +23,8 @@ local content = {
 	"Some Magical Words are to be /write with a chalk on a wall.",
 	"Chalk's writing is easy to /clear.",
 	"The Wise knows how to /search, for no treasure is given by Destiny.",
-	"Each key can only /open and /lock a specific door or coffer.", -- "Did you expect consumable skeleton keys?"
+	-- "Each key can only /open and /lock a specific door or coffer.", -- "Did you expect consumable skeleton keys?"
+	"Daemons can /drain magical crystals.", -- XXX
 	"The shards were once one, though the Creator was dissatisfied with its creation.",
 	"Shards are the thickness of a shadow away from each other.",
 	"Daemons are destined to conquer the shards, by force, cunning and will."
