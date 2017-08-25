@@ -1,18 +1,18 @@
 #!/usr/bin/lua
 
-local screen = player_getscreen(Player)
+local zone = player_getzone(Player)
 local x = player_getx(Player)
 local y = player_gety(Player)
 
 local fun = function (x, y)
-	local key = screen_gettag(screen, x, y, "openclose_key")
+	local key = zone_gettag(zone, x, y, "openclose_key")
 	if key and key ~= "" then
 		if not string.match(player_gettag(Player, "inventory"), key) then
 			player_message(Player, "You don't have: "..key)
 		else
-			local tile = screen_gettag(screen, x, y, "openclose_closetile")
-			screen_settile(screen, x, y, tile)
-			screen_settag(screen, x, y, "openclose_state", "locked")
+			local tile = zone_gettag(zone, x, y, "openclose_closetile")
+			zone_settile(zone, x, y, tile)
+			zone_settag(zone, x, y, "openclose_state", "locked")
 		end
 		return true
 	else

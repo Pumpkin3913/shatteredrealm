@@ -1,6 +1,6 @@
 #!/usr/bin/lua
 
-local screen = player_getscreen(Player)
+local zone = player_getzone(Player)
 local x = player_getx(Player)
 local y = player_gety(Player)
 
@@ -13,7 +13,7 @@ if gauge_getval(Player, gauge) < cost then
 end
 
 -- Check place.
-local tag = screen_gettag(screen, x, y, "sesame")
+local tag = zone_gettag(zone, x, y, "sesame")
 if not tag or tag == "" then
 	player_message(Player, "The spell has no effect here.")
 	return
@@ -23,13 +23,13 @@ end
 gauge_decrease(Player, gauge, cost)
 
 -- Do the effect.
-screen, x, y = string.match(tag, "(.*)/(.*)-(.*)")
-local tileset, tile = string.match(screen_gettile(screen, x, y), "(.*):(.*)")
+zone, x, y = string.match(tag, "(.*)/(.*)-(.*)")
+local tileset, tile = string.match(zone_gettile(zone, x, y), "(.*):(.*)")
 
 if tile == "slab_passable" then -- The door is open: close it.
-	screen_settile(screen, x, y,   tileset..":pillar_bot")
-	screen_settile(screen, x, y-1, tileset..":slab")
+	zone_settile(zone, x, y,   tileset..":pillar_bot")
+	zone_settile(zone, x, y-1, tileset..":slab")
 else -- The door is closed: open it.
-	screen_settile(screen, x, y,   tileset..":slab_passable")
-	screen_settile(screen, x, y-1, tileset..":path_vertical")
+	zone_settile(zone, x, y,   tileset..":slab_passable")
+	zone_settile(zone, x, y-1, tileset..":path_vertical")
 end

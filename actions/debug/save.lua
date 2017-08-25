@@ -1,7 +1,7 @@
 #!/usr/bin/lua
 
-local screen = player_getscreen(Player)
-local filename = "saved_screen_"..screen..".txt"
+local zone = player_getzone(Player)
+local filename = "saved_zone_"..zone..".txt"
 if Arg then
 	filename = Arg
 end
@@ -10,16 +10,16 @@ local file, message = io.open(filename, "w")
 if not file then
 	player_message(Player, "/save command: " .. message)
 else
-	local w = screen_getwidth(screen)
-	local h = screen_getheight(screen)
+	local w = zone_getwidth(zone)
+	local h = zone_getheight(zone)
 
 	for x=0,w-1 do
 		for y=0,h-1 do
-			file:write(screen_gettile(screen,x,y) .. "\n")
+			file:write(zone_gettile(zone,x,y) .. "\n")
 		end
 	end
 
-	local message = "Screen '"..screen.."' saved to file '"..filename.."'."
+	local message = "Screen '"..zone.."' saved to file '"..filename.."'."
 	verbose(message)
 	player_message(Player, message)
 	file:close()

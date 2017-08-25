@@ -1,5 +1,5 @@
 #!/usr/bin/lua
 
-local screen, x, y = string.match(Arg, "(.*) (.*) (.*)")
+local zone, x, y = string.match(Arg, "(.*) (.*) (.*)")
 
-player_changescreen(Player, screen, x, y)
+player_changezone(Player, zone, x, y)

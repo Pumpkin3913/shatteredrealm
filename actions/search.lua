@@ -1,13 +1,13 @@
 #!/usr/bin/lua
 
-local screen = player_getscreen(Player)
+local zone = player_getzone(Player)
 local x = player_getx(Player)
 local y = player_gety(Player)
 
 local fun = function (x, y)
-	local content = screen_gettag(screen, x, y, "content")
+	local content = zone_gettag(zone, x, y, "content")
 	if content ~= "" then
-		local state = screen_gettag(screen, x, y, "openclose_state")
+		local state = zone_gettag(zone, x, y, "openclose_state")
 		if state == "close" then
 			player_message(Player, "The coffer is close.")
 		else

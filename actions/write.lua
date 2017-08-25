@@ -14,16 +14,16 @@ if not string.match(player_gettag(Player, "inventory"), "chalk") then
 end
 
 -- Check if appropriate wall.
-local screen = player_getscreen(Player)
+local zone = player_getzone(Player)
 local x = player_getx(Player)
 local y = player_gety(Player)-1
-local tileset, tile = string.match(screen_gettile(screen, x, y), "(.*):(.*)")
+local tileset, tile = string.match(zone_gettile(zone, x, y), "(.*):(.*)")
 if tile ~= "wall_bot" then
 	player_message(Player, "You can't write here. You need a flat wall.")
 	return
 end
 
 -- Do the writing.
-screen_settag(screen, x, y, "text", Arg)
-screen_settag(screen, x, y, "text_type", "chalk")
-screen_settile(screen, x, y, tileset..":wall_bot_written")
+zone_settag(zone, x, y, "text", Arg)
+zone_settag(zone, x, y, "text_type", "chalk")
+zone_settile(zone, x, y, tileset..":wall_bot_written")

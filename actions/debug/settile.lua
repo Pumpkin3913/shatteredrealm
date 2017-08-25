@@ -4,8 +4,8 @@ if not Arg then
 	player_message(Player, "Set Tile Command: provide tile ID as argument")
 else
 	if assert_tile(Arg) then
-		screen_settile(
-			player_getscreen(Player),
+		zone_settile(
+			player_getzone(Player),
 			player_getx(Player),
 			player_gety(Player),
 			Arg

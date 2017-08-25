@@ -1,17 +1,17 @@
 #!/usr/bin/lua
 
-local screen = player_getscreen(Player)
+local zone = player_getzone(Player)
 local x = player_getx(Player)
 local y = player_gety(Player)
 
 local fun = function (x, y)
-	local tag = screen_gettag(screen, x, y, "openclose_state")
+	local tag = zone_gettag(zone, x, y, "openclose_state")
 	if tag == "open" then
-		local tile = screen_gettag(screen, x, y, "openclose_closetile")
-		screen_settile(screen, x, y, tile)
-		screen_settag(screen, x, y, "openclose_state", "close")
+		local tile = zone_gettag(zone, x, y, "openclose_closetile")
+		zone_settile(zone, x, y, tile)
+		zone_settag(zone, x, y, "openclose_state", "close")
 
-		local script = screen_gettag(screen, x, y, "openclose_closetrigger")
+		local script = zone_gettag(zone, x, y, "openclose_closetrigger")
 		if script and script ~= "" then
 			loadstring(script)()
 		end

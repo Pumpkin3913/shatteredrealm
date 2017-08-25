@@ -1,17 +1,17 @@
 #!/usr/bin/lua
 
-local screen = player_getscreen(Player)
+local zone = player_getzone(Player)
 local x = player_getx(Player)
 local y = player_gety(Player)
 
 local fun = function (x, y)
-	local text = screen_gettag(screen, x, y, "text")
+	local text = zone_gettag(zone, x, y, "text")
 
 	if text ~= "" then
 		-- Check if close
-		local state = screen_gettag(screen, x, y, "openclose_state")
+		local state = zone_gettag(zone, x, y, "openclose_state")
 		if state == "close" then
-			local title = screen_gettag(screen, x, y, "title")
+			local title = zone_gettag(zone, x, y, "title")
 			if title and title ~= "" then
 				player_message(Player, title)
 			else

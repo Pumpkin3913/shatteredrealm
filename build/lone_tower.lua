@@ -1,18 +1,18 @@
 #!/usr/bin/lua
 
-local tileset, screen, x_shift, y_shift = ...
+local tileset, zone, x_shift, y_shift = ...
 
-local entrance_x, entrance_y = loadfile("build/tools/building.lua")(tileset, screen, x_shift, y_shift, 5, 11, 4)
+local entrance_x, entrance_y = loadfile("build/tools/building.lua")(tileset, zone, x_shift, y_shift, 5, 11, 4)
 
 local hatch_x = x_shift+2
 local hatch_y = y_shift+3
-screen_settile(screen, hatch_x, hatch_y, tileset..":roof_rare_a") -- Hatch
+zone_settile(zone, hatch_x, hatch_y, tileset..":roof_rare_a") -- Hatch
 
 -- Floor 0
 local floor0 = "lone_tower_0"
 loadfile("build/tools/interior.lua")(tileset, floor0, "Tower", 9, 10)
 loadfile("build/tools/doorway.lua")(tileset, floor0, 4, 9)
-loadfile("build/tools/link.lua")(screen, entrance_x, entrance_y, floor0, 4, 9)
+loadfile("build/tools/link.lua")(zone, entrance_x, entrance_y, floor0, 4, 9)
 
 -- Floor 1
 local floor1 = "lone_tower_1"
@@ -29,7 +29,7 @@ loadfile("build/tools/doorway.lua")(tileset, floor2, 4, 9)
 loadfile("build/tools/link.lua")(floor1, 4, 9, floor2, 4, 9)
 
 -- Way to hatch
-screen_settile(floor2, 4, 6, tileset..":mosaic_a")
-loadfile("build/tools/link.lua")(floor2, 4, 6, screen, hatch_x, hatch_y)
+zone_settile(floor2, 4, 6, tileset..":mosaic_a")
+loadfile("build/tools/link.lua")(floor2, 4, 6, zone, hatch_x, hatch_y)
 
-verbose("[WORLDGEN] Tower built in "..screen..".")
+verbose("[WORLDGEN] Tower built in "..zone..".")

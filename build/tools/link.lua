@@ -5,8 +5,8 @@
 -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - --
 
 -- Get arguments.
-local Ascreen, Ax, Ay, Bscreen, Bx, By = ...
+local Azone, Ax, Ay, Bzone, Bx, By = ...
 
-screen_setlandon(Ascreen, Ax, Ay, "player_changescreen(Player, \""..Bscreen.."\", "..Bx..", "..By..")")
-screen_setlandon(Bscreen, Bx, By, "player_changescreen(Player, \""..Ascreen.."\", "..Ax..", "..Ay..")")
+zone_setlandon(Azone, Ax, Ay, "player_changezone(Player, \""..Bzone.."\", "..Bx..", "..By..")")
+zone_setlandon(Bzone, Bx, By, "player_changezone(Player, \""..Azone.."\", "..Ax..", "..Ay..")")
 

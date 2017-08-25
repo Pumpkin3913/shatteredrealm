@@ -1,4 +1,4 @@
 #!/usr/bin/lua
-if Arg and player_getname(Player) == "noname" then
+if Arg and player_getname(Player) == "_" then
 	player_setname(Player, Arg)
 end

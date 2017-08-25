@@ -1,14 +1,14 @@
 #!/usr/bin/lua
 
-local tileset, screen, x_shift, y_shift = ...
+local tileset, zone, x_shift, y_shift = ...
 
 local floor0 = "library_0"
 local floor1 = "library_1"
 
-local x,y = loadfile("build/tools/building.lua")(tileset, screen, x_shift, y_shift, 11, 8)
+local x,y = loadfile("build/tools/building.lua")(tileset, zone, x_shift, y_shift, 11, 8)
 loadfile("build/tools/interior.lua")(tileset, floor0, "Library", 13, 10)
 loadfile("build/tools/doorway.lua")(tileset, floor0, 6, 9)
-loadfile("build/tools/link.lua")(screen, x, y, floor0, 6, 9)
+loadfile("build/tools/link.lua")(zone, x, y, floor0, 6, 9)
 
 loadfile("build/tools/interior.lua")(tileset, floor1, "Library", 13, 10)
 loadfile("build/tools/door.lua")(tileset, floor0, 6, 1)
@@ -33,11 +33,11 @@ local content = {
 local add_book = function(x, y)
 	local text = table.remove(content, c_rand(#content))
 	local state = "open"; if c_rand(4) == 4 then state = "close" end
-	screen_settile(floor0, x, y, tileset..":book_a_"..state)
-	screen_settag(floor0, x, y, "openclose_state", state)
-	screen_settag(floor0, x, y, "openclose_opentile", tileset..":book_a_open")
-	screen_settag(floor0, x, y, "openclose_closetile", tileset..":book_a_close")
-	screen_settag(floor0, x, y, "text", text)
+	zone_settile(floor0, x, y, tileset..":book_a_"..state)
+	zone_settag(floor0, x, y, "openclose_state", state)
+	zone_settag(floor0, x, y, "openclose_opentile", tileset..":book_a_open")
+	zone_settag(floor0, x, y, "openclose_closetile", tileset..":book_a_close")
+	zone_settag(floor0, x, y, "text", text)
 end
 
 add_book(2, 3)
@@ -50,11 +50,11 @@ add_book(10, 3)
 add_book(10, 6)
 
 -- Add a lone magical book on first floor.
-screen_settile(floor1, 6, 5, tileset..":book_b_close")
-screen_settag(floor1, 6, 5, "openclose_state", "close")
-screen_settag(floor1, 6, 5, "openclose_opentile", tileset..":book_b_open")
-screen_settag(floor1, 6, 5, "openclose_closetile", tileset..":book_b_close")
-screen_settag(floor1, 6, 5, "title", "Tome of Dark Magic")
-screen_settag(floor1, 6, 5, "text", "Sesame")
+zone_settile(floor1, 6, 5, tileset..":book_b_close")
+zone_settag(floor1, 6, 5, "openclose_state", "close")
+zone_settag(floor1, 6, 5, "openclose_opentile", tileset..":book_b_open")
+zone_settag(floor1, 6, 5, "openclose_closetile", tileset..":book_b_close")
+zone_settag(floor1, 6, 5, "title", "Tome of Dark Magic")
+zone_settag(floor1, 6, 5, "text", "Sesame")
 
-verbose("[WORLDGEN] Library build in "..screen..".");
+verbose("[WORLDGEN] Library build in "..zone..".");
