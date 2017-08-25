@@ -1,14 +1,14 @@
 #!/usr/bin/lua
 
 -- Row 1: Icons
-new_tile("?", "", row+0)
+new_tile("void", "", row+0)
 new_tile("@", "", row+1)
 new_tile("heart", "Heart", row+2)
 new_tile("heart_empty", "Empty Heart", row+3)
-new_tile("gem", "Green Gem", row+4)
--- new_tile("", "", row+5)
--- new_tile("", "", row+6)
--- new_tile("", "", row+7)
+new_tile("star", "Star", row+4)
+new_tile("star_empty", "Empty Star", row+5)
+new_tile("gem", "Green Gem", row+6)
+new_tile("?", "", row+7)
 row = row+8
 
 -- Row 2: Vial A
