@@ -8,6 +8,23 @@ local w = 1+5*5+4*6+1
 local h = 40 -- for now
 
 new_screen(screen, "Castle", w, h, tileset..":soil_c")
+
+-- Randomize soil.
+for x=0,w-1 do
+	for y=0,h-1 do
+		local dice = c_rand(4)
+		if dice == 1 then
+			screen_settile(screen, x, y, tileset..":soil_a")
+		elseif dice == 2 then
+			screen_settile(screen, x, y, tileset..":soil_b")
+		elseif dice == 3 then
+			screen_settile(screen, x, y, tileset..":soil_c")
+		elseif dice == 4 then
+			screen_settile(screen, x, y, tileset..":soil_d")
+		end
+	end
+end
+
 screen_settile(screen, 25, 15, tileset..":mosaic_a") -- Spawn point.
 
 loadfile("build/north_wall.lua")(tileset, screen)
