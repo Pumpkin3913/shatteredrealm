@@ -4,9 +4,18 @@ local screen = player_getscreen(Player)
 local x = player_getx(Player)
 local y = player_gety(Player)
 
+-- Check if Player is a daemon.
+if player_gettag(Player, "race") ~= "demon" then
+	player_message(Player, "You are not a daemon.")
+	return
+end
+
 local fun = function (x, y)
 	local tile = string.match(screen_gettile(screen, x, y), ".*:(.*)")
-	if tile == "crystal_6" then
+	if tile == "crystal_2" then
+		player_message(Player, "This crystal isn't charged. There is no power to drain.")
+		return true
+	elseif tile == "crystal_6" then
 		loadfile("logic/reset_crystal.lua")(screen, x, y)
 		local gauge = "mana"
 		local max = gauge_getmax(Player, gauge)

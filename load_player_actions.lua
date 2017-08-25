@@ -12,12 +12,14 @@ add_script("lock", "actions/lock.lua")
 add_script("search", "actions/search.lua")
 
 add_script("cast", "actions/cast.lua")
-add_script("drain", "actions/crystal_drain.lua")
 
--- DM commands
-add_script("save", "actions/save.lua")
-add_script("load", "actions/load.lua")
-add_script("set", "actions/settile.lua")
-add_script("tp", "actions/tp.lua")
+-- Demon commands.
+add_script("drain", "actions/demon/crystal_drain.lua")
+
+-- Debug commands.
+add_script("save", "actions/debug/save.lua")
+add_script("load", "actions/debug/load.lua")
+add_script("set", "actions/debug/settile.lua")
+add_script("tp", "actions/debug/tp.lua")
 
 verbose("Player actions loaded.")

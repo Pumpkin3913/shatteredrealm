@@ -19,6 +19,7 @@ screen_settile(screen, x_shift+mid+1, y_shift+1, tileset..":wall_botlft")
 -- Add Sesame spell's tags.
 local target = screen.."/"..x_shift+mid.."-"..y_shift+1
 screen_settag(screen, x_shift+mid, y_shift-1, "sesame", target)
+screen_settag(screen, x_shift+mid, y_shift,   "sesame", target)
 screen_settag(screen, x_shift+mid, y_shift+2, "sesame", target)
 
 -- Add book and path.
