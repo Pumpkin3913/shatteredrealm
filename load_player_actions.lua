@@ -1,25 +1,25 @@
 #!/usr/bin/lua
 
-add_script("name", "actions/name.lua")
-add_script("read", "actions/read.lua")
-add_script("write", "actions/write.lua")
-add_script("clear", "actions/clear.lua")
+add_action("name", "dofile(\"actions/name.lua\")")
+add_action("read", "dofile(\"actions/read.lua\")")
+add_action("write", "dofile(\"actions/write.lua\")")
+add_action("clear", "dofile(\"actions/clear.lua\")")
 
-add_script("open", "actions/open.lua")
-add_script("close", "actions/close.lua")
-add_script("lock", "actions/lock.lua")
+add_action("open", "dofile(\"actions/open.lua\")")
+add_action("close", "dofile(\"actions/close.lua\")")
+add_action("lock", "dofile(\"actions/lock.lua\")")
 
-add_script("search", "actions/search.lua")
+add_action("search", "dofile(\"actions/search.lua\")")
 
-add_script("cast", "actions/cast.lua")
+add_action("cast", "dofile(\"actions/cast.lua\")")
 
 -- Demon commands.
-add_script("drain", "actions/demon/crystal_drain.lua")
+add_action("drain", "dofile(\"actions/demon/crystal_drain.lua\")")
 
 -- Debug commands.
-add_script("save", "actions/debug/save.lua")
-add_script("load", "actions/debug/load.lua")
-add_script("set", "actions/debug/settile.lua")
-add_script("tp", "actions/debug/tp.lua")
+add_action("save", "dofile(\"actions/debug/save.lua\")")
+add_action("load", "dofile(\"actions/debug/load.lua\")")
+add_action("set", "dofile(\"actions/debug/settile.lua\")")
+add_action("tp", "dofile(\"actions/debug/tp.lua\")")
 
 verbose("Player actions loaded.")
