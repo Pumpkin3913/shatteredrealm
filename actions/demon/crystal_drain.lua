@@ -11,7 +11,7 @@ if player_gettag(Player, "race") ~= "demon" then
 end
 
 local fun = function (x, y)
-	local tile = string.match(zone_gettile(zone, x, y), ".*:(.*)")
+	local tile = string.match(place_getaspect(zone, x, y), ".*:(.*)")
 	if tile == "crystal_2" then
 		player_message(Player, "This crystal isn't charged. There is no power to drain.")
 		return true

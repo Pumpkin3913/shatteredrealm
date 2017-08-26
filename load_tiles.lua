@@ -9,4 +9,4 @@ loadfile("load_tileset_standard.lua")("redruins")
 loadfile("load_tileset_standard.lua")("violetcastle")
 loadfile("load_tileset_standard.lua")("volcano")
 
-verbose("Tiles loaded.")
+info("Tiles loaded.")

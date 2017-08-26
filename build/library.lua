@@ -33,11 +33,11 @@ local content = {
 local add_book = function(x, y)
 	local text = table.remove(content, c_rand(#content))
 	local state = "open"; if c_rand(4) == 4 then state = "close" end
-	zone_settile(floor0, x, y, tileset..":book_a_"..state)
-	zone_settag(floor0, x, y, "openclose_state", state)
-	zone_settag(floor0, x, y, "openclose_opentile", tileset..":book_a_open")
-	zone_settag(floor0, x, y, "openclose_closetile", tileset..":book_a_close")
-	zone_settag(floor0, x, y, "text", text)
+	place_setaspect(floor0, x, y, tileset..":book_a_"..state)
+	place_settag(floor0, x, y, "openclose_state", state)
+	place_settag(floor0, x, y, "openclose_opentile", tileset..":book_a_open")
+	place_settag(floor0, x, y, "openclose_closetile", tileset..":book_a_close")
+	place_settag(floor0, x, y, "text", text)
 end
 
 add_book(2, 3)
@@ -50,11 +50,11 @@ add_book(10, 3)
 add_book(10, 6)
 
 -- Add a lone magical book on first floor.
-zone_settile(floor1, 6, 5, tileset..":book_b_close")
-zone_settag(floor1, 6, 5, "openclose_state", "close")
-zone_settag(floor1, 6, 5, "openclose_opentile", tileset..":book_b_open")
-zone_settag(floor1, 6, 5, "openclose_closetile", tileset..":book_b_close")
-zone_settag(floor1, 6, 5, "title", "Tome of Dark Magic")
-zone_settag(floor1, 6, 5, "text", "Sesame")
+place_setaspect(floor1, 6, 5, tileset..":book_b_close")
+place_settag(floor1, 6, 5, "openclose_state", "close")
+place_settag(floor1, 6, 5, "openclose_opentile", tileset..":book_b_open")
+place_settag(floor1, 6, 5, "openclose_closetile", tileset..":book_b_close")
+place_settag(floor1, 6, 5, "title", "Tome of Dark Magic")
+place_settag(floor1, 6, 5, "text", "Sesame")
 
-verbose("[WORLDGEN] Library build in "..zone..".");
+info("[WORLDGEN] Library build in "..zone..".");

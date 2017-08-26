@@ -2,22 +2,22 @@
 
 local tileset, zone, x, y = ...
 
-zone_settile(zone, x, y,   tileset..":roof_endlft")
-zone_settile(zone, x, y+1, tileset..":wall_lft")
-zone_settile(zone, x, y+2, tileset..":wall_botlft")
+place_setaspect(zone, x, y,   tileset..":roof_endlft")
+place_setaspect(zone, x, y+1, tileset..":wall_lft")
+place_setaspect(zone, x, y+2, tileset..":wall_botlft")
 for i=1,3 do
-	zone_settile(zone, x+i, y,   tileset..":roof_horizontal")
-	zone_settile(zone, x+i, y+1, tileset..":wall")
-	zone_settile(zone, x+i, y+2, tileset..":wall_bot")
+	place_setaspect(zone, x+i, y,   tileset..":roof_horizontal")
+	place_setaspect(zone, x+i, y+1, tileset..":wall")
+	place_setaspect(zone, x+i, y+2, tileset..":wall_bot")
 end
-zone_settile(zone, x+4, y,   tileset..":roof_endrgt")
-zone_settile(zone, x+4, y+1, tileset..":wall_rgt")
-zone_settile(zone, x+4, y+2, tileset..":wall_botrgt")
+place_setaspect(zone, x+4, y,   tileset..":roof_endrgt")
+place_setaspect(zone, x+4, y+1, tileset..":wall_rgt")
+place_setaspect(zone, x+4, y+2, tileset..":wall_botrgt")
 
 local write = function(zone, i, text)
-	zone_settile(zone, x+i, y+2, tileset..":wall_bot_written")
-	zone_settag(zone, x+i, y+2, "text", text)
-	zone_settag(zone, x+i, y+2, "text_type", "chalk")
+	place_setaspect(zone, x+i, y+2, tileset..":wall_bot_written")
+	place_settag(zone, x+i, y+2, "text", text)
+	place_settag(zone, x+i, y+2, "text_type", "chalk")
 end
 
 write(zone, 1, "Someone, please unlock the ziggurat.")

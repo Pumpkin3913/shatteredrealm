@@ -1,58 +1,58 @@
 #!/usr/bin/lua
 
 -- Row 1: Icons
-new_tile("void", "", row+0)
-new_tile("@", "", row+1)
-new_tile("heart", "Heart", row+2)
-new_tile("heart_empty", "Empty Heart", row+3)
-new_tile("star", "Star", row+4)
-new_tile("star_empty", "Empty Star", row+5)
-new_tile("gem", "Green Gem", row+6)
-new_tile("?", "", row+7)
+register_aspect("void", row+0)
+register_aspect("at", row+1)
+register_aspect("heart", row+2)
+register_aspect("heart_empty", row+3)
+register_aspect("star", row+4)
+register_aspect("star_empty", row+5)
+register_aspect("gem", row+6)
+register_aspect("question_mark", row+7)
 row = row+8
 
 -- Row 2: Vial A
-new_tile("vial_A_empty", "Empty Vial", row+0)
-new_tile("vial_A_red", "Vial", row+1)
-new_tile("vial_A_green", "Vial", row+2)
-new_tile("vial_A_blue", "Vial", row+3)
-new_tile("vial_A_purple", "Vial", row+4)
-new_tile("vial_A_yellow", "Vial", row+5)
-new_tile("vial_A_orange", "Vial", row+6)
-new_tile("vial_A_black", "Vial", row+7)
+register_aspect("vial_A_empty", row+0)
+register_aspect("vial_A_red", row+1)
+register_aspect("vial_A_green", row+2)
+register_aspect("vial_A_blue", row+3)
+register_aspect("vial_A_purple", row+4)
+register_aspect("vial_A_yellow", row+5)
+register_aspect("vial_A_orange", row+6)
+register_aspect("vial_A_black", row+7)
 row = row+8
 
 -- Row 3: Vial B
-new_tile("vial_B_empty", "Vial", row+0)
-new_tile("vial_B_red", "Vial", row+1)
-new_tile("vial_B_green", "Vial", row+2)
-new_tile("vial_B_blue", "Vial", row+3)
-new_tile("vial_B_purple", "Vial", row+4)
-new_tile("vial_B_yellow", "Vial", row+5)
-new_tile("vial_B_orange", "Vial", row+6)
-new_tile("vial_B_black", "Vial", row+7)
+register_aspect("vial_B_empty", row+0)
+register_aspect("vial_B_red", row+1)
+register_aspect("vial_B_green", row+2)
+register_aspect("vial_B_blue", row+3)
+register_aspect("vial_B_purple", row+4)
+register_aspect("vial_B_yellow", row+5)
+register_aspect("vial_B_orange", row+6)
+register_aspect("vial_B_black", row+7)
 row = row+8
 
 -- Row 4: Vial C
-new_tile("vial_C_empty", "Vial", row+0)
-new_tile("vial_C_red", "Vial", row+1)
-new_tile("vial_C_green", "Vial", row+2)
-new_tile("vial_C_blue", "Vial", row+3)
-new_tile("vial_C_purple", "Vial", row+4)
-new_tile("vial_C_yellow", "Vial", row+5)
-new_tile("vial_C_orange", "Vial", row+6)
-new_tile("vial_C_black", "Vial", row+7)
+register_aspect("vial_C_empty", row+0)
+register_aspect("vial_C_red", row+1)
+register_aspect("vial_C_green", row+2)
+register_aspect("vial_C_blue", row+3)
+register_aspect("vial_C_purple", row+4)
+register_aspect("vial_C_yellow", row+5)
+register_aspect("vial_C_orange", row+6)
+register_aspect("vial_C_black", row+7)
 row = row+8
 
 -- Row 5: Armored character
-new_tile("blue_armor", "Blue Armor", row+0)
-new_tile("red_armor", "Red Armor", row+1)
-new_tile("white_armor", "White Armor", row+2)
-new_tile("black_armor", "black_armor", row+3)
--- new_tile("", "", row+4)
--- new_tile("", "", row+5)
--- new_tile("", "", row+6)
--- new_tile("", "", row+7)
+register_aspect("blue_armor", row+0)
+register_aspect("red_armor", row+1)
+register_aspect("white_armor", row+2)
+register_aspect("black_armor", row+3)
+-- register_aspect("", row+4)
+-- register_aspect("", row+5)
+-- register_aspect("", row+6)
+-- register_aspect("", row+7)
 row = row+8
 
 -- Row 6: Unused
@@ -62,15 +62,15 @@ row = row+8
 row = row+8
 
 -- Row 8: Daemon character
-new_tile("demon", "Small Demon", row+0)
-new_tile("demon_trident", "Armed Demon", row+1)
-new_tile("demon_flame", "Pyro Demon", row+2)
-new_tile("demon_trident_flame", "Pyro Armed Demon", row+3)
-new_tile("demon_wings", "Winged Demon", row+4)
-new_tile("demon_trident_wings", "Armed Winged Demon", row+5)
-new_tile("demon_flame_wings", "Pyro Winged Demon", row+6)
-new_tile("demon_trident_flame_wings", "Great Demon", row+7)
+register_aspect("demon", row+0)
+register_aspect("demon_trident", row+1)
+register_aspect("demon_flame", row+2)
+register_aspect("demon_trident_flame", row+3)
+register_aspect("demon_wings", row+4)
+register_aspect("demon_trident_wings", row+5)
+register_aspect("demon_flame_wings", row+6)
+register_aspect("demon_trident_flame_wings", row+7)
 row = row+8
 
-verbose("Base tileset loaded.")
+info("Base tileset loaded.")
 

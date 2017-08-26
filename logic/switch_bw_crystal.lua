@@ -9,12 +9,12 @@ dofile("logic/switch_bw_mosaic.lua")
 local switch = {}
 
 local n=1
-local tag = zone_gettag(crystal_zone, crystal_x, crystal_y, "controlling_mosaic_"..n)
+local tag = place_gettag(crystal_zone, crystal_x, crystal_y, "controlling_mosaic_"..n)
 while tag ~= "" do
 	local mosaic_zone, mosaic_x, mosaic_y = string.match(tag, "(.*)/(.*)-(.*)")
-	table.insert(switch, zone_gettile(mosaic_zone, mosaic_x, mosaic_y))
+	table.insert(switch, place_getaspect(mosaic_zone, mosaic_x, mosaic_y))
 	n = n+1
-	tag = zone_gettag(crystal_zone, crystal_x, crystal_y, "controlling_mosaic_"..n)
+	tag = place_gettag(crystal_zone, crystal_x, crystal_y, "controlling_mosaic_"..n)
 end
 
 local file
@@ -35,10 +35,10 @@ for i=1,#switch do
 end
 
 if all_white == true then
-	zone_settile(crystal_zone, crystal_x, crystal_y, file..":crystal_6")
+	place_setaspect(crystal_zone, crystal_x, crystal_y, file..":crystal_6")
 end
 
 if all_black == true then
-	zone_settile(crystal_zone, crystal_x, crystal_y, file..":crystal_2")
+	place_setaspect(crystal_zone, crystal_x, crystal_y, file..":crystal_2")
 end
 

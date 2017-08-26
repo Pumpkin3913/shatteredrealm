@@ -21,5 +21,6 @@ add_action("save", "dofile(\"actions/debug/save.lua\")")
 add_action("load", "dofile(\"actions/debug/load.lua\")")
 add_action("set", "dofile(\"actions/debug/settile.lua\")")
 add_action("tp", "dofile(\"actions/debug/tp.lua\")")
+add_action("polymorph", "dofile(\"actions/debug/polymorph.lua\")")
 
-verbose("Player actions loaded.")
+info("Player actions loaded.")

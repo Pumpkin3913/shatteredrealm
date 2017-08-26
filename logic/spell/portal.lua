@@ -14,15 +14,15 @@ end
 
 -- Check wall size and /clear-ness.
 local nope = function() zone_event(zone, "The wall shudders...") end
-if not string.match(zone_gettile(zone, x-1, y-1), ".*:wall") then nope(); return; end
-if not string.match(zone_gettile(zone, x,   y-1), ".*:wall") then nope(); return; end
-if not string.match(zone_gettile(zone, x+1, y-1), ".*:wall") then nope(); return; end
-if not string.match(zone_gettile(zone, x-1, y), ".*:wall_bot") then nope(); return; end
-if not string.match(zone_gettile(zone, x,   y), ".*:wall_bot_written") then nope(); return; end
-if not string.match(zone_gettile(zone, x+1, y), ".*:wall_bot") then nope(); return; end
+if not string.match(place_getaspect(zone, x-1, y-1), ".*:wall") then nope(); return; end
+if not string.match(place_getaspect(zone, x,   y-1), ".*:wall") then nope(); return; end
+if not string.match(place_getaspect(zone, x+1, y-1), ".*:wall") then nope(); return; end
+if not string.match(place_getaspect(zone, x-1, y), ".*:wall_bot") then nope(); return; end
+if not string.match(place_getaspect(zone, x,   y), ".*:wall_bot_written") then nope(); return; end
+if not string.match(place_getaspect(zone, x+1, y), ".*:wall_bot") then nope(); return; end
 
 -- Get target name.
-local name = zone_gettag(zone, x, y, "text")
+local name = place_gettag(zone, x, y, "text")
 if not name or name == "" then nope(); return; end
 if name ~= "Ashflame Range" then nope(); return; end -- TODO: still open a gate, but to the Void.
 
@@ -32,17 +32,17 @@ gauge_decrease(Player, gauge, cost)
 -- Create target world.
 id = "ashflame_"..c_rand(999999)
 new_zone(id, name, 20, 20, "volcano:roof")
-zone_settile(id, 10, 10, "volcano:mosaic_a")
+place_setaspect(id, 10, 10, "volcano:mosaic_a")
 
 -- Open gate and link.
-local tileset = string.match(zone_gettile(zone, x, y), "(.*):.*")
+local tileset = string.match(place_getaspect(zone, x, y), "(.*):.*")
 loadfile("build/tools/door.lua")(tileset, zone, x, y)
 loadfile("build/tools/link.lua")(zone, x, y, id, 10, 10)
 
 -- TODO: close trigger
-zone_settag(zone, x, y, "openclose_state", "open")
-zone_settag(zone, x, y, "openclose_opentile", tileset..":bigdoor")
-zone_settag(zone, x, y, "openclose_closetile", tileset..":bigdoor_closed")
-zone_settag(zone, x, y, "openclose_closetrigger", "loadfile(\"logic/close_portal.lua\")(\""..tileset.."\", \""..zone.."\", "..x..", "..y..")")
+place_settag(zone, x, y, "openclose_state", "open")
+place_settag(zone, x, y, "openclose_opentile", tileset..":bigdoor")
+place_settag(zone, x, y, "openclose_closetile", tileset..":bigdoor_closed")
+place_settag(zone, x, y, "openclose_closetrigger", "loadfile(\"logic/close_portal.lua\")(\""..tileset.."\", \""..zone.."\", "..x..", "..y..")")
 
 zone_event(zone, "Heat and smell of sulfur rush from the portal!")

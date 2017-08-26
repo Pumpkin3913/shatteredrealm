@@ -5,12 +5,12 @@ local x = player_getx(Player)
 local y = player_gety(Player)
 
 local fun = function (x, y)
-	local tileset, tile = string.match(zone_gettile(zone, x, y), "(.*):(.*)")
+	local tileset, tile = string.match(place_getaspect(zone, x, y), "(.*):(.*)")
 	if tile == "wall_bot_written" then
-		if zone_gettag(zone, x, y, "text_type") == "chalk" then
-			zone_settag(zone, x, y, "text", "")
-			zone_settile(zone, x, y, tileset..":wall_bot")
-			local script = zone_gettag(zone, x, y, "text_clear_trigger")
+		if place_gettag(zone, x, y, "text_type") == "chalk" then
+			place_settag(zone, x, y, "text", "")
+			place_setaspect(zone, x, y, tileset..":wall_bot")
+			local script = place_gettag(zone, x, y, "text_clear_trigger")
 			if script and script ~= "" then
 				loadstring(script)()
 			end

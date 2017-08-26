@@ -17,13 +17,13 @@ end
 local zone = player_getzone(Player)
 local x = player_getx(Player)
 local y = player_gety(Player)-1
-local tileset, tile = string.match(zone_gettile(zone, x, y), "(.*):(.*)")
+local tileset, tile = string.match(place_getaspect(zone, x, y), "(.*):(.*)")
 if tile ~= "wall_bot" then
 	player_message(Player, "You can't write here. You need a flat wall.")
 	return
 end
 
 -- Do the writing.
-zone_settag(zone, x, y, "text", Arg)
-zone_settag(zone, x, y, "text_type", "chalk")
-zone_settile(zone, x, y, tileset..":wall_bot_written")
+place_settag(zone, x, y, "text", Arg)
+place_settag(zone, x, y, "text_type", "chalk")
+place_setaspect(zone, x, y, tileset..":wall_bot_written")

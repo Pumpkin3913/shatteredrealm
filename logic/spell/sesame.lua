@@ -13,7 +13,7 @@ if gauge_getval(Player, gauge) < cost then
 end
 
 -- Check place.
-local tag = zone_gettag(zone, x, y, "sesame")
+local tag = place_gettag(zone, x, y, "sesame")
 if not tag or tag == "" then
 	player_message(Player, "The spell has no effect here.")
 	return
@@ -24,12 +24,12 @@ gauge_decrease(Player, gauge, cost)
 
 -- Do the effect.
 zone, x, y = string.match(tag, "(.*)/(.*)-(.*)")
-local tileset, tile = string.match(zone_gettile(zone, x, y), "(.*):(.*)")
+local tileset, tile = string.match(place_getaspect(zone, x, y), "(.*):(.*)")
 
 if tile == "slab_passable" then -- The door is open: close it.
-	zone_settile(zone, x, y,   tileset..":pillar_bot")
-	zone_settile(zone, x, y-1, tileset..":slab")
+	place_setaspect(zone, x, y,   tileset..":pillar_bot")
+	place_setaspect(zone, x, y-1, tileset..":slab")
 else -- The door is closed: open it.
-	zone_settile(zone, x, y,   tileset..":slab_passable")
-	zone_settile(zone, x, y-1, tileset..":path_vertical")
+	place_setaspect(zone, x, y,   tileset..":slab_passable")
+	place_setaspect(zone, x, y-1, tileset..":path_vertical")
 end

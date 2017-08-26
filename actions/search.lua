@@ -5,9 +5,9 @@ local x = player_getx(Player)
 local y = player_gety(Player)
 
 local fun = function (x, y)
-	local content = zone_gettag(zone, x, y, "content")
+	local content = place_gettag(zone, x, y, "content")
 	if content ~= "" then
-		local state = zone_gettag(zone, x, y, "openclose_state")
+		local state = place_gettag(zone, x, y, "openclose_state")
 		if state == "close" then
 			player_message(Player, "The coffer is close.")
 		else

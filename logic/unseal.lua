@@ -2,7 +2,7 @@
 
 local zone, x, y = ...
 
-local tileset = string.match(zone_gettile(zone, x, y), "(.*):.*")
+local tileset = string.match(place_getaspect(zone, x, y), "(.*):.*")
 loadfile("build/tools/door.lua")(tileset, zone, x, y)
 -- The room behind is already created and the door already linked.
 

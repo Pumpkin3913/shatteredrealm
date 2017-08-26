@@ -16,12 +16,12 @@ else
 	for x=0,w-1 do
 		for y=0,h-1 do
 			local tile = file:read()
-			zone_settile(zone, x, y, tile)
+			place_setaspect(zone, x, y, tile)
 		end
 	end
 
 	local message = "Screen '"..zone.."' loaded from file '"..filename.."'."
-	verbose(message)
+	info(message)
 	player_message(Player, message)
 	file:close()
 end

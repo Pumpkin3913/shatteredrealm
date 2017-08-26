@@ -14,18 +14,18 @@ for x=0,w-1 do
 	for y=0,h-1 do
 		local dice = c_rand(4)
 		if dice == 1 then
-			zone_settile(zone, x, y, tileset..":soil_a")
+			place_setaspect(zone, x, y, tileset..":soil_a")
 		elseif dice == 2 then
-			zone_settile(zone, x, y, tileset..":soil_b")
+			place_setaspect(zone, x, y, tileset..":soil_b")
 		elseif dice == 3 then
-			zone_settile(zone, x, y, tileset..":soil_c")
+			place_setaspect(zone, x, y, tileset..":soil_c")
 		elseif dice == 4 then
-			zone_settile(zone, x, y, tileset..":soil_d")
+			place_setaspect(zone, x, y, tileset..":soil_d")
 		end
 	end
 end
 
-zone_settile(zone, 25, 15, tileset..":mosaic_a") -- Spawn point.
+place_setaspect(zone, 25, 15, tileset..":mosaic_a") -- Spawn point.
 
 loadfile("build/north_wall.lua")(tileset, zone)
 
@@ -38,17 +38,17 @@ loadfile("build/writeme_wall.lua")(tileset, zone, 17, 13)
 -- Dispatch treasures.
 
 -- Chalk coffer.
-zone_settile("left_floor_0", 4, 5, tileset..":coffer_rare_close")
-zone_settag ("left_floor_0", 4, 5, "openclose_state", "close")
-zone_settag ("left_floor_0", 4, 5, "openclose_opentile", tileset..":coffer_rare_open")
-zone_settag ("left_floor_0", 4, 5, "openclose_closetile", tileset..":coffer_rare_close")
-zone_settag ("left_floor_0", 4, 5, "content", "chalk")
+place_setaspect("left_floor_0", 4, 5, tileset..":coffer_rare_close")
+place_settag ("left_floor_0", 4, 5, "openclose_state", "close")
+place_settag ("left_floor_0", 4, 5, "openclose_opentile", tileset..":coffer_rare_open")
+place_settag ("left_floor_0", 4, 5, "openclose_closetile", tileset..":coffer_rare_close")
+place_settag ("left_floor_0", 4, 5, "content", "chalk")
 
 -- Ziggurat's key coffer.
-zone_settile(zone, 25, 2, tileset..":coffer_common_close")
-zone_settag (zone, 25, 2, "openclose_state", "close")
-zone_settag (zone, 25, 2, "openclose_opentile", tileset..":coffer_common_open")
-zone_settag (zone, 25, 2, "openclose_closetile", tileset..":coffer_common_close")
-zone_settag (zone, 25, 2, "content", "Ziggurat's Key")
+place_setaspect(zone, 25, 2, tileset..":coffer_common_close")
+place_settag (zone, 25, 2, "openclose_state", "close")
+place_settag (zone, 25, 2, "openclose_opentile", tileset..":coffer_common_open")
+place_settag (zone, 25, 2, "openclose_closetile", tileset..":coffer_common_close")
+place_settag (zone, 25, 2, "content", "Ziggurat's Key")
 
-verbose("[WORLDGEN] Castle finished.")
+info("[WORLDGEN] Castle finished.")

@@ -1,8 +1,8 @@
 #!/usr/bin/lua
 
-player_setaspect(Player, tile_getaspect("@"))
+player_setaspect(Player, "at")
 
-new_gauge(Player, "life", 1, 1, tile_getaspect("heart"), tile_getaspect("heart_empty"))
+new_gauge(Player, "life", 1, 1, "heart", "heart_empty")
 -- gauge_setonempty(Player, "life", "scripts/kill.lua")
 -- player_setondeath(Player, "scripts/death.lua")
 

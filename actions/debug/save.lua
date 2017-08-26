@@ -15,12 +15,12 @@ else
 
 	for x=0,w-1 do
 		for y=0,h-1 do
-			file:write(zone_gettile(zone,x,y) .. "\n")
+			file:write(place_getaspect(zone,x,y) .. "\n")
 		end
 	end
 
 	local message = "Screen '"..zone.."' saved to file '"..filename.."'."
-	verbose(message)
+	info(message)
 	player_message(Player, message)
 	file:close()
 end
