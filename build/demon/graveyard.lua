@@ -47,6 +47,3 @@ place_settag(zone, x, y, "openclose_state", "open")
 place_settag(zone, x, y, "openclose_opentile", tileset..":book_b_open")
 place_settag(zone, x, y, "openclose_closetile", tileset..":book_b_close")
 place_settag(zone, x, y, "text", "Ashflame Range")
-
--- Finish
-info("[WORLDGEN] Graveyard build in "..zone..".");

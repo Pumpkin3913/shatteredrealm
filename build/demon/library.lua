@@ -7,7 +7,9 @@ local floor1 = "library_1"
 
 local x,y = loadfile("build/tools/building.lua")(tileset, zone, x_shift, y_shift, 11, 8)
 loadfile("build/tools/interior.lua")(tileset, floor0, "Library", 13, 10)
-loadfile("build/tools/doorway.lua")(tileset, floor0, 6, 9)
+loadfile("build/tools/door.lua")(tileset, floor0, 6, 9)
+place_setaspect(floor0, 6, 9, tileset..":mosaic_a")
+place_setaspect(floor0, 6, 9-1, tileset..":path")
 loadfile("build/tools/link.lua")(zone, x, y, floor0, 6, 9)
 
 loadfile("build/tools/interior.lua")(tileset, floor1, "Library", 13, 10)
@@ -15,6 +17,26 @@ loadfile("build/tools/door.lua")(tileset, floor0, 6, 1)
 loadfile("build/tools/door.lua")(tileset, floor1, 6, 1)
 loadfile("build/tools/link.lua")(floor0, 6, 1, floor1, 6, 1)
 -- TODO: add internal windows corresponding to the external ones.
+place_setaspect(floor0, 2,  0, tileset..":wall_window")
+place_setaspect(floor0, 2,  8, tileset..":wall_window")
+place_setaspect(floor0, 4,  0, tileset..":wall_window")
+place_setaspect(floor0, 4,  8, tileset..":wall_window")
+-- place_setaspect(floor0, 6,  0, tileset..":wall_window")
+-- place_setaspect(floor0, 6,  8, tileset..":wall_window")
+place_setaspect(floor0, 8,  0, tileset..":wall_window")
+place_setaspect(floor0, 8,  8, tileset..":wall_window")
+place_setaspect(floor0, 10, 0, tileset..":wall_window")
+place_setaspect(floor0, 10, 8, tileset..":wall_window")
+place_setaspect(floor1, 2,  0, tileset..":wall_window")
+place_setaspect(floor1, 2,  8, tileset..":wall_window")
+place_setaspect(floor1, 4,  0, tileset..":wall_window")
+place_setaspect(floor1, 4,  8, tileset..":wall_window")
+-- place_setaspect(floor1, 6,  0, tileset..":wall_window")
+place_setaspect(floor1, 6,  8, tileset..":wall_window")
+place_setaspect(floor1, 8,  0, tileset..":wall_window")
+place_setaspect(floor1, 8,  8, tileset..":wall_window")
+place_setaspect(floor1, 10, 0, tileset..":wall_window")
+place_setaspect(floor1, 10, 8, tileset..":wall_window")
 
 -- Add books in floor 0.
 
@@ -56,5 +78,3 @@ place_settag(floor1, 6, 5, "openclose_opentile", tileset..":book_b_open")
 place_settag(floor1, 6, 5, "openclose_closetile", tileset..":book_b_close")
 place_settag(floor1, 6, 5, "title", "Tome of Dark Magic")
 place_settag(floor1, 6, 5, "text", "Sesame")
-
-info("[WORLDGEN] Library build in "..zone..".");

@@ -5,7 +5,9 @@ local interior = "ziggurat_crystal"
 
 local x,y = loadfile("build/tools/ziggurat.lua")(tileset, zone, x_shift, y_shift)
 loadfile("build/tools/interior.lua")(tileset, interior, "Ziggurat", 9, 10)
-loadfile("build/tools/doorway.lua")(tileset, interior, 4, 9)
+loadfile("build/tools/door.lua")(tileset, interior, 4, 9)
+place_setaspect(interior, 4, 9, tileset..":mosaic_a")
+place_setaspect(interior, 4, 9-1, tileset..":path")
 loadfile("build/tools/link.lua")(zone, x, y, interior, 4, 9)
 
 -- Add writing on the wall.
@@ -39,5 +41,3 @@ place_setlandon(interior, x, y-2, script)
 place_setaspect(interior, x+2, y, tileset..":mosaic_black")
 place_settag(interior, x, y, "controlling_mosaic_3", pack(interior, x+2, y))
 place_setlandon(interior, x+2, y, script)
-
-info("[WORLDGEN] Crystal's ziggurat build in "..zone..".");

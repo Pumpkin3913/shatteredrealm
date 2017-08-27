@@ -11,7 +11,9 @@ place_setaspect(zone, hatch_x, hatch_y, tileset..":roof_rare_a") -- Hatch
 -- Floor 0
 local floor0 = id.."_floor_0"
 loadfile("build/tools/interior.lua")(tileset, floor0, "Tower", 9, 10)
-loadfile("build/tools/doorway.lua")(tileset, floor0, 4, 9)
+loadfile("build/tools/door.lua")(tileset, floor0, 4, 9)
+place_setaspect(floor0, 4, 9, tileset..":mosaic_a")
+place_setaspect(floor0, 4, 9-1, tileset..":path")
 loadfile("build/tools/link.lua")(zone, entrance_x, entrance_y, floor0, 4, 9)
 
 -- Floor 1
@@ -20,9 +22,11 @@ loadfile("build/tools/interior.lua")(tileset, floor1, "Tower", 9, 10)
 loadfile("build/tools/door.lua")(tileset, floor0, 4, 1)
 loadfile("build/tools/door.lua")(tileset, floor1, 4, 1)
 loadfile("build/tools/link.lua")(floor0, 4, 1, floor1, 4, 1)
+place_setaspect(floor1, 2, 0, tileset..":wall_window")
+place_setaspect(floor1, 6, 0, tileset..":wall_window")
+place_setaspect(floor1, 2, 8, tileset..":wall_window")
+place_setaspect(floor1, 6, 8, tileset..":wall_window")
 
 -- Way to hatch
 place_setaspect(floor1, 4, 4, tileset..":mosaic_a")
 loadfile("build/tools/link.lua")(floor1, 4, 4, zone, hatch_x, hatch_y)
-
-info("[WORLDGEN] Tower built in "..zone..".")

@@ -25,15 +25,15 @@ for x=0,w-1 do
 	end
 end
 
-place_setaspect(zone, 25, 15, tileset..":mosaic_a") -- Spawn point.
+-- place_setaspect(zone, 25, 15, tileset..":mosaic_a") -- Spawn point.
 
-loadfile("build/north_wall.lua")(tileset, zone)
+loadfile("build/demon/north_wall.lua")(tileset, zone)
 
-loadfile("build/ziggurat_crystal.lua")(tileset, zone, 8, 15)
-loadfile("build/ziggurat_portal.lua")(tileset, zone, 8, 24)
-loadfile("build/library.lua")(tileset, zone, w-8-11, 15) -- 8 is offset from right, 11 is library's length.
-loadfile("build/the_graveyard.lua")(tileset, zone, 18, 18)
-loadfile("build/writeme_wall.lua")(tileset, zone, 17, 13)
+loadfile("build/demon/ziggurat_crystal.lua")(tileset, zone, 8, 15)
+loadfile("build/demon/ziggurat_portal.lua")(tileset, zone, 8, 24)
+loadfile("build/demon/library.lua")(tileset, zone, w-8-11, 15) -- 8 is offset from right, 11 is library's length.
+loadfile("build/demon/graveyard.lua")(tileset, zone, 18, 18)
+loadfile("build/demon/writeme_wall.lua")(tileset, zone, 17, 13)
 
 -- Dispatch treasures.
 
@@ -51,4 +51,4 @@ place_settag (zone, 25, 2, "openclose_opentile", tileset..":coffer_common_open")
 place_settag (zone, 25, 2, "openclose_closetile", tileset..":coffer_common_close")
 place_settag (zone, 25, 2, "content", "Ziggurat's Key")
 
-info("[WORLDGEN] Castle finished.")
+info("[WORLDGEN] Demon Castle finished.")

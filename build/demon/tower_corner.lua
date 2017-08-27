@@ -17,8 +17,8 @@ place_setaspect(floor1, 4, 4, tileset..":mosaic_a")
 loadfile("build/tools/link.lua")(floor1, 4, 4, zone, hatch_x, hatch_y)
 
 -- South door.
-loadfile("build/tools/doorway.lua")(tileset, floor1, 4, 9)
+loadfile("build/tools/door.lua")(tileset, floor1, 4, 9)
+place_setaspect(floor1, 4, 9, tileset..":mosaic_a")
+place_setaspect(floor1, 4, 9-1, tileset..":path")
 loadfile("build/tools/door.lua")(tileset, zone, x_shift+2, y_shift+6)
 loadfile("build/tools/link.lua")(floor1, 4, 9, zone, x_shift+2, y_shift+6)
-
-info("[WORLDGEN] Tower built in "..zone..".")
