@@ -34,6 +34,7 @@ loadfile("build/demon/ziggurat_portal.lua")(tileset, zone, 8, 24)
 loadfile("build/demon/library.lua")(tileset, zone, w-8-11, 15) -- 8 is offset from right, 11 is library's width.
 loadfile("build/demon/graveyard.lua")(tileset, zone, 18, 18)
 loadfile("build/demon/writeme_wall.lua")(tileset, zone, 17, 13)
+loadfile("build/demon/tower_climb.lua")(tileset, zone, w-8-5, 25) -- 8 is offset from right, 5 is tower's width.
 
 -- Ziggurat's key coffer.
 place_setaspect(zone, 25, 2, tileset..":coffer_common_close")
