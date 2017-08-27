@@ -31,18 +31,9 @@ loadfile("build/demon/north_wall.lua")(tileset, zone)
 
 loadfile("build/demon/ziggurat_crystal.lua")(tileset, zone, 8, 15)
 loadfile("build/demon/ziggurat_portal.lua")(tileset, zone, 8, 24)
-loadfile("build/demon/library.lua")(tileset, zone, w-8-11, 15) -- 8 is offset from right, 11 is library's length.
+loadfile("build/demon/library.lua")(tileset, zone, w-8-11, 15) -- 8 is offset from right, 11 is library's width.
 loadfile("build/demon/graveyard.lua")(tileset, zone, 18, 18)
 loadfile("build/demon/writeme_wall.lua")(tileset, zone, 17, 13)
-
--- Dispatch treasures.
-
--- Chalk coffer.
-place_setaspect("left_floor_0", 4, 5, tileset..":coffer_rare_close")
-place_settag ("left_floor_0", 4, 5, "openclose_state", "close")
-place_settag ("left_floor_0", 4, 5, "openclose_opentile", tileset..":coffer_rare_open")
-place_settag ("left_floor_0", 4, 5, "openclose_closetile", tileset..":coffer_rare_close")
-place_settag ("left_floor_0", 4, 5, "content", "chalk")
 
 -- Ziggurat's key coffer.
 place_setaspect(zone, 25, 2, tileset..":coffer_common_close")

@@ -11,12 +11,13 @@ if player_gettag(Player, "race") ~= "demon" then
 end
 
 local fun = function (x, y)
-	local tile = string.match(place_getaspect(zone, x, y), ".*:(.*)")
+	local tileset, tile = string.match(place_getaspect(zone, x, y), "(.*):(.*)")
 	if tile == "crystal_2" then
 		player_message(Player, "This crystal isn't charged. There is no power to drain.")
 		return true
 	elseif tile == "crystal_6" then
-		loadfile("logic/reset_crystal.lua")(zone, x, y)
+		place_setaspect(zone, x, y, tileset..":crystal_2")
+		loadfile("logic/puzzle_mosaic_reset.lua")(zone, x, y)
 		local gauge = "mana"
 		local max = gauge_getmax(Player, gauge)
 		local tag = "has_drained_crystal"

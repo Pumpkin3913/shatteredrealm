@@ -49,34 +49,43 @@ loadfile("build/tools/link.lua")("northeast_floor_1", 0, 4, zone, 44, 7)
 loadfile("build/tools/v_wall.lua")(tileset, zone, 2, 10, 3, 30) -- TODO: cut the length
 loadfile("build/tools/v_wall.lua")(tileset, zone, 46, 10, 3, 30) -- TODO: cut the length
 
--- Add crystal and mosaic disseminated through the towers.
-local crystal_zone = "tall_tower_2"
-local crystal_x = 4
-local crystal_y = 3
-place_setaspect(crystal_zone, crystal_x, crystal_y, tileset..":crystal_2")
+-- Add puzzle to light up the crystal.
+local master_zone = "tall_tower_2"
+local master_x = 4
+local master_y = 2
+place_setaspect(master_zone, master_x, master_y, tileset..":crystal_2")
+local script = "place_setaspect(\""..master_zone.."\", "..master_x..", "..master_y..", \""..tileset..":crystal_6\")"
+place_settag(master_zone, master_x, master_y, "puzzle_script", script)
+local master = master_zone.."/"..master_x.."-"..master_y
 
-local put_switch = function(n, zone, x, y)
-	local script = "loadfile(\"logic/switch_bw_crystal.lua\")(\""..crystal_zone.."\", "..crystal_x..", "..crystal_y..")"
+local place_piece = function(n, zone, x, y)
 	place_setaspect(zone, x, y, tileset..":mosaic_black")
-	place_setlandon(zone, x, y, script)
-	place_settag(
-		crystal_zone, crystal_x, crystal_y,
-		"controlling_mosaic_"..n,
-		zone .. "/" .. x .. "-" .. y
-	)
+	place_settag(zone, x, y, "puzzle_init", "black")
+	place_settag(zone, x, y, "puzzle_model", "white")
+	place_settag(zone, x, y, "puzzle_master", master)
+	place_setlandon(zone, x, y, "dofile(\"logic/puzzle_mosaic_walk.lua\")")
+	place_settag(master_zone, master_x, master_y, "puzzle_piece_"..n, zone.."/"..x.."-"..y)
 end
 
-put_switch(1, "tall_tower_0", 2, 4)
-put_switch(2, "tall_tower_0", 6, 4)
-put_switch(3, "northwest_floor_1", 2, 6)
-put_switch(4, "northeast_floor_1", 6, 6)
+place_piece(1, "tall_tower_0", 4, 4)
+place_piece(2, "northwest_floor_1", 2, 6)
+place_piece(3, "northeast_floor_1", 6, 6)
 
--- Add advice on the wall, near the crystal.
-place_setaspect(crystal_zone, 3, 1, tileset..":wall_bot_written")
-place_settag(crystal_zone, 3, 1, "text", "To change the color of the crystal, set the floor tiles to the same color.")
-place_settag(crystal_zone, 3, 1, "text_type", "chalk")
+-- Add hint around the crystal.
+place_setaspect(master_zone, master_x-2, master_y+1, tileset..":mosaic_white")
+place_setaspect(master_zone, master_x,   master_y+2, tileset..":mosaic_white")
+place_setaspect(master_zone, master_x+2, master_y+1, tileset..":mosaic_white")
+place_setaspect(master_zone, master_x-1, master_y+2, tileset..":mosaic_special")
 
 -- Seal off left tower's door.
 place_setaspect(zone, 14, 11, tileset..":bigdoor_locked")
 place_setaspect("left_floor_0", 4, 9, tileset..":bigdoor_locked")
 place_setaspect("left_floor_0", 4, 9-1, tileset..":bigdoor_top")
+
+-- Add treasure in left tower.
+place_setaspect("left_floor_0", 4, 3, tileset..":mosaic_special")
+place_setaspect("left_floor_0", 4, 5, tileset..":coffer_rare_close")
+place_settag ("left_floor_0", 4, 5, "openclose_state", "close")
+place_settag ("left_floor_0", 4, 5, "openclose_opentile", tileset..":coffer_rare_open")
+place_settag ("left_floor_0", 4, 5, "openclose_closetile", tileset..":coffer_rare_close")
+place_settag ("left_floor_0", 4, 5, "content", "chalk")

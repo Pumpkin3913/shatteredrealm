@@ -22,22 +22,23 @@ place_settag(zone, x, y, "openclose_closetile", tileset..":bigdoor_closed")
 place_settag(zone, x, y, "openclose_state", "locked")
 place_settag(zone, x, y, "openclose_key", "Ziggurat's Key")
 
--- Add crystal and three mosaic switches.
-x = 4
-y = 5
-local script = "loadfile(\"logic/switch_bw_crystal.lua\")(\""..interior.."\", "..x..", "..y..")"
-local pack = function (zone, x, y) return zone .. "/" .. x .. "-" .. y end
+-- Add puzzle to light up the crystal.
+local master_x = 4
+local master_y = 5
+place_setaspect(interior, master_x, master_y, tileset..":crystal_2")
+local script = "place_setaspect(\""..interior.."\", "..master_x..", "..master_y..", \""..tileset..":crystal_6\")"
+place_settag(interior, master_x, master_y, "puzzle_script", script)
+local master = interior.."/"..master_x.."-"..master_y
 
-place_setaspect(interior, x, y, tileset..":crystal_2")
+local place_piece = function(n, x, y)
+	place_setaspect(interior, x, y, tileset..":mosaic_black")
+	place_settag(interior, x, y, "puzzle_init", "black")
+	place_settag(interior, x, y, "puzzle_model", "white")
+	place_settag(interior, x, y, "puzzle_master", master)
+	place_setlandon(interior, x, y, "dofile(\"logic/puzzle_mosaic_walk.lua\")")
+	place_settag(interior, master_x, master_y, "puzzle_piece_"..n, interior.."/"..x.."-"..y)
+end
 
-place_setaspect(interior, x-2, y, tileset..":mosaic_black")
-place_settag(interior, x, y, "controlling_mosaic_1", pack(interior, x-2, y))
-place_setlandon(interior, x-2, y, script)
-
-place_setaspect(interior, x, y-2, tileset..":mosaic_black")
-place_settag(interior, x, y, "controlling_mosaic_2", pack(interior, x, y-2))
-place_setlandon(interior, x, y-2, script)
-
-place_setaspect(interior, x+2, y, tileset..":mosaic_black")
-place_settag(interior, x, y, "controlling_mosaic_3", pack(interior, x+2, y))
-place_setlandon(interior, x+2, y, script)
+place_piece(1, master_x-2, master_y)
+place_piece(2, master_x, master_y-2)
+place_piece(3, master_x+2, master_y)
