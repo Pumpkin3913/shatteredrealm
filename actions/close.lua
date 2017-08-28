@@ -16,10 +16,16 @@ local fun = function (x, y)
 			loadstring(script)()
 		end
 
-		return true
+		-- Cancel eventual selfclose timer.
+		local selfclose_timer = place_gettag(zone, x, y, "openclose_selfclose_timer")
+		if selfclose_timer and selfclose_timer ~= "" then
+			delete_timer(selfclose_timer)
+			place_deltag(zone, x, y, "openclose_selfclose_timer")
+		end
 	else
 		return false
 	end
+	return true
 end
 
 if not fun(x, y)

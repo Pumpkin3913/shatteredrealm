@@ -107,16 +107,20 @@ player_message(Player, \"Look out for tips about commands throughout the game.\"
 
 y = y-4
 
+local selfclose_duration = 10
+
 place_setaspect(zone, 3, y, tileset..":book_a_close")
 place_settag(zone, 3, y, "openclose_state", "close")
 place_settag(zone, 3, y, "openclose_opentile", tileset..":book_a_open")
 place_settag(zone, 3, y, "openclose_closetile", tileset..":book_a_close")
+place_settag(zone, 3, y, "openclose_selfclose", selfclose_duration)
 place_settag(zone, 3, y, "text", "You can /search containers.")
 
 place_setaspect(zone, w-4, y, tileset..":coffer_common_close")
 place_settag (zone, w-4, y, "openclose_state", "close")
 place_settag (zone, w-4, y, "openclose_opentile", tileset..":coffer_common_open")
 place_settag (zone, w-4, y, "openclose_closetile", tileset..":coffer_common_close")
+place_settag (zone, w-4, y, "openclose_selfclose", selfclose_duration)
 place_settag (zone, w-4, y, "content", "Cookie!")
 
 place_setaspect(zone, 1, y-2, tileset..":roof_lone")
@@ -150,6 +154,7 @@ place_setaspect(zone, x_mid+2, y-2, tileset..":roof_endrgt")
 place_settag(zone, x_mid, y, "openclose_state", "close")
 place_settag(zone, x_mid, y, "openclose_opentile", tileset..":bigdoor")
 place_settag(zone, x_mid, y, "openclose_closetile", tileset..":bigdoor_closed")
+place_settag(zone, x_mid, y, "openclose_selfclose", selfclose_duration)
 
 place_setlandon(zone, x_mid, y, "player_changezone(Player, \""..lobby_zone.."\", "..lobby_x..", "..lobby_y..")")
 

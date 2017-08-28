@@ -10,7 +10,14 @@ local fun = function (x, y)
 		local tile = place_gettag(zone, x, y, "openclose_opentile")
 		place_setaspect(zone, x, y, tile)
 		place_settag(zone, x, y, "openclose_state", "open")
-		return true
+
+		-- Create eventual selfclose timer.
+		local selfclose = place_gettag(zone, x, y, "openclose_selfclose")
+		if selfclose and selfclose ~= "" then
+			local timer = create_timer(selfclose, "loadfile(\"logic/selfclose.lua\")(\""..zone.."\", "..x..", "..y..")")
+			place_settag(zone, x, y, "openclose_selfclose_timer", timer)
+		end
+
 	elseif tag == "locked" then
 		local key = place_gettag(zone, x, y, "openclose_key")
 		if not string.match(player_gettag(Player, "inventory"), key) then
@@ -21,10 +28,10 @@ local fun = function (x, y)
 			place_setaspect(zone, x, y, tile)
 			place_settag(zone, x, y, "openclose_state", "open")
 		end
-		return true
 	else
 		return false
 	end
+	return true
 end
 
 if not fun(x, y)

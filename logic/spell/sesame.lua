@@ -29,7 +29,24 @@ local tileset, tile = string.match(place_getaspect(zone, x, y), "(.*):(.*)")
 if tile == "slab_passable" then -- The door is open: close it.
 	place_setaspect(zone, x, y,   tileset..":pillar_bot")
 	place_setaspect(zone, x, y-1, tileset..":slab")
+
+	-- Clean selfclose timer.
+	local timer = place_gettag(zone, x, y, "sesame_timer")
+	if timer and timer ~= "" then
+		delete_timer(timer)
+		place_deltag(zone, x, y, "sesame_timer")
+	end
+
 else -- The door is closed: open it.
 	place_setaspect(zone, x, y,   tileset..":slab_passable")
 	place_setaspect(zone, x, y-1, tileset..":path_vertical")
+
+	-- Start selfclose timer.
+	local script = "\
+		place_setaspect(\""..zone.."\", "..x..", "..y   ..", \""..tileset..":pillar_bot\")\
+		place_setaspect(\""..zone.."\", "..x..", "..y-1 ..", \""..tileset..":slab\")\
+		place_deltag(\""   ..zone.."\", "..x..", "..y   ..", \"sesame_timer\")\
+	"
+	local timer = create_timer(30, script)
+	place_settag(zone, x, y, "sesame_timer", timer)
 end

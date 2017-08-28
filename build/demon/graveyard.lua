@@ -21,6 +21,8 @@ local target = zone.."/"..x_shift+mid.."-"..y_shift+1
 place_settag(zone, x_shift+mid, y_shift-1, "sesame", target)
 place_settag(zone, x_shift+mid, y_shift,   "sesame", target)
 place_settag(zone, x_shift+mid, y_shift+2, "sesame", target)
+place_setaspect(zone, x_shift+mid-2, y_shift+1, tileset..":wall_bot_written")
+place_settag   (zone, x_shift+mid-2, y_shift+1, "text", "Help! The door closed itself and I have no mana left!")
 
 -- Add book and path.
 
