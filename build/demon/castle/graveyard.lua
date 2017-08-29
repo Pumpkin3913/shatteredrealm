@@ -1,5 +1,7 @@
 #!/usr/bin/lua
 
+info("[WORLDGEN] [Demon Castle] Graveyard")
+
 local tileset, zone, x_shift, y_shift = ...
 local w = 11
 local h = 12

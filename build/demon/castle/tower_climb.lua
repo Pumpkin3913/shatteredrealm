@@ -2,7 +2,9 @@
 
 local tileset, zone, x_shift, y_shift = ...
 
-loadfile("build/tools/building.lua")(tileset, zone, x_shift, y_shift, 5, 9, 4)
+info("[WORLDGEN] [Demon Castle] Climb Tower")
+
+loadfile("build/tools/cube.lua")(tileset, zone, x_shift, y_shift, 5, 9, 4)
 
 -- Add climb path.
 place_setaspect(zone, x_shift+3, y_shift+4, tileset..":roof_bot_climb")
@@ -14,14 +16,7 @@ for i=4,8 do
 	place_setpassable(zone, x_shift+3, y_shift+i)
 end
 
--- Remove big door.
-place_setaspect(zone, x_shift+1, y_shift+7, tileset..":wall")
-place_setaspect(zone, x_shift+2, y_shift+7, tileset..":wall")
-place_setaspect(zone, x_shift+1, y_shift+8, tileset..":wall_bot")
-place_setaspect(zone, x_shift+2, y_shift+8, tileset..":wall_bot")
-
--- Move window.
-place_setaspect(zone, x_shift+1, y_shift+6, tileset..":wall")
+-- Add window.
 place_setaspect(zone, x_shift+2, y_shift+6, tileset..":wall_window")
 
 -- Floor 1

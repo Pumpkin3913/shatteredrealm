@@ -2,15 +2,29 @@
 
 local tileset, zone = ...
 
-loadfile("build/demon/tower_corner.lua")(tileset, zone, 1,  3, "northwest")
-loadfile("build/tools/h_wall.lua")(tileset, zone, 6, 6, 6, 5)
-loadfile("build/demon/tower.lua")(tileset, zone, 12, 3, "left")
-loadfile("build/tools/h_wall.lua")(tileset, zone, 17, 4, 6, 7)
-loadfile("build/demon/tower_tall.lua")(tileset, zone, 23, 1)
-loadfile("build/tools/h_wall.lua")(tileset, zone, 28, 4, 6, 7)
-loadfile("build/demon/tower.lua")(tileset, zone, 34, 3, "right")
-loadfile("build/tools/h_wall.lua")(tileset, zone, 39, 6, 6, 5)
-loadfile("build/demon/tower_corner.lua")(tileset, zone, 45, 3, "northeast")
+info("[WORLDGEN] [Demon Castle] North Wall")
+
+local build_wall = function(x, y, h)
+	for i=0,5 do
+		place_setaspect(zone, x+i, y,   tileset..":roof_top")
+		place_setaspect(zone, x+i, y+1, tileset..":roof")
+		place_setaspect(zone, x+i, y+2, tileset..":roof_bot")
+		for j=3,h-2 do
+			place_setaspect(zone, x+i, y+j, tileset..":wall")
+		end
+		place_setaspect(zone, x+i, y+h-1, tileset..":wall_bot")
+	end
+end
+
+loadfile("build/demon/castle/tower_rampart.lua")(tileset, zone, 1,  3, "northwest", "south,east")
+build_wall(6, 6, 5)
+loadfile("build/demon/castle/tower.lua")(tileset, zone, 12, 3, "left")
+build_wall(17, 4, 7)
+loadfile("build/demon/castle/tower_tall.lua")(tileset, zone, 23, 1)
+build_wall(28, 4, 7)
+loadfile("build/demon/castle/tower.lua")(tileset, zone, 34, 3, "right")
+build_wall(39, 6, 5)
+loadfile("build/demon/castle/tower_rampart.lua")(tileset, zone, 45,  3, "northeast", "south,west")
 
 place_setaspect(zone, 16, 5, tileset..":roof")
 place_setaspect(zone, 34, 5, tileset..":roof")
@@ -44,10 +58,6 @@ place_setaspect("northeast_floor_1", 0, 3, tileset..":pillar_bot")
 place_setaspect("northeast_floor_1", 0, 4, tileset..":mosaic_a")
 place_setaspect(zone, 44, 7, tileset..":mosaic_a")
 loadfile("build/tools/link.lua")("northeast_floor_1", 0, 4, zone, 44, 7)
-
--- Vertical walls.
-loadfile("build/tools/v_wall.lua")(tileset, zone, 2, 10, 3, 30) -- TODO: cut the length
-loadfile("build/tools/v_wall.lua")(tileset, zone, 46, 10, 3, 30) -- TODO: cut the length
 
 -- Add puzzle to light up the crystal.
 local master_zone = "tall_tower_2"
@@ -84,8 +94,5 @@ place_setaspect("left_floor_0", 4, 9-1, tileset..":bigdoor_top")
 
 -- Add treasure in left tower.
 place_setaspect("left_floor_0", 4, 3, tileset..":mosaic_special")
-place_setaspect("left_floor_0", 4, 5, tileset..":coffer_rare_close")
-place_settag ("left_floor_0", 4, 5, "openclose_state", "close")
-place_settag ("left_floor_0", 4, 5, "openclose_opentile", tileset..":coffer_rare_open")
-place_settag ("left_floor_0", 4, 5, "openclose_closetile", tileset..":coffer_rare_close")
+loadfile("build/tools/coffer.lua")(tileset, "left_floor_0", 4, 5, "rare")
 place_settag ("left_floor_0", 4, 5, "content", "chalk")

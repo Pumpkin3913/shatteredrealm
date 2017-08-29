@@ -28,4 +28,8 @@ end
 build_choice(1, 1, "redruins", "Demon", "demon_trident_flame_wings")
 build_choice(8, 1, "violetcastle", "Human", "white_armor")
 
+-- Shortcut
+place_setaspect(zone, 16, 12, "redruins:mosaic_white")
+place_setlandon(zone, 16, 12, "dofile(\"lobby/choice_demon.lua\")")
+
 info("[WORLDGEN] Lobby finished.")

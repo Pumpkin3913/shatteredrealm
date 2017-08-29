@@ -3,6 +3,8 @@
 local tileset, zone, x_shift, y_shift = ...
 local interior = "ziggurat_crystal"
 
+info("[WORLDGEN] [Demon Castle] Ziggurat Crystal")
+
 local x,y = loadfile("build/tools/ziggurat.lua")(tileset, zone, x_shift, y_shift)
 loadfile("build/tools/interior.lua")(tileset, interior, "Ziggurat", 9, 10)
 loadfile("build/tools/door.lua")(tileset, interior, 4, 9)

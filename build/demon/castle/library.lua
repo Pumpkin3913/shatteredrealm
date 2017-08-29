@@ -1,5 +1,7 @@
 #!/usr/bin/lua
 
+info("[WORLDGEN] [Demon Castle] Library")
+
 local tileset, zone, x_shift, y_shift = ...
 
 local floor0 = "library_0"

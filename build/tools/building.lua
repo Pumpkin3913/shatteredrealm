@@ -4,7 +4,6 @@
 -- Builds a 11x7 building at designated point. Return coordinates of entrance. --
 -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - --
 
--- Get arguments.
 local tileset, zone, x_shift, y_shift, w, h, roof_h, entrance_x = ...
 
 -- Set default values for unobtained arguments.
@@ -14,52 +13,7 @@ if roof_h == nil then roof_h = 3 end
 if entrance_x == nil then entrance_x = math.floor(w/2) end
 
 -- Build extern building.
-
-for x=0, w-1 do
-	for y=0, h-1 do
-		if y == 0 then
-			if x == 0 then
-				place_setaspect(zone, x_shift+x, y_shift+y, tileset..":roof_toplft")
-			elseif x == w-1 then
-				place_setaspect(zone, x_shift+x, y_shift+y, tileset..":roof_toprgt")
-			else
-				place_setaspect(zone, x_shift+x, y_shift+y, tileset..":roof_top")
-			end
-		elseif y < roof_h then
-			if x == 0 then
-				place_setaspect(zone, x_shift+x, y_shift+y, tileset..":roof_lft")
-			elseif x == w-1 then
-				place_setaspect(zone, x_shift+x, y_shift+y, tileset..":roof_rgt")
-			else
-				place_setaspect(zone, x_shift+x, y_shift+y, tileset..":roof")
-			end
-		elseif y == roof_h then
-			if x == 0 then
-				place_setaspect(zone, x_shift+x, y_shift+y, tileset..":roof_botlft")
-			elseif x == w-1 then
-				place_setaspect(zone, x_shift+x, y_shift+y, tileset..":roof_botrgt")
-			else
-				place_setaspect(zone, x_shift+x, y_shift+y, tileset..":roof_bot")
-			end
-		elseif y < h-1 then
-			if x == 0 then
-				place_setaspect(zone, x_shift+x, y_shift+y, tileset..":wall_lft")
-			elseif x == w-1 then
-				place_setaspect(zone, x_shift+x, y_shift+y, tileset..":wall_rgt")
-			else
-				place_setaspect(zone, x_shift+x, y_shift+y, tileset..":wall")
-			end
-		elseif y == h-1 then
-			if x == 0 then
-				place_setaspect(zone, x_shift+x, y_shift+y, tileset..":wall_botlft")
-			elseif x == w-1 then
-				place_setaspect(zone, x_shift+x, y_shift+y, tileset..":wall_botrgt")
-			else
-				place_setaspect(zone, x_shift+x, y_shift+y, tileset..":wall_bot")
-			end
-		end
-	end
-end
+loadfile("build/tools/cube.lua")(tileset, zone, x_shift, y_shift, w, h, roof_h)
 
 -- Add decoration.
 for y = roof_h+1, h-1 do
@@ -82,13 +36,6 @@ place_setaspect(zone, x_shift+entrance_x+1, y_shift+h-2, tileset..":bigdoor_topr
 place_setaspect(zone, x_shift+entrance_x-1, y_shift+h-1, tileset..":bigdoor_lft")
 place_setaspect(zone, x_shift+entrance_x+0, y_shift+h-1, tileset..":bigdoor")
 place_setaspect(zone, x_shift+entrance_x+1, y_shift+h-1, tileset..":bigdoor_rgt")
-
--- -- Add open/close tags for entrance.
--- local door_x = x_shift + entrance_x
--- local door_y = y_shift + h - 1
--- place_settag(zone, door_x, door_y, "openclose_state", "open")
--- place_settag(zone, door_x, door_y, "openclose_opentile", tileset..":bigdoor")
--- place_settag(zone, door_x, door_y, "openclose_closetile", tileset..":bigdoor_closed")
 
 -- Finish.
 return x_shift+entrance_x+0, y_shift+h-1

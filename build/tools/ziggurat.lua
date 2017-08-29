@@ -4,10 +4,7 @@
 -- Builds a 7x7 ziggurat at designated point.  Return coordinates of entrance. --
 -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - --
 
--- Get arguments.
 local tileset, zone, x_shift, y_shift = ...
-
--- Build Extern Ziggurat.
 
 --
 --
@@ -65,12 +62,4 @@ place_setaspect(zone, x_shift+1, y_shift+6, tileset..":wall_botrgt")
 place_setaspect(zone, x_shift+5, y_shift+6, tileset..":wall_botlft")
 place_setaspect(zone, x_shift+6, y_shift+6, tileset..":wall_botrgt")
 
--- -- Add open/close tags for entrance.
--- local door_x = x_shift + 3
--- local door_y = y_shift + 5
--- place_settag(zone, door_x, door_y, "openclose_state", "open")
--- place_settag(zone, door_x, door_y, "openclose_opentile", tileset..":bigdoor")
--- place_settag(zone, door_x, door_y, "openclose_closetile", tileset..":bigdoor_closed")
-
--- Finish.
 return x_shift+3, y_shift+5
