@@ -30,11 +30,11 @@ end
 loadfile("build/demon/castle/north_wall.lua")(tileset, zone)
 loadfile("build/demon/castle/rampart_walk.lua")(tileset, zone)
 
+loadfile("build/demon/castle/graveyard.lua")(tileset, zone)
 loadfile("build/demon/castle/dungeon.lua")(tileset, zone, 22, 13)
 loadfile("build/demon/castle/ziggurat_portal.lua")(tileset, zone, 8, 14)
 loadfile("build/demon/castle/ziggurat_crystal.lua")(tileset, zone, 22, 26)
 loadfile("build/demon/castle/library.lua")(tileset, zone, 32, 15)
--- loadfile("build/demon/castle/graveyard.lua")(tileset, zone, XXX, YYY)
 loadfile("build/demon/castle/tower_climb.lua")(tileset, zone, 38, 25)
 
 -- Decorations.

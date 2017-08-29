@@ -1,38 +1,35 @@
 #!/usr/bin/lua
 
+local tileset, zone = ...
+
 info("[WORLDGEN] [Demon Castle] Graveyard")
 
-local tileset, zone, x_shift, y_shift = ...
-local w = 11
-local h = 12
-local mid = math.floor(w/2)
-local book_y = h-5
+-- North east cube.
+loadfile("build/tools/cube.lua")(tileset, zone, 17, 21, 3, 5, 2)
 
-loadfile("build/tools/graveyard.lua")(tileset, zone, x_shift, y_shift, w, h)
+-- North low wall.
+for x=6,16 do
+	place_setaspect(zone, x, 23, tileset..":roof_horizontal")
+	place_setaspect(zone, x, 24, tileset..":wall_bot")
+end
 
--- Add sealed entrance.
-place_setaspect(zone, x_shift+mid-1, y_shift,   tileset..":roof_endrgt")
-place_setaspect(zone, x_shift+mid,   y_shift,   tileset..":slab")
-place_setaspect(zone, x_shift+mid+1, y_shift,   tileset..":roof_endlft")
-place_setaspect(zone, x_shift+mid-1, y_shift+1, tileset..":wall_botrgt")
-place_setaspect(zone, x_shift+mid,   y_shift+1, tileset..":pillar_bot")
-place_setaspect(zone, x_shift+mid+1, y_shift+1, tileset..":wall_botlft")
+-- East low wall.
+for y=24,32 do
+	place_setaspect(zone, 18, y, tileset..":roof_vertical")
+end
 
--- Add Sesame spell's tags.
-local target = zone.."/"..x_shift+mid.."-"..y_shift+1
-place_settag(zone, x_shift+mid, y_shift-1, "sesame", target)
-place_settag(zone, x_shift+mid, y_shift,   "sesame", target)
-place_settag(zone, x_shift+mid, y_shift+2, "sesame", target)
-place_setaspect(zone, x_shift+mid-2, y_shift+1, tileset..":wall_bot_written")
-place_settag   (zone, x_shift+mid-2, y_shift+1, "text", "Help! The door closed itself and I have no mana left!")
+-- Sesame door.
+loadfile("build/demon/castle/sesame_door.lua")(tileset, zone, 11, 24)
+place_setaspect(zone, 9, 24, tileset..":wall_bot_written")
+place_settag   (zone, 9, 24, "text", "Help! The door closed itself and I have no mana left!")
 
 -- Add book and path.
 
-for y=2,book_y-2 do
-	place_setaspect(zone, mid+x_shift, y+y_shift, tileset..":path_vertical")
+for y=25,29 do
+	place_setaspect(zone, 11, y, tileset..":path_vertical")
 end
-local x = mid+x_shift
-local y = book_y+y_shift
+local x = 11
+local y = 31
 
 place_setaspect(zone, x-1, y-1, tileset..":path_toplft")
 place_setaspect(zone, x,   y-1, tileset..":path")
@@ -51,3 +48,20 @@ place_settag(zone, x, y, "openclose_state", "open")
 place_settag(zone, x, y, "openclose_opentile", tileset..":book_b_open")
 place_settag(zone, x, y, "openclose_closetile", tileset..":book_b_close")
 place_settag(zone, x, y, "text", "Ashflame Range")
+
+-- Hand-place graves.
+place_setaspect(zone, 5,  28, tileset..":tombstone_cross")
+place_setaspect(zone, 6,  31, tileset..":tombstone_slab")
+place_setaspect(zone, 7,  27, tileset..":tombstone_slab")
+place_setaspect(zone, 7,  29, tileset..":tombstone_cross")
+place_setaspect(zone, 7,  34, tileset..":tombstone_cross")
+place_setaspect(zone, 9,  26, tileset..":tombstone_cross")
+place_setaspect(zone, 9,  33, tileset..":tombstone_slab")
+place_setaspect(zone, 10, 28, tileset..":tombstone_cross")
+place_setaspect(zone, 11, 35, tileset..":tombstone_cross")
+place_setaspect(zone, 13, 27, tileset..":tombstone_slab")
+place_setaspect(zone, 13, 32, tileset..":tombstone_slab")
+place_setaspect(zone, 14, 30, tileset..":tombstone_cross")
+place_setaspect(zone, 15, 34, tileset..":tombstone_slab")
+place_setaspect(zone, 16, 26, tileset..":tombstone_cross")
+place_setaspect(zone, 17, 29, tileset..":tombstone_slab")
