@@ -95,4 +95,4 @@ place_setaspect("left_floor_0", 4, 9-1, tileset..":bigdoor_top")
 -- Add treasure in left tower.
 place_setaspect("left_floor_0", 4, 3, tileset..":mosaic_special")
 loadfile("build/tools/coffer.lua")(tileset, "left_floor_0", 4, 5, "rare")
-place_settag ("left_floor_0", 4, 5, "content", "chalk")
+-- place_settag ("left_floor_0", 4, 5, "content", "???")

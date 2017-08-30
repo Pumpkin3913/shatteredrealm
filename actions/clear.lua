@@ -8,7 +8,8 @@ local fun = function (x, y)
 	local tileset, tile = string.match(place_getaspect(zone, x, y), "(.*):(.*)")
 	if tile == "wall_bot_written" then
 		if place_gettag(zone, x, y, "text_type") == "chalk" then
-			place_settag(zone, x, y, "text", "")
+			place_deltag(zone, x, y, "text")
+			place_deltag(zone, x, y, "text_type")
 			place_setaspect(zone, x, y, tileset..":wall_bot")
 			local script = place_gettag(zone, x, y, "text_clear_trigger")
 			if script and script ~= "" then
