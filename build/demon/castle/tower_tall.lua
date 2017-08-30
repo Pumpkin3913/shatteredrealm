@@ -4,10 +4,6 @@ local tileset, zone, x_shift, y_shift = ...
 
 local entrance_x, entrance_y = loadfile("build/tools/building.lua")(tileset, zone, x_shift, y_shift, 5, 11, 4)
 
-local hatch_x = x_shift+2
-local hatch_y = y_shift+3
-place_setaspect(zone, hatch_x, hatch_y, tileset..":roof_rare_a") -- Hatch
-
 -- Floor 0
 local floor0 = "tall_tower_0"
 loadfile("build/tools/interior.lua")(tileset, floor0, "Tower", 9, 10)
@@ -41,5 +37,6 @@ place_setaspect(floor2, 2, 8, tileset..":wall_window")
 place_setaspect(floor2, 6, 8, tileset..":wall_window")
 
 -- Way to hatch
-place_setaspect(floor2, 4, 6, tileset..":mosaic_a")
-loadfile("build/tools/link.lua")(floor2, 4, 6, zone, hatch_x, hatch_y)
+place_setaspect(floor2, 4, 6, tileset..":stairs_up")
+place_setaspect(zone, x_shift+2, y_shift+3, tileset..":hatch")
+loadfile("build/tools/link.lua")(floor2, 4, 6, zone, x_shift+2, y_shift+3)

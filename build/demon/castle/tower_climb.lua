@@ -23,8 +23,8 @@ place_setaspect(zone, x_shift+2, y_shift+6, tileset..":wall_window")
 local floor1 = "climbtower_floor_1"
 loadfile("build/tools/interior.lua")(tileset, floor1, "Tower", 9, 10)
 place_setaspect(floor1, 4, 8, tileset..":wall_window")
-place_setaspect(floor1, 4, 4, tileset..":mosaic_a")
-place_setaspect(zone, x_shift+2, y_shift+2, tileset..":roof_rare_a") -- Hatch
+place_setaspect(floor1, 4, 4, tileset..":stairs_up")
+place_setaspect(zone, x_shift+2, y_shift+2, tileset..":hatch")
 loadfile("build/tools/link.lua")(floor1, 4, 4, zone, x_shift+2, y_shift+2)
 loadfile("build/tools/door.lua")(tileset, floor1, 4, 1)
 place_setaspect(floor1, 4, 1, tileset..":bigdoor_locked")

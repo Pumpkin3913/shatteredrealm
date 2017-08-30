@@ -167,9 +167,9 @@ register_aspect(prefix.."block_h", row+7, false)
 row = row+8
 
 -- Misc
-row = row+8
 register_aspect(prefix.."well", row+0, false)
 register_aspect(prefix.."octahedron", row+1, false)
+row = row+8
 
 info("Tileset '"..file.."' loaded.")
 

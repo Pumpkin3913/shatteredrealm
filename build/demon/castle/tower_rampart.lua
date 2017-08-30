@@ -6,7 +6,7 @@ loadfile("build/tools/cube.lua")(tileset, zone, x_shift, y_shift, 5, 9, 4)
 
 local hatch_x = x_shift+2
 local hatch_y = y_shift+2
-place_setaspect(zone, hatch_x, hatch_y, tileset..":roof_rare_a") -- Hatch
+place_setaspect(zone, hatch_x, hatch_y, tileset..":hatch")
 
 -- No floor 0.
 
@@ -15,7 +15,7 @@ local floor1 = id.."_floor_1"
 loadfile("build/tools/interior.lua")(tileset, floor1, "Tower", 9, 10)
 
 -- Way to hatch
-place_setaspect(floor1, 4, 4, tileset..":mosaic_a")
+place_setaspect(floor1, 4, 4, tileset..":stairs_up")
 loadfile("build/tools/link.lua")(floor1, 4, 4, zone, hatch_x, hatch_y)
 
 -- North
