@@ -12,7 +12,7 @@ loadfile("load_tileset_standard.lua")("volcano")
 
 dofile("load_player_actions.lua")
 dofile("lobby/build_lobby.lua")
-dofile("build/demon/castle/castle.lua")
+dofile("build/demon/build.lua")
 
 open(31337)
 info("Lua Init OK.")
