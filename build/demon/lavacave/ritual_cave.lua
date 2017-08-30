@@ -10,7 +10,7 @@ local h = 30
 
 -- Entrance : 2, 0
 
-new_zone(zone, "Ritual Cave", w, h, tileset..":roof")
+new_zone(zone, "Grotte du Rituel", w, h, tileset..":roof")
 
 local build_bluff = function(x, y, w, h, plateau_h, options)
 	if not options then options = "" end
@@ -159,7 +159,7 @@ end
 place_setaspect(zone, 16, 9, tileset..":wall_botlft")
 
 local interior = "stairs_room"
-loadfile("build/tools/interior.lua")(tileset, interior, "Cave", 7, 9, "roof")
+loadfile("build/tools/interior.lua")(tileset, interior, "Petite grotte", 7, 9, "roof")
 
 place_setaspect(interior, 3, 4, tileset..":stairs_up")
 place_setaspect(zone, 18, 5, tileset..":stairs_down")
@@ -213,7 +213,7 @@ end
 local n = 1
 local build_room = function(x, y, id, shift)
 	interior = "ritual_cave_room_"..id
-	loadfile("build/tools/interior.lua")(tileset, interior, "Cave", 7, 9, "roof")
+	loadfile("build/tools/interior.lua")(tileset, interior, "Petite grotte", 7, 9, "roof")
 	place_setaspect(interior, 3, 7, tileset..":roof")
 	place_setaspect(interior, 3, 8, tileset..":roof")
 	local d_x, d_y

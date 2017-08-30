@@ -15,7 +15,7 @@ local fun = function (x, y)
 			if title and title ~= "" then
 				player_message(Player, title)
 			else
-				player_message(Player, "This book is close.")
+				player_message(Player, "Ce livre est fermé.")
 			end
 		else
 			player_message(Player, text)
@@ -32,5 +32,5 @@ and not fun(x, y+1)
 and not fun(x-1, y)
 and not fun(x+1, y)
 then
-	player_message(Player, "There is nothing written here.")
+	player_message(Player, "Il n'y a rien à /lire.")
 end

@@ -16,7 +16,7 @@ local fun = function (x, y)
 				loadstring(script)()
 			end
 		else
-			player_message(Player, "This message wasn't written with chalk and cannot be /clear.")
+			player_message(Player, "Ce message n'est pas écrit à la craie et ne peut pas être /effacer.")
 		end
 		return true
 	else
@@ -30,5 +30,5 @@ and not fun(x, y+1)
 and not fun(x-1, y)
 and not fun(x+1, y)
 then
-	player_message(Player, "There is no writing to clear here.")
+	player_message(Player, "Il n'y a aucun écrit à /effacer.")
 end

@@ -1,6 +1,7 @@
 #!/usr/bin/lua
 
 local tileset, zone, x_shift, y_shift, id, directions = ...
+local name = "Tour"
 
 loadfile("build/tools/cube.lua")(tileset, zone, x_shift, y_shift, 5, 9, 4)
 
@@ -12,7 +13,7 @@ place_setaspect(zone, hatch_x, hatch_y, tileset..":hatch")
 
 -- Floor 1
 local floor1 = id.."_floor_1"
-loadfile("build/tools/interior.lua")(tileset, floor1, "Tower", 9, 10)
+loadfile("build/tools/interior.lua")(tileset, floor1, name, 9, 10)
 
 -- Way to hatch
 place_setaspect(floor1, 4, 4, tileset..":stairs_up")

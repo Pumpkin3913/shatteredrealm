@@ -9,7 +9,7 @@ local tileset = "redruins"
 local w = 1+5*5+4*6+1
 local h = 43
 
-new_zone(zone, "Castle", w, h, tileset..":soil_c")
+new_zone(zone, "Chateau Démoniaque", w, h, tileset..":soil_c")
 
 -- Randomize soil.
 for x=0,w-1 do
@@ -57,4 +57,4 @@ place_setaspect(zone, 25, 34, tileset..":well")
 
 -- Ziggurat's key coffer.
 loadfile("build/tools/coffer.lua")(tileset, zone, 25, 2, "common")
-place_settag (zone, 25, 2, "content", "Ziggurat's Key")
+place_settag (zone, 25, 2, "content", "Clef du Ziggurat")

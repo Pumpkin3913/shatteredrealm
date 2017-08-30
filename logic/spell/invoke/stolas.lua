@@ -1,26 +1,26 @@
 #!/usr/bin/lua
 
-player_message(Player, "You feel a demonic presence near you.")
+player_message(Player, "Tu sens une présence démoniaque près de toi.")
 
 local race = player_gettag(Player, "race")
 local inventory = player_gettag(Player, "inventory")
 
 local whisp = function(msg)
-	player_message(Player, "Stolas whispers to you: \""..msg.."\"")
+	player_message(Player, "Stolas te murmure: \""..msg.."\"")
 end
 
 if race == "demon" and not string.match(inventory, ".*chalk.*") then
-	whisp("You don't even have a chalk. Here. Use it wisely.")
+	whisp("Tu n'as même pas de craie. Tiens. Fais-en bon usage.")
 	player_settag(Player, "inventory", inventory..":chalk")
 else
 	local dice = c_rand(3)
 	if dice == 1 then
-		whisp("Find books and read them all. Knowledge is power!")
+		whisp("Trouves des livres et lis-les. Le savoir, c'est le pouvoir !")
 	elseif dice == 2 then
-		whisp("Ancient places may contain valuable books and engravings...")
+		whisp("Les lieux anciens peuvent contenir des gravures livres précieux...")
 	elseif dice == 3 then
-		whisp("Mana and Knowledge are powerful weapons. Seek both!")
+		whisp("Le Mana et le Savoir sont des armes puissantes. Recherche les deux !")
 	end
 end
 
-player_message(Player, "The demonic presence vanishes.")
+player_message(Player, "La présence démoniaque disparait.")

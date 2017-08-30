@@ -8,6 +8,6 @@ new_gauge(Player, "life", 1, 1, "heart", "heart_empty")
 
 player_spawn(Player, "lobby", 16, 16)
 
-player_message(Player, "You are '@'. Move with arrow keys.")
-player_message(Player, "Step on the south square to access the tutorial.")
-player_message(Player, "Enter a building to choose as who to start.")
+player_message(Player, "Tu es '@'. Déplace-toi avec les flèches.")
+player_message(Player, "Marche sur la dalle au sud pour accéder au tutorial.")
+player_message(Player, "Entre dans un batiment pour choisir comment commencer.")

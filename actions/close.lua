@@ -34,5 +34,5 @@ and not fun(x, y+1)
 and not fun(x-1, y)
 and not fun(x+1, y)
 then
-	player_message(Player, "There is nothing to close here.")
+	player_message(Player, "Il n'y a rien à /fermer.")
 end

@@ -8,14 +8,14 @@ local y = player_gety(Player)
 local gauge = "mana"
 local cost = 1
 if gauge_getval(Player, gauge) < cost then
-	player_message(Player, "You don't have enough "..gauge..".")
+	player_message(Player, "Tu n'as pas assez de "..gauge..".")
 	return
 end
 
 -- Check place.
 local tag = place_gettag(zone, x, y, "sesame")
 if not tag or tag == "" then
-	player_message(Player, "The spell has no effect here.")
+	player_message(Player, "Ce sort n'a aucun effet ici.")
 	return
 end
 

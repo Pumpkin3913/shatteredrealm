@@ -1,6 +1,7 @@
 #!/usr/bin/lua
 
 local tileset, zone, x_shift, y_shift = ...
+local name = "La Tour sans Porte"
 
 info("[WORLDGEN] [Demon Castle] Climb Tower")
 
@@ -21,7 +22,7 @@ place_setaspect(zone, x_shift+2, y_shift+6, tileset..":wall_window")
 
 -- Floor 1
 local floor1 = "climbtower_floor_1"
-loadfile("build/tools/interior.lua")(tileset, floor1, "Tower", 9, 10)
+loadfile("build/tools/interior.lua")(tileset, floor1, name, 9, 10)
 place_setaspect(floor1, 4, 8, tileset..":wall_window")
 place_setaspect(floor1, 4, 4, tileset..":stairs_up")
 place_setaspect(zone, x_shift+2, y_shift+2, tileset..":hatch")
@@ -31,7 +32,7 @@ place_setaspect(floor1, 4, 1, tileset..":bigdoor_locked")
 
 -- Floor 0
 local floor0 = "climbtower_floor_0"
-loadfile("build/tools/interior.lua")(tileset, floor0, "Tower", 9, 10)
+loadfile("build/tools/interior.lua")(tileset, floor0, name, 9, 10)
 loadfile("build/tools/door.lua")(tileset, floor0, 4, 1)
 place_setaspect(floor0, 4, 1, tileset..":bigdoor_locked")
 loadfile("build/tools/link.lua")(floor0, 4, 1, floor1, 4, 1)

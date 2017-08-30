@@ -2,11 +2,12 @@
 
 local tileset, zone, x_shift, y_shift = ...
 local interior = "ziggurat_crystal"
+local name = "Ziggurat au Cristal"
 
 info("[WORLDGEN] [Demon Castle] Ziggurat Crystal")
 
 local x,y = loadfile("build/tools/ziggurat.lua")(tileset, zone, x_shift, y_shift)
-loadfile("build/tools/interior.lua")(tileset, interior, "Ziggurat", 9, 10)
+loadfile("build/tools/interior.lua")(tileset, interior, name, 9, 10)
 loadfile("build/tools/door.lua")(tileset, interior, 4, 9)
 place_setaspect(interior, 4, 9, tileset..":mosaic_a")
 place_setaspect(interior, 4, 9-1, tileset..":path")
@@ -22,7 +23,7 @@ place_setaspect(zone, x, y, tileset..":bigdoor_closed")
 place_settag(zone, x, y, "openclose_opentile", tileset..":bigdoor")
 place_settag(zone, x, y, "openclose_closetile", tileset..":bigdoor_closed")
 place_settag(zone, x, y, "openclose_state", "locked")
-place_settag(zone, x, y, "openclose_key", "Ziggurat's Key")
+place_settag(zone, x, y, "openclose_key", "Clef du Ziggurat")
 
 -- Add puzzle to light up the crystal.
 local master_x = 4

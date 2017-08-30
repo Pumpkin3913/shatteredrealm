@@ -2,6 +2,8 @@
 
 local lobby_zone, lobby_x, lobby_y = ...
 
+info("[WORLDGEN] Tutorial")
+
 local zone = "tutorial"
 local tileset = "violetcastle"
 local w = 11
@@ -34,8 +36,8 @@ y = y-3
 build_horizontal_wall(y)
 place_setlandon(zone, x_mid, y, "\
 player_message(Player, \"* * *\")\
-player_message(Player, \"Some elements are interacted with by simply walking over them.\")\
-player_message(Player, \"Try walking on these squares, then go to the next room.\")\
+player_message(Player, \"Pour interagir avec certains éléments, il suffit de marcher dessus.\")\
+player_message(Player, \"Essaye de marcher sur ces dalles, puis va jusqu'à la salle suivante.\")\
 ")
 
 y = y-3
@@ -57,69 +59,63 @@ y = y-2
 build_horizontal_wall(y)
 place_setlandon(zone, x_mid, y, "\
 player_message(Player, \"* * *\")\
-player_message(Player, \"To interact with an object, stand near it and type a command.\")\
-player_message(Player, \"Try to /read this book.\")\
-player_message(Player, \"Stand near the book, type '/read' and validate with enter.\")\
+player_message(Player, \"Pour interagir avec un objet, mets-toi devant et entre une commande.\")\
+player_message(Player, \"Les commandes commencent par \"/\". Essaye de /lire ce livre.\")\
+player_message(Player, \"Tiens-toi devant ce livre, entre '/lire' et valide avec Entrée.\")\
 ")
 
 y = y-4
 
 place_setaspect(zone, x_mid, y, tileset..":book_a_open")
-place_settag(zone, x_mid, y, "text", "Well done! Go to the next room.")
+place_settag(zone, x_mid, y, "text", "Bien joué! Va dans la salle suivante.")
 
 y = y-3
 
 build_horizontal_wall(y)
 place_setlandon(zone, x_mid, y, "\
 player_message(Player, \"* * *\")\
-player_message(Player, \"Commands can be saved in the Fx keys and rapidely reused.\")\
-player_message(Player, \"Pressing shift + F1 saves the current buffer in F1.\")\
-player_message(Player, \"F1 then adds the saved text to the buffer. (Escape clears the buffer.)\")\
-player_message(Player, \"Save the command '/read' to rapidely read these books, from left to right.\")\
+player_message(Player, \"Les commandes peuvent être enregistrées dans les touches Fx et rapidement réutilisées.\")\
+player_message(Player, \"Appuyer sur shift + F1 sauvegarde la commande courante dans F1.\")\
+player_message(Player, \"F1 ajoute le texte sauvegardé dans la commande. (Échap nettoie la ligne de commande.\")\
+player_message(Player, \"Sauvegarde la commande '/lire' pour lire rapidement ces livres, de gauche à droite. \")\
 ")
 
 y = y-4
 
 place_setaspect(zone, 1, y, tileset..":book_a_open")
-place_settag(zone, 1, y, "text", "You")
+place_settag(zone, 1, y, "text", "Tu")
 
 place_setaspect(zone, 3, y, tileset..":book_a_open")
-place_settag(zone, 3, y, "text", "Are")
+place_settag(zone, 3, y, "text", "T'en")
 
 place_setaspect(zone, x_mid, y, tileset..":book_a_open")
-place_settag(zone, x_mid, y, "text", "Doing")
+place_settag(zone, x_mid, y, "text", "Sors")
 
 place_setaspect(zone, w-4, y, tileset..":book_a_open")
-place_settag(zone, w-4, y, "text", "It")
+place_settag(zone, w-4, y, "text", "Très")
 
 place_setaspect(zone, w-2, y, tileset..":book_a_open")
-place_settag(zone, w-2, y, "text", "Right!")
+place_settag(zone, w-2, y, "text", "Bien !")
 
 y = y-3
 
 build_horizontal_wall(y)
 place_setlandon(zone, x_mid, y, "\
 player_message(Player, \"* * *\")\
-player_message(Player, \"Some items may be interacted with in a more advanced way.\")\
-player_message(Player, \"Try to /open and /close these objects.\")\
-player_message(Player, \"Look out for tips about commands throughout the game.\")\
+player_message(Player, \"Il est possible d'interagir avec certains éléments de façon plus complexe.\")\
+player_message(Player, \"Essaye d'/ouvrir et de /fermer ces objets.\")\
+player_message(Player, \"Recherche des indices sur les commandes à travers le jeu.\")\
 ")
 
 y = y-4
 
 local selfclose_duration = 10
 
-place_setaspect(zone, 3, y, tileset..":book_a_close")
-place_settag(zone, 3, y, "openclose_state", "close")
-place_settag(zone, 3, y, "openclose_opentile", tileset..":book_a_open")
-place_settag(zone, 3, y, "openclose_closetile", tileset..":book_a_close")
+loadfile("build/tools/book.lua")(tileset, zone, 3, y, "close")
 place_settag(zone, 3, y, "openclose_selfclose", selfclose_duration)
-place_settag(zone, 3, y, "text", "You can /search containers.")
+place_settag(zone, 3, y, "text", "Tu peux /fouiller les coffres.")
 
-place_setaspect(zone, w-4, y, tileset..":coffer_common_close")
-place_settag (zone, w-4, y, "openclose_state", "close")
-place_settag (zone, w-4, y, "openclose_opentile", tileset..":coffer_common_open")
-place_settag (zone, w-4, y, "openclose_closetile", tileset..":coffer_common_close")
+loadfile("build/tools/coffer.lua")(tileset, zone, w-4, y)
 place_settag (zone, w-4, y, "openclose_selfclose", selfclose_duration)
 place_settag (zone, w-4, y, "content", "Cookie!")
 
@@ -157,7 +153,5 @@ place_settag(zone, x_mid, y, "openclose_closetile", tileset..":bigdoor_closed")
 place_settag(zone, x_mid, y, "openclose_selfclose", selfclose_duration)
 
 place_setlandon(zone, x_mid, y, "player_changezone(Player, \""..lobby_zone.."\", "..lobby_x..", "..lobby_y..")")
-
-info("[WORLDGEN] Tutorial finished.")
 
 return zone, entrance_x, entrance_y
