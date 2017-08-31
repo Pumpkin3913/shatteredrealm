@@ -85,7 +85,7 @@ place_piece(3, "northeast_floor_1", 6, 6)
 place_setaspect(master_zone, master_x-2, master_y+1, tileset..":mosaic_white")
 place_setaspect(master_zone, master_x,   master_y+2, tileset..":mosaic_white")
 place_setaspect(master_zone, master_x+2, master_y+1, tileset..":mosaic_white")
-place_setaspect(master_zone, master_x-1, master_y+2, tileset..":mosaic_special")
+place_setaspect(master_zone, master_x-1, master_y+2, tileset..":mosaic_c")
 
 -- Seal off left tower's door.
 place_setaspect(zone, 14, 11, tileset..":bigdoor_locked")
@@ -93,6 +93,6 @@ place_setaspect("left_floor_0", 4, 9, tileset..":bigdoor_locked")
 place_setaspect("left_floor_0", 4, 9-1, tileset..":bigdoor_top")
 
 -- Add treasure in left tower.
-place_setaspect("left_floor_0", 4, 3, tileset..":mosaic_special")
-loadfile("build/tools/coffer.lua")(tileset, "left_floor_0", 4, 5, "rare")
--- place_settag ("left_floor_0", 4, 5, "content", "???")
+place_setaspect("left_floor_0", 4, 4, tileset..":mosaic_c")
+loadfile("build/tools/coffer.lua")(tileset, "left_floor_0", 4, 6, "rare")
+-- place_settag ("left_floor_0", 4, 6, "content", "???")
