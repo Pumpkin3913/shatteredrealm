@@ -7,12 +7,13 @@ local y = player_gety(Player)
 local fun = function (x, y)
 	local key = place_gettag(zone, x, y, "openclose_key")
 	if key and key ~= "" then
-		if not player_gettag(Player, "have "..key) then
-			player_message(Player, "You don't have: "..key)
-		else
+		if player_gettag(Player, "have "..key) == "true" then
 			local tile = place_gettag(zone, x, y, "openclose_closetile")
 			place_setaspect(zone, x, y, tile)
 			place_settag(zone, x, y, "openclose_state", "locked")
+			player_message(Player, "C'est verrouillé avec : "..key)
+		else
+			player_message(Player, "You don't have: "..key)
 		end
 		return true
 	else

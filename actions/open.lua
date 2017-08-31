@@ -20,13 +20,13 @@ local fun = function (x, y)
 
 	elseif tag == "locked" then
 		local key = place_gettag(zone, x, y, "openclose_key")
-		if not player_gettag(Player, "have "..key) then
-			player_message(Player, "C'est verrouillé. Il faut : "..key)
-		else
+		if player_gettag(Player, "have "..key) == "true" then
 			player_message(Player, "Tu utilise : "..key)
 			local tile = place_gettag(zone, x, y, "openclose_opentile")
 			place_setaspect(zone, x, y, tile)
 			place_settag(zone, x, y, "openclose_state", "open")
+		else
+			player_message(Player, "C'est verrouillé avec : "..key)
 		end
 	else
 		return false

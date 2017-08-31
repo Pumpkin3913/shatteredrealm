@@ -11,7 +11,7 @@ local fun = function (x, y)
 		if state == "close" then
 			player_message(Player, "Ce coffre est fermé.")
 		else
-			if player_gettag(Player, "have "..content) then
+			if player_gettag(Player, "have "..content) == "true" then
 				player_message(Player, "Tu as déjà : "..content)
 			else
 				player_settag(Player, "have "..content, "true")
