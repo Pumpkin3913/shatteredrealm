@@ -11,11 +11,10 @@ local fun = function (x, y)
 		if state == "close" then
 			player_message(Player, "Ce coffre est fermé.")
 		else
-			local inventory = player_gettag(Player, "inventory")
-			if string.match(inventory, ".*"..content..".*") then
+			if player_gettag(Player, "have "..content) then
 				player_message(Player, "Tu as déjà : "..content)
 			else
-				player_settag(Player, "inventory", inventory..":"..content)
+				player_settag(Player, "have "..content, "true")
 				player_message(Player, "Tu as trouvé : "..content)
 			end
 		end

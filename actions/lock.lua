@@ -7,7 +7,7 @@ local y = player_gety(Player)
 local fun = function (x, y)
 	local key = place_gettag(zone, x, y, "openclose_key")
 	if key and key ~= "" then
-		if not string.match(player_gettag(Player, "inventory"), key) then
+		if not player_gettag(Player, "have "..key) then
 			player_message(Player, "You don't have: "..key)
 		else
 			local tile = place_gettag(zone, x, y, "openclose_closetile")

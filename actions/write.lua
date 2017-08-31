@@ -7,7 +7,7 @@ if not Arg or Arg == "" then
 end
 
 -- Check if Player has a chalk.
-if not string.match(player_gettag(Player, "inventory"), "chalk") then
+if not player_gettag(Player, "have chalk") then
 	player_message(Player, "Tu ne peux pas écrire avec tes ongles.")
 	return
 end
