@@ -15,7 +15,7 @@ loadfile("build/tools/link.lua")(zone, x, y, interior, 4, 9)
 
 -- Add books.
 loadfile("build/tools/book.lua")(tileset, interior, 2, 5)
-place_settag(interior, 2, 5, "text", "/incanter Invoke devant le nom écrit d'un démon pour l'invoquer.")
+place_settag(interior, 2, 5, "text", "/incanter Invocatio devant le nom écrit d'un démon pour l'invoquer.")
 loadfile("build/tools/book.lua")(tileset, interior, 6, 5)
 place_settag(interior, 6, 5, "text", "Certaines démons peuvent se montrer amicaux avec d'autres démons, mais pas tous.")
 

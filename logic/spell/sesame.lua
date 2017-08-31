@@ -26,7 +26,7 @@ gauge_decrease(Player, gauge, cost)
 zone, x, y = string.match(tag, "(.*)/(.*)-(.*)")
 local tileset, tile = string.match(place_getaspect(zone, x, y), "(.*):(.*)")
 
-if tile == "slab_passable" then -- The door is open: close it.
+if tile == "slab" then -- The door is open: close it.
 	place_setaspect(zone, x, y,   tileset..":pillar_bot")
 	place_setaspect(zone, x, y-1, tileset..":slab")
 
@@ -38,8 +38,9 @@ if tile == "slab_passable" then -- The door is open: close it.
 	end
 
 else -- The door is closed: open it.
-	place_setaspect(zone, x, y,   tileset..":slab_passable")
-	place_setaspect(zone, x, y-1, tileset..":path_vertical")
+	place_setaspect(zone, x, y-1, tileset..":path")
+	place_setaspect(zone, x, y,   tileset..":slab")
+	place_setpassable(zone, x, y)
 
 	-- Start selfclose timer.
 	local script = "\
