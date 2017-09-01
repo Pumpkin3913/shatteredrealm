@@ -19,9 +19,10 @@ place_settag(interior, 3, 1, "text", "To change the color of the crystal, set th
 place_settag(interior, 3, 1, "text_type", "chalk")
 
 -- Lock the entrance.
-place_setaspect(zone, x, y, tileset..":bigdoor_closed")
+place_setaspect(zone, x, y, tileset..":bigdoor_locked")
 place_settag(zone, x, y, "openclose_opentile", tileset..":bigdoor")
 place_settag(zone, x, y, "openclose_closetile", tileset..":bigdoor_closed")
+place_settag(zone, x, y, "openclose_locktile", tileset..":bigdoor_locked")
 place_settag(zone, x, y, "openclose_state", "locked")
 place_settag(zone, x, y, "openclose_key", "Clef du Ziggurat")
 

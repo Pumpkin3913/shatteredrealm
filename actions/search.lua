@@ -16,6 +16,9 @@ local fun = function (x, y)
 			else
 				player_settag(Player, "have "..content, "true")
 				player_message(Player, "Tu as trouvé : "..content)
+				if string.match(content, "Clef .*") then
+					player_message(Player, "La clef se copie magiquement à ton trousseau.")
+				end
 			end
 		end
 		return true

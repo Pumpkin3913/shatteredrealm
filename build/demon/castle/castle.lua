@@ -36,6 +36,7 @@ loadfile("build/demon/castle/ziggurat_secret.lua")(tileset, zone, 8, 14)
 loadfile("build/demon/castle/ziggurat_crystal.lua")(tileset, zone, 22, 26)
 loadfile("build/demon/castle/library.lua")(tileset, zone, 32, 15)
 loadfile("build/demon/castle/tower_climb.lua")(tileset, zone, 38, 25)
+loadfile("build/demon/castle/key_quest.lua")(tileset, zone)
 
 -- Decorations.
 local x, y
@@ -52,9 +53,3 @@ y = 29
 loadfile("build/tools/pillar.lua")(tileset, zone, x-2, y, 3)
 loadfile("build/tools/pillar.lua")(tileset, zone, x,   y, 4)
 loadfile("build/tools/pillar.lua")(tileset, zone, x+2, y, 2)
-
-place_setaspect(zone, 25, 34, tileset..":well")
-
--- Ziggurat's key coffer.
-loadfile("build/tools/coffer.lua")(tileset, zone, 25, 2, "common")
-place_settag (zone, 25, 2, "content", "Clef du Ziggurat")
