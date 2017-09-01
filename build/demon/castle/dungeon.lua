@@ -142,7 +142,7 @@ loadfile("build/tools/book.lua")(tileset, floor_1, 7, 8)
 place_settag(floor_1, 7, 8, "text", "L'incantation ouvre le portail vers un endroit aléatoire du monde nommé.")
 
 loadfile("build/tools/book.lua")(tileset, floor_1, 5, 8, "close", "b")
-place_settag(floor_1, 5, 8, "openclose_selfclose", 5)
+place_settag(floor_1, 5, 8, "openclose_selfclose", 30)
 place_settag(floor_1, 5, 8, "text", "Incantation: Transfragmentum")
 
 -- Floor 1

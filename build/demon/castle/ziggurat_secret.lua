@@ -38,4 +38,4 @@ loadfile("build/tools/link.lua")(interior, 4, 1, secret_room, 4, 9)
 -- Add secret spellbook.
 loadfile("build/tools/book.lua")(secret_tileset, secret_room, 4, 5, "close")
 place_settag(secret_room, 4, 5, "text", "Stolas: démon bienveillant du savoir.")
-place_settag(secret_room, 4, 5, "openclose_selfclose", 5)
+place_settag(secret_room, 4, 5, "openclose_selfclose", 30)

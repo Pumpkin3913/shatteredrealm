@@ -74,4 +74,4 @@ add_book(10, 6)
 -- Add a lone magical book on first floor.
 loadfile("build/tools/book.lua")(tileset, floor1, 6, 5, "close", "b")
 place_settag(floor1, 6, 5, "text", "Incantation: Sésame")
-place_settag(floor1, 6, 5, "openclose_selfclose", 5)
+place_settag(floor1, 6, 5, "openclose_selfclose", 30)

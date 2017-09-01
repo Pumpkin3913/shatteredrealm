@@ -48,6 +48,6 @@ else -- The door is closed: open it.
 		place_setaspect(\""..zone.."\", "..x..", "..y-1 ..", \""..tileset..":slab\")\
 		place_deltag(\""   ..zone.."\", "..x..", "..y   ..", \"sesame_timer\")\
 	"
-	local timer = create_timer(30, script)
+	local timer = create_timer(120, script) -- 2 minutes
 	place_settag(zone, x, y, "sesame_timer", timer)
 end

@@ -109,7 +109,7 @@ player_message(Player, \"Recherche des indices sur les commandes à travers le j
 
 y = y-4
 
-local selfclose_duration = 10
+local selfclose_duration = 60 -- 1 minute
 
 loadfile("build/tools/book.lua")(tileset, zone, 3, y, "close")
 place_settag(zone, 3, y, "openclose_selfclose", selfclose_duration)
