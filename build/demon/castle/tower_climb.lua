@@ -54,49 +54,66 @@ loadfile("build/tools/interior.lua")(tileset, floor_1, name, 9, 10)
 
 -- Magical stairs between floors 0 and -1.
 
-place_setaspect(floor0, 4, 2, tileset..":mosaic_special")
+loadfile("build/tools/openclose_build.lua")(floor0, 4, 2, "close", tileset..":stairs_down", tileset..":mosaic_special")
+place_settag(floor0, 4, 2, "openclose_triggeronly", "true")
+place_settag(floor0, 4, 2, "openclose_selfclose", 30)
+place_settag(floor0, 4, 2, "openclose_trigger_close",
+	"loadfile(\"logic/puzzle_mosaic_reset.lua\")(\""..floor0 .."\", 4, 2)\
+	 loadfile(\"logic/puzzle_mosaic_reset.lua\")(\""..floor_1.."\", 4, 2)")
 place_setlandon(floor0, 4, 2, "\
-if place_getaspect(\""..floor0.."\", 4, 2) == \""..tileset..":stairs_down\" then\
+if place_gettag(\""..floor0.."\", 4, 2, \"openclose_state\") == \"open\" then\
 	player_changezone(Player, \""..floor_1.."\", 4, 2)\
 end")
 
-place_setaspect(floor_1, 4, 2, tileset..":mosaic_special")
+loadfile("build/tools/openclose_addslave.lua")(floor0, 4, 2, floor_1, 4, 2, 1, tileset..":stairs_up", tileset..":mosaic_special")
+place_settag(floor_1, 4, 2, "openclose_triggeronly", "true")
 place_setlandon(floor_1, 4, 2, "\
-if place_getaspect(\""..floor_1.."\", 4, 2) == \""..tileset..":stairs_up\" then\
+if place_gettag(\""..floor0.."\", 4, 2, \"openclose_state\") == \"open\" then\
 	player_changezone(Player, \""..floor0.."\", 4, 2)\
 end")
 
--- Pattern puzzle.
+-- Pattern puzzle
 
-local script = "\
-place_setaspect(\""..floor0.."\", 4, 2, \""..tileset..":stairs_down\")\
-place_setaspect(\""..floor_1.."\", 4, 2, \""..tileset..":stairs_up\")\
-"
+local script = "loadfile(\"logic/openclose.lua\")(\""..floor0.."\", 4, 2, \"open\")"
+
 local master_x = 4
 local master_y = 2
-place_settag(floor0, master_x, master_y, "puzzle_script", script)
-local master = floor0.."/"..master_x.."-"..master_y
+local n
 
-local place_piece = function(n, model, x, y)
-	place_setaspect(floor0, x, y, tileset..":mosaic_black")
-	place_settag(floor0, x, y, "puzzle_init", "black")
-	place_settag(floor0, x, y, "puzzle_model", model)
-	place_settag(floor0, x, y, "puzzle_master", master)
-	place_setlandon(floor0, x, y, "dofile(\"logic/puzzle_mosaic_walk.lua\")")
-	place_settag(floor0, master_x, master_y, "puzzle_piece_"..n, floor0.."/"..x.."-"..y)
+local function place_piece(zone, n, model, x, y)
+	local master = zone.."/"..master_x.."-"..master_y
+	place_setaspect(zone, x, y, tileset..":mosaic_black")
+	place_settag(zone, x, y, "puzzle_init", "black")
+	place_settag(zone, x, y, "puzzle_model", model)
+	place_settag(zone, x, y, "puzzle_master", master)
+	place_setlandon(zone, x, y, "dofile(\"logic/puzzle_mosaic_walk.lua\")")
+	place_settag(zone, master_x, master_y, "puzzle_piece_"..n, zone.."/"..x.."-"..y)
 end
 
-local n = 1
+-- Puzzle floor 0
+place_settag(floor0, master_x, master_y, "puzzle_script", script)
+
+n = 1
 for x=6,7 do
 	for y=3,6 do
-		local color
-		if (x+y)%2 == 0 then
-			color = "white"
-		else
-			color = "black"
-		end
+		local color = "black"
+		if (x+y)%2 == 0 then color = "white" end
 		place_setaspect(floor0, x-5, y, tileset..":mosaic_"..color) -- Model.
-		place_piece(n, color, x, y)
+		place_piece(floor0, n, color, x, y)
+		n = n+1
+	end
+end
+
+-- Puzzle floor -1
+place_settag(floor_1, master_x, master_y, "puzzle_script", script)
+
+n = 1
+for x=6,7 do
+	for y=3,6 do
+		local color = "black"
+		if x == 6 and (y == 4 or y == 5) then color = "white" end
+		place_setaspect(floor_1, x-5, y, tileset..":mosaic_"..color) -- Model.
+		place_piece(floor_1, n, color, x, y)
 		n = n+1
 	end
 end
