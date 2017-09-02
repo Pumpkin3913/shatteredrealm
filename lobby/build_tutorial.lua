@@ -147,9 +147,7 @@ place_setaspect(zone, x_mid,   y-2, tileset..":roof_horizontal")
 place_setaspect(zone, x_mid+1, y-2, tileset..":roof_horizontal")
 place_setaspect(zone, x_mid+2, y-2, tileset..":roof_endrgt")
 
-place_settag(zone, x_mid, y, "openclose_state", "close")
-place_settag(zone, x_mid, y, "openclose_opentile", tileset..":bigdoor")
-place_settag(zone, x_mid, y, "openclose_closetile", tileset..":bigdoor_closed")
+loadfile("build/tools/openclose_build.lua")(zone, x_mid, y, "close", tileset..":bigdoor", tileset..":bigdoor_closed")
 place_settag(zone, x_mid, y, "openclose_selfclose", selfclose_duration)
 
 place_setlandon(zone, x_mid, y, "player_changezone(Player, \""..lobby_zone.."\", "..lobby_x..", "..lobby_y..")")

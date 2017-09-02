@@ -13,18 +13,24 @@ place_setaspect(interior, 4, 9, tileset..":mosaic_a")
 place_setaspect(interior, 4, 9-1, tileset..":path")
 loadfile("build/tools/link.lua")(zone, x, y, interior, 4, 9)
 
+-- Lock the entrance.
+loadfile("build/tools/openclose_build.lua")(zone, x, y, "locked",
+	tileset..":bigdoor",
+	tileset..":bigdoor_closed",
+	tileset..":bigdoor_locked",
+	"Clef du Ziggurat"
+)
+
+loadfile("build/tools/openclose_addslave.lua")(zone, x, y, interior, 4, 9, 1,
+	tileset..":mosaic_a",
+	tileset..":bigdoor_closed",
+	tileset..":bigdoor_locked"
+)
+
 -- Add writing on the wall.
 place_setaspect(interior, 3, 1, tileset..":wall_bot_written")
 place_settag(interior, 3, 1, "text", "To change the color of the crystal, set the floor tiles to the same color.")
 place_settag(interior, 3, 1, "text_type", "chalk")
-
--- Lock the entrance.
-place_setaspect(zone, x, y, tileset..":bigdoor_locked")
-place_settag(zone, x, y, "openclose_opentile", tileset..":bigdoor")
-place_settag(zone, x, y, "openclose_closetile", tileset..":bigdoor_closed")
-place_settag(zone, x, y, "openclose_locktile", tileset..":bigdoor_locked")
-place_settag(zone, x, y, "openclose_state", "locked")
-place_settag(zone, x, y, "openclose_key", "Clef du Ziggurat")
 
 -- Add puzzle to light up the crystal.
 local master_x = 4
