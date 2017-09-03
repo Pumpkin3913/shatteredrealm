@@ -11,6 +11,8 @@ end
 
 n = tonumber(n)
 if n < 7 then
-	place_setaspect(zone, x, y, tileset..":crystal_"..n+1)
+	n = n+1
+	if n == 3 or n == 5 then n = n+1 end
+	place_setaspect(zone, x, y, tileset..":crystal_"..n)
 	loadfile("logic/puzzle_mosaic_reset.lua")(zone, x, y)
 end

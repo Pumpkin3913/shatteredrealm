@@ -2,6 +2,16 @@
 
 local zone, x, y, state = ...
 
+-- Avoid triggering everything if the state won't change.
+local current_state = place_gettag(zone, x, y, "openclose_state")
+if state == current_state then
+	return
+end
+if state == "locked" and current_state == "close" then
+	return
+end
+
+
 local toogle = function(zone, x, y)
 	local tile = place_gettag(zone, x, y, "openclose_tile_"..state)
 	if state == "locked" and (not tile or tile == "") then

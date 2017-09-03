@@ -54,12 +54,15 @@ loadfile("build/tools/interior.lua")(tileset, floor_1, name, 9, 10)
 
 -- Magical stairs between floors 0 and -1.
 
+local reset_script =
+"loadfile(\"logic/puzzle_mosaic_reset.lua\")(\""..floor0 .."\", 4, 2)\
+ loadfile(\"logic/puzzle_mosaic_reset.lua\")(\""..floor_1.."\", 4, 2)"
+
 loadfile("build/tools/openclose_build.lua")(floor0, 4, 2, "close", tileset..":stairs_down", tileset..":mosaic_special")
 place_settag(floor0, 4, 2, "openclose_triggeronly", "true")
 place_settag(floor0, 4, 2, "openclose_selfclose", 30)
-place_settag(floor0, 4, 2, "openclose_trigger_close",
-	"loadfile(\"logic/puzzle_mosaic_reset.lua\")(\""..floor0 .."\", 4, 2)\
-	 loadfile(\"logic/puzzle_mosaic_reset.lua\")(\""..floor_1.."\", 4, 2)")
+place_settag(floor0, 4, 2, "openclose_trigger_open", reset_script)
+place_settag(floor0, 4, 2, "openclose_trigger_close", reset_script)
 place_setlandon(floor0, 4, 2, "\
 if place_gettag(\""..floor0.."\", 4, 2, \"openclose_state\") == \"open\" then\
 	player_changezone(Player, \""..floor_1.."\", 4, 2)\
