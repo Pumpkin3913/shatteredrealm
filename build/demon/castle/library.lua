@@ -44,32 +44,45 @@ place_setaspect(floor1, 10, 8, tileset..":wall_window")
 -- Add books in floor 0.
 
 local content = {
+	-- Basic /actions.
 	"Les Mots de Pouvoir doivent être /incanter, parfois en des lieux spéficiques.",
 	"Certaines formes de magie requièrent une craie pour /écrire sur les murs.",
 	"Les écritures à la craie sont faciles à /effacer.",
 	"Le sage sait /fouiller, car les trésors ne sont pas donnés aisément.",
-	-- "Chaque clef ne peut /ouvrir et /verrouiller qu'une porte ou un coffre en particulier.", -- "Est-ce que tu t'attendais à des passe-partout consommables ?"
 	"Les démons peuvent /drainer les cristaux magiques. Les cristaux de feu sont les plus puissants.",
+	"Chaque clef ne peut /ouvrir et /verrouiller qu'une porte ou un coffre en particulier.", -- "Est-ce que tu t'attendais à des passe-partout consommables ?"
+	"Il y a des coffres dans le donjon où les démons peuvent /prendre et /poser de l'équipement.",
+	"Un bon aventurier doit toujours vérifier son /inventaire.",
+
+	-- Lore.
 	"Les fragments étaient autrefois un, mais le Créateur fut mécontent de sa création.",
 	"Les fragments ne sont séparés les uns des autres que par l'épaisseur d'une ombre.",
+	"Ce fragment se nomme Kalzakrax. Il est le plus anciens et a toujours été la demeure des démons.",
+	"Il y a d'autres chateau sur Kalzakrax qui peuvent être atteints par des portes magies.",
+	"Les plus vieux démons se souviennent de l'époque de la Terre Unifiée.",
+	"Il reste des mortels à duper sur les autres fragments. Comment ont-ils survécu aussi longtemps ?",
+	"Maintenant que le Créateur nous a abandonnés, nous, démons, pouvons régner sans partage !",
 	"Les démons sont destinés à conquérir les fragments, par la force, la ruse et la volonté."
 }
 
-local add_book = function(x, y)
-	local text = table.remove(content, c_rand(#content))
+local add_book = function(zone, x, y)
+	local text = "Ce livre est trop abimé."
+	if #content >= 1 then
+		text = table.remove(content, c_rand(#content))
+	end
 	local state = "open"; if c_rand(4) == 4 then state = "close" end
-	loadfile("build/tools/book.lua")(tileset, floor0, x, y, state)
-	place_settag(floor0, x, y, "text", text)
+	loadfile("build/tools/book.lua")(tileset, zone, x, y, state)
+	place_settag(zone, x, y, "text", text)
 end
 
-add_book(2, 3)
-add_book(2, 6)
-add_book(4, 3)
-add_book(4, 6)
-add_book(8, 3)
-add_book(8, 6)
-add_book(10, 3)
-add_book(10, 6)
+for x=2,10,2 do
+	if x ~= 6 then
+		add_book(floor0, x, 3)
+		add_book(floor0, x, 6)
+		add_book(floor1, x, 3)
+		add_book(floor1, x, 6)
+	end
+end
 
 -- Add a lone magical book on first floor.
 loadfile("build/tools/book.lua")(tileset, floor1, 6, 5, "close", "b")

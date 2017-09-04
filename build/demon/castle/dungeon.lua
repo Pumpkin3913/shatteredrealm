@@ -181,7 +181,12 @@ place_settag(floor1, 5, 6, "text_type", "chalk") -- Intentionally misspell.
 place_setaspect(floor1, 5, 7, tileset..":mosaic_b")
 place_settag(floor1, 5, 7, "portal", "true") -- Intentionally misspell.
 
--- TODO: give them empty inventories for players to drop procedural worlds' loot.
-loadfile("build/tools/coffer.lua")(tileset, floor1, 2, 8)
-loadfile("build/tools/coffer.lua")(tileset, floor1, 8, 8)
-
+local function add_stash(x, y)
+	loadfile("build/tools/coffer.lua")(tileset, floor1, x, y, "hard")
+	place_settag(floor1, x, y, "content_artifact_1", "EMPTY")
+	place_settag(floor1, x, y, "content_artifact_2", "EMPTY")
+end
+add_stash(2, 8)
+add_stash(4, 9)
+add_stash(6, 9)
+add_stash(8, 8)

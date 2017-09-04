@@ -10,6 +10,9 @@ add_action("fermer", "dofile(\"actions/close.lua\")")
 add_action("verrouiller", "dofile(\"actions/lock.lua\")")
 
 add_action("fouiller", "dofile(\"actions/search.lua\")")
+add_action("inventaire", "dofile(\"actions/inventory.lua\")")
+add_action("prendre", "dofile(\"actions/take.lua\")")
+add_action("poser", "dofile(\"actions/drop.lua\")")
 
 add_action("incanter", "dofile(\"actions/cast.lua\")")
 
