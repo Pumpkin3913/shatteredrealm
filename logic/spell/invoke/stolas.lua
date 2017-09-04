@@ -2,15 +2,15 @@
 
 player_message(Player, "Tu sens une présence démoniaque près de toi.")
 
-local race = player_gettag(Player, "race")
-
 local whisp = function(msg)
 	player_message(Player, "Stolas te murmure: \""..msg.."\"")
 end
 
-if race == "demon" and not player_gettag(Player, "have chalk") then
+local race = player_gettag(Player, "race")
+
+if race == "demon" and player_gettag(Player, "have chalk") ~= "true" then
 	whisp("Tu n'as même pas de craie. Tiens. Fais-en bon usage.")
-	player_settag(Player, "have chalk", true)
+	player_settag(Player, "have chalk", "true")
 else
 	local dice = c_rand(3)
 	if dice == 1 then
