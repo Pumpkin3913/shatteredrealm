@@ -14,18 +14,23 @@ place_settag(zone, 21, 10, "text", "J'ai regardé dans le puits mais je n'ai rie
 place_settag(zone, 21, 10, "text_type", "chalk")
 
 -- Keys.
-local key_tower = "Clef du coffre de la tour"
+local key_roof = "Clef du coffre du toit"
+local key_south = "Clef du coffre sud"
 local key_hidden = "Clef du coffre caché"
 local key_ziggurat = "Clef du Ziggurat"
 
--- South well.
+-- Well.
 place_setaspect(zone, 25, 34, tileset..":well")
-place_settag(zone, 25, 34, "content_key", key_tower)
+place_settag(zone, 25, 34, "content_key", key_roof)
 
--- Tower's top coffer.
-loadfile("build/tools/coffer.lua")(tileset, zone, 25, 2, "common", key_tower)
-place_settag(zone, 25, 2, "content_key", key_hidden)
+-- Tower roof's coffer.
+loadfile("build/tools/coffer.lua")(tileset, zone, 25, 2, "common", key_roof)
+place_settag(zone, 25, 2, "content_key", key_south)
 
--- Sealed tower coffer.
+-- South tower's coffer.
+loadfile("build/tools/coffer.lua")(tileset, "south_right_floor_1", 4, 6, "common", key_south)
+place_settag("south_right_floor_1", 4, 6, "content_key", key_hidden)
+
+-- Sealed tower's coffer.
 loadfile("build/tools/coffer.lua")(tileset, "left_floor_0", 4, 6, "rare", key_hidden)
 place_settag("left_floor_0", 4, 6, "content_key", key_ziggurat)

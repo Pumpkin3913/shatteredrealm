@@ -23,8 +23,7 @@ local fun = function (x, y)
 
 		-- Add key to keyring.
 		player_settag(Player, "have "..key, "true")
-		player_message(Player, "Tu as trouvé : "..key)
-		player_message(Player, "La clef se copie magiquement à ton trousseau.")
+		player_message(Player, "La clef se copie magiquement à ton trousseau : "..key)
 		return true
 	end
 
