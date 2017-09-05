@@ -19,6 +19,7 @@ add_action("détecter", "dofile(\"actions/detect.lua\")")
 
 -- Demon commands.
 add_action("drainer", "dofile(\"actions/demon/crystal_drain.lua\")")
+add_action("dévorer", "dofile(\"actions/demon/devour_soul.lua\")")
 
 -- Debug commands.
 add_action("save", "dofile(\"actions/debug/save.lua\")")

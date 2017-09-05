@@ -151,12 +151,13 @@ end
 -- Place unique element.
 
 local function place_unique(x, y)
-	if c_rand(2) == 1 then
+	if c_rand(3) == 1 then
 		-- Spellbook.
 		loadfile("build/tools/book.lua")(tileset, zone, x, y, "close", "b")
 		place_settag(zone, x, y, "openclose_selfclose", 30)
-		place_settag(zone, x, y, "text", "Incantation : ???")
-	else
+		place_settag(zone, x, y, "text", "Les démons oublient peu à peu comment /dévorer les âmes.")
+		place_settag(zone, x, y, "title", "Chroniques de la Cute")
+	else -- if dice <= 3 then
 		-- Coffer of skulls.
 		loadfile("build/tools/coffer.lua")(tileset, zone, x, y, "rare")
 		for n=1,3 do
