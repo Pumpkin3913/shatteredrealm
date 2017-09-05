@@ -31,8 +31,18 @@ build_choice(1, 1, "redruins", "Démon", "demon", "demon_trident_flame_wings")
 build_choice(8, 1, "violetcastle", "Humain", "human", "white_armor")
 
 -- Shortcut demon.
-place_setaspect(zone, 16, 12, "redruins:mosaic_white")
-place_setlandon(zone, 16, 12, "dofile(\"lobby/choice_demon.lua\")")
+place_setaspect(zone, 16, 14, "redruins:mosaic_white")
+place_setlandon(zone, 16, 14, "dofile(\"lobby/choice_demon.lua\")")
+
+-- Shortcut power-demon.
+place_setaspect("lobby", 16, 12, "redruins:mosaic_white")
+place_setlandon("lobby", 16, 12, "\
+	player_settag(Player, \"race\", \"demon\")\
+	player_setaspect(Player, \"demon\")\
+	new_gauge(Player, \"mana\", 10, 10, \"star\", \"star_empty\")\
+	player_settag(Player, \"have chalk\", \"true\")\
+	player_changezone(Player, \"demon_dungeon_0\", 5, 6)\
+")
 
 -- Shortcut lavacave.
 place_setaspect(zone, 20, 16, "volcano:mosaic_white")
