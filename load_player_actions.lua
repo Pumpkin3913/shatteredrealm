@@ -15,6 +15,7 @@ add_action("prendre", "dofile(\"actions/take.lua\")")
 add_action("poser", "dofile(\"actions/drop.lua\")")
 
 add_action("incanter", "dofile(\"actions/cast.lua\")")
+add_action("détecter", "dofile(\"actions/detect.lua\")")
 
 -- Demon commands.
 add_action("drainer", "dofile(\"actions/demon/crystal_drain.lua\")")

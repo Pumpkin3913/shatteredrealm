@@ -84,8 +84,7 @@ local texts = {
 	-- Hints.
 	"L'animancie est une branche de nécromancie qui concerne la manipulation des âmes.",
 	"Certains lieux et objets, comme les tombes et les crânes, peuvent contenir des âmes.",
-	"L'animancie permet de détecter la présence d'âmes dans les objets.",
-	"Certains sorts ont différents effets selon qu'un objet soit tenu en main ou non.",
+	"Il est possible, même sans magie, de /détecter les âmes dans les lieux et les objets.",
 	-- Lore.
 	"Le Créateur avait instauré des dieux de la mort pour guider les âmes vers la réincarnation.",
 	"Le nom du fragment des dieux de la mort a été perdu il y a bien longtemps.",
