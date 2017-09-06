@@ -183,8 +183,7 @@ place_settag(floor1, 5, 7, "portal", "true") -- Intentionally misspell.
 
 local function add_stash(x, y)
 	loadfile("build/tools/coffer.lua")(tileset, floor1, x, y, "hard")
-	place_settag(floor1, x, y, "content_artifact_1", "EMPTY")
-	place_settag(floor1, x, y, "content_artifact_2", "EMPTY")
+	loadfile("build/tools/give_empty_inventory.lua")(floor1, x, y, 2)
 end
 add_stash(2, 8)
 add_stash(4, 9)

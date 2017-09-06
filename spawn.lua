@@ -6,7 +6,6 @@ player_settag(Player, "hand", "EMPTY")
 
 new_gauge(Player, "life", 1, 1, "heart", "heart_empty")
 -- gauge_setonempty(Player, "life", "scripts/kill.lua")
--- player_setondeath(Player, "scripts/death.lua")
 
 player_spawn(Player, "lobby", 16, 16)
 

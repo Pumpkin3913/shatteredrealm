@@ -146,6 +146,7 @@ place_setaspect(zone, 6, 8, tileset..":wall_bot")
 place_setaspect(zone, 7, 8, tileset..":wall_bot")
 place_setaspect(zone, 9, 8, tileset..":wall_bot")
 loadfile("build/tools/coffer.lua")(tileset, zone, 6, 9, "rare")
+loadfile("build/tools/give_empty_inventory.lua")(zone, 6, 9, 3)
 
 -- Stair room.
 build_bluff(16, 4, 5, 8, 3)
