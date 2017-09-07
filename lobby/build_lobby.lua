@@ -18,7 +18,7 @@ place_setlandon(zone, x, y, "player_changezone(Player, \""..tuto_zone.."\", "..t
 
 -- Start choices
 
-local build_choice = function(x, y, tileset, name, id, dummy)
+local function build_choice(x, y, tileset, name, id, dummy)
 	local x, y = loadfile("build/tools/building.lua")(tileset, zone, x, y, 5)
 	place_setlandon(zone, x, y, "dofile(\"lobby/choice_"..id..".lua\")")
 	place_setaspect(zone, x-1, y+2, dummy)
@@ -27,8 +27,36 @@ local build_choice = function(x, y, tileset, name, id, dummy)
 	place_settag(zone, x+1, y+2, "text", name)
 end
 
-build_choice(1, 1, "redruins", "Démon", "demon", "demon_trident_flame_wings")
-build_choice(8, 1, "violetcastle", "Humain", "human", "white_armor")
+local function build_choice_tree(x, y, tileset, name, id, dummy)
+	place_setaspect(zone, x,   y,   tileset..":tree_toplft")
+	place_setaspect(zone, x+1, y,   tileset..":tree_toprgt")
+	place_setaspect(zone, x+2, y,   tileset..":grass_1")
+	place_setaspect(zone, x+3, y,   tileset..":tree_toplft")
+	place_setaspect(zone, x+4, y,   tileset..":tree_toprgt")
+
+	place_setaspect(zone, x,   y+1, tileset..":tree_botlft")
+	place_setaspect(zone, x+1, y+1, tileset..":trees_lft")
+	place_setaspect(zone, x+2, y+1, tileset..":tree_door_top")
+	place_setaspect(zone, x+3, y+1, tileset..":trees_rgt")
+	place_setaspect(zone, x+4, y+1, tileset..":tree_botrgt")
+
+	place_setaspect(zone, x,   y+2, tileset..":grass_2")
+	place_setaspect(zone, x+1, y+2, tileset..":tree_botlft")
+	place_setaspect(zone, x+2, y+2, tileset..":tree_door")
+	place_setaspect(zone, x+3, y+2, tileset..":tree_botrgt")
+	place_setaspect(zone, x+4, y+2, tileset..":grass_3")
+
+	place_setlandon(zone, x+2, y+2, "dofile(\"lobby/choice_"..id..".lua\")")
+	-- place_setaspect(zone, x-1, y+2, dummy)
+	-- place_setnotpassable(zone, x-1, y+2)
+	-- place_setaspect(zone, x+1, y+2, tileset..":book_a_open")
+	-- place_settag(zone, x+1, y+2, "text", name)
+end
+
+build_choice(0, 1, "redruins", "Démon", "demon", "demon_trident_flame_wings")
+build_choice_tree(7, 5, "forest", "Sylvain", "tree", "???")
+build_choice_tree(7, 1, "forest_corrupted", "Sylvain Corrompu", "tree_corrupted", "???")
+build_choice(14, 1, "violetcastle", "Humain", "human", "white_armor", "closed")
 
 -- Shortcut demon.
 place_setaspect(zone, 16, 14, "redruins:mosaic_white")
