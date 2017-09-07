@@ -14,10 +14,12 @@ place_setaspect(interior, 4, 9-1, tileset..":path")
 loadfile("build/tools/link.lua")(zone, x, y, interior, 4, 9)
 
 -- Add books.
-loadfile("build/tools/book.lua")(tileset, interior, 2, 5)
-place_settag(interior, 2, 5, "text", "/incanter Invocatio devant le nom écrit d'un démon pour l'invoquer.")
 loadfile("build/tools/book.lua")(tileset, interior, 6, 5)
 place_settag(interior, 6, 5, "text", "Certaines démons peuvent se montrer amicaux avec d'autres démons, mais pas tous.")
+loadfile("build/tools/book.lua")(tileset, interior, 2, 5)
+place_settag(interior, 2, 5, "text", "/incanter Invocatio devant le nom écrit d'un démon pour l'invoquer.")
+place_settag(interior, 2, 5, "text_hint", "/incanter Invocatio")
+place_settag(interior, 2, 5, "text_hint_aspect", tileset..":book_a_open")
 
 -- Add magically sealed door.
 place_setaspect(interior, 4, 1, tileset..":wall_bot_written")

@@ -47,6 +47,8 @@ place_setaspect(zone, x+1, y+1, tileset..":path_botrgt")
 -- Book of Necromancy.
 loadfile("build/tools/book.lua")(tileset, zone, x, y, "close", "b")
 place_settag(zone, x, y, "text", "Incantation : Aetheria")
+place_settag(zone, x, y, "text_hint", "/incanter Aetheria")
+place_settag(zone, x, y, "text_hint_aspect", tileset..":tombstone_cross")
 place_settag(zone, x, y, "title", "Grimoire d'Animancie")
 place_settag(zone, x, y, "openclose_selfclose", 30)
 

@@ -156,7 +156,9 @@ local function place_unique(x, y)
 		loadfile("build/tools/book.lua")(tileset, zone, x, y, "close", "b")
 		place_settag(zone, x, y, "openclose_selfclose", 30)
 		place_settag(zone, x, y, "text", "Les démons oublient peu à peu comment /dévorer les âmes.")
-		place_settag(zone, x, y, "title", "Chroniques de la Cute")
+		place_settag(zone, x, y, "text_hint", "/dévorer")
+		place_settag(zone, x, y, "text_hint_aspect", tileset..":tombstone_slab")
+		place_settag(zone, x, y, "title", "Chroniques de la Chute")
 	else -- if dice <= 3 then
 		-- Coffer of skulls.
 		loadfile("build/tools/coffer.lua")(tileset, zone, x, y, "rare")

@@ -144,6 +144,8 @@ place_settag(floor_1, 7, 8, "text", "L'incantation ouvre le portail vers un endr
 loadfile("build/tools/book.lua")(tileset, floor_1, 5, 8, "close", "b")
 place_settag(floor_1, 5, 8, "openclose_selfclose", 30)
 place_settag(floor_1, 5, 8, "text", "Incantation: Transfragmentum")
+place_settag(floor_1, 5, 8, "text_hint", "/incanter Transfragmentum")
+place_settag(floor_1, 5, 8, "text_hint_aspect", tileset..":bigdoor") -- bigdoor open
 
 -- Floor 1
 local floor1 = "demon_dungeon_1"

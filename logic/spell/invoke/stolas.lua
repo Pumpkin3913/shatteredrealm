@@ -16,7 +16,7 @@ else
 	if dice == 1 then
 		whisp("Trouves des livres et lis-les. Le savoir, c'est le pouvoir !")
 	elseif dice == 2 then
-		whisp("Les lieux anciens peuvent contenir des gravures livres précieux...")
+		whisp("Les lieux anciens peuvent contenir des gravures et des livres précieux...")
 	elseif dice == 3 then
 		whisp("Le Mana et le Savoir sont des armes puissantes. Recherche les deux !")
 	end
