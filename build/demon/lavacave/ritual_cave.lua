@@ -33,9 +33,9 @@ place_setpassable(zone, 2, 3)
 place_setpassable(zone, 2, 4)
 
 -- Plateau.
-place_setaspect(zone, 5, 0, tileset..":block_"..c_rand(5))
-place_setaspect(zone, 6, 0, tileset..":block_"..c_rand(5))
-place_setaspect(zone, 6, 1, tileset..":block_"..c_rand(5))
+place_setaspect(zone, 5, 0, tileset..":block_"..c_rand(4))
+place_setaspect(zone, 6, 0, tileset..":block_"..c_rand(4))
+place_setaspect(zone, 6, 1, tileset..":block_"..c_rand(4))
 loadfile("build/tools/pillar.lua")(tileset, zone, 5, 2, 2)
 loadfile("build/tools/pillar.lua")(tileset, zone, 1, 6, 3)
 
@@ -48,8 +48,8 @@ for y=0,2 do
 end
 place_setaspect(zone, 17, 3, tileset..":wall_bot_decorated")
 
-place_setaspect(zone, 3, 7, tileset..":block_"..c_rand(5))
-place_setaspect(zone, 12, 3, tileset..":block_"..c_rand(5))
+place_setaspect(zone, 3, 7, tileset..":block_"..c_rand(4))
+place_setaspect(zone, 12, 3, tileset..":block_"..c_rand(4))
 
 -- Cliff.
 loadfile("build/tools/bluff.lua")(tileset, zone, 6, 6, 10, 5, 0, "noleft,noright")
@@ -115,11 +115,11 @@ loadfile("build/tools/pillar.lua")(tileset, zone, 3, 29, 3)
 loadfile("build/tools/pillar.lua")(tileset, zone, 7, 27, 2)
 loadfile("build/tools/pillar.lua")(tileset, zone, 16, 28, 3)
 loadfile("build/tools/pillar.lua")(tileset, zone, 20, 26, 2)
-place_setaspect(zone, 18, 15, tileset..":block_"..c_rand(5))
-place_setaspect(zone, 22, 20, tileset..":block_"..c_rand(5))
-place_setaspect(zone, 19, 28, tileset..":block_"..c_rand(5))
-place_setaspect(zone, 13, 29, tileset..":block_"..c_rand(5))
-place_setaspect(zone, 5,  25, tileset..":block_"..c_rand(5))
+place_setaspect(zone, 18, 15, tileset..":block_"..c_rand(4))
+place_setaspect(zone, 22, 20, tileset..":block_"..c_rand(4))
+place_setaspect(zone, 19, 28, tileset..":block_"..c_rand(4))
+place_setaspect(zone, 13, 29, tileset..":block_"..c_rand(4))
+place_setaspect(zone, 5,  25, tileset..":block_"..c_rand(4))
 
 -- Crystal.
 local master_x = 11

@@ -1,14 +1,19 @@
 #!/usr/bin/lua
 
--- local file = {...}
--- local file = arg[1]
--- local file = arg[1] or dofile_arg[1]
--- local file = dofile_arg[1]
-
 local file = ...
 local prefix = file..":"
 
--- Floor 1/3
+-- Floor 1/4
+register_aspect(prefix.."soil_1", row+0)
+register_aspect(prefix.."soil_2", row+1)
+register_aspect(prefix.."soil_3", row+2)
+register_aspect(prefix.."soil_4", row+3)
+register_aspect(prefix.."path_rare_1", row+4)
+register_aspect(prefix.."path_rare_2", row+5)
+register_aspect(prefix.."path_rare_3", row+6)
+register_aspect(prefix.."path_rare_4", row+7)
+row = row+8
+-- Floor 2/4
 register_aspect(prefix.."path_toplft", row+0)
 register_aspect(prefix.."path_top", row+1)
 register_aspect(prefix.."path_toprgt", row+2)
@@ -18,25 +23,25 @@ register_aspect(prefix.."path_horizontal", row+5)
 register_aspect(prefix.."path_endrgt", row+6)
 register_aspect(prefix.."path_lone", row+7)
 row = row+8
--- Floor 2/3
+-- Floor 3/4
 register_aspect(prefix.."path_lft", row+0)
 register_aspect(prefix.."path", row+1)
 register_aspect(prefix.."path_rgt", row+2)
 register_aspect(prefix.."path_vertical", row+3)
-register_aspect(prefix.."path_rare_1", row+4)
-register_aspect(prefix.."path_rare_2", row+5)
-register_aspect(prefix.."path_rare_3", row+6)
-register_aspect(prefix.."path_rare_4", row+7)
+register_aspect(prefix.."path_angle_toplft", row+4)
+register_aspect(prefix.."path_angle_toprgt", row+5)
+register_aspect(prefix.."path_turn_toplft", row+6)
+register_aspect(prefix.."path_turn_toprgt", row+7)
 row = row+8
--- Floor 3/3
+-- Floor 4/4
 register_aspect(prefix.."path_botlft", row+0)
 register_aspect(prefix.."path_bot", row+1)
 register_aspect(prefix.."path_botrgt", row+2)
 register_aspect(prefix.."path_endbot", row+3)
-register_aspect(prefix.."soil_1", row+4)
-register_aspect(prefix.."soil_2", row+5)
-register_aspect(prefix.."soil_3", row+6)
-register_aspect(prefix.."soil_4", row+7)
+register_aspect(prefix.."path_angle_botlft", row+4)
+register_aspect(prefix.."path_angle_botrgt", row+5)
+register_aspect(prefix.."path_turn_botlft", row+6)
+register_aspect(prefix.."path_turn_botrgt", row+7)
 row = row+8
 -- Roof 1/3
 register_aspect(prefix.."roof_toplft", row+0, false)
@@ -155,21 +160,15 @@ register_aspect(prefix.."hatch", row+6)
 register_aspect(prefix.."slab", row+7, false)
 row = row+8
 
--- Blocks
+-- Blocks & Misc
 register_aspect(prefix.."block_1", row+0, false)
 register_aspect(prefix.."block_2", row+1, false)
 register_aspect(prefix.."block_3", row+2, false)
 register_aspect(prefix.."block_4", row+3, false)
-register_aspect(prefix.."block_5", row+4, false)
-register_aspect(prefix.."block_6", row+5, false)
-register_aspect(prefix.."block_7", row+6, false)
-register_aspect(prefix.."block_8", row+7, false)
-row = row+8
-
--- Misc
-register_aspect(prefix.."well", row+0, false)
-register_aspect(prefix.."octahedron", row+1, false)
+register_aspect(prefix.."misc_1", row+4, false)
+register_aspect(prefix.."misc_2", row+5, false)
+register_aspect(prefix.."misc_3", row+6, false)
+register_aspect(prefix.."misc_4", row+7, false)
 row = row+8
 
 info("Tileset '"..file.."' loaded.")
-
