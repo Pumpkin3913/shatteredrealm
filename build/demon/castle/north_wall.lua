@@ -88,8 +88,8 @@ place_setaspect(master_zone, master_x+2, master_y+1, tileset..":mosaic_white")
 place_setaspect(master_zone, master_x-1, master_y+2, tileset..":mosaic_c")
 
 -- Seal off left tower's door.
-place_setaspect(zone, 14, 11, tileset..":block_a")
-place_setaspect("left_floor_0", 4, 9, tileset..":block_a")
+place_setaspect(zone, 14, 11, tileset..":block_1")
+place_setaspect("left_floor_0", 4, 9, tileset..":block_1")
 place_setaspect("left_floor_0", 4, 9-1, tileset..":bigdoor_top")
 
 -- Add mark in left tower.

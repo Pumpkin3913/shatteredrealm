@@ -43,7 +43,7 @@ local function build_horizontal_ruined_wall(x1, x2, y, proba)
 		if c_rand(proba) == 1 then
 			local dice = c_rand(3)
 			if dice <= 2 then
-				place_setaspect(zone, x, y, tileset..":block_a")
+				place_setaspect(zone, x, y, tileset..":block_1")
 			elseif dice == 3 then
 				place_setaspect(zone, x, y, tileset..":pillar_bot")
 				place_setaspect(zone, x, y-1, tileset..":roof_lone")
@@ -102,7 +102,7 @@ local function build_vertical_ruined_wall(x, y1, y2, proba)
 		if c_rand(proba) == 1 then
 			local dice = c_rand(3)
 			if dice <= 2 then
-				place_setaspect(zone, x, y, tileset..":block_a")
+				place_setaspect(zone, x, y, tileset..":block_1")
 			elseif dice == 3 and y < y2 then
 				place_setaspect(zone, x, y, tileset..":roof_lone")
 				y = y+1
@@ -234,7 +234,7 @@ local function place_ruin(lft, rgt, top, bot)
 			if x < rgt and y < bot and y > top+1 then
 				local dice = c_rand(2)
 				if dice == 1 then
-					place_setaspect(zone, x, y, tileset..":block_a")
+					place_setaspect(zone, x, y, tileset..":block_1")
 				else -- if dice == 2 then
 					loadfile("build/tools/pillar.lua")(tileset, zone, x, y, c_rand(2)+1)
 				end

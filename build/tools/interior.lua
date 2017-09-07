@@ -13,18 +13,10 @@ new_zone(zone, name, w, h, tileset..":"..soil)
 -- Randomize soil.
 for x=0,w-1 do
 	for y=0,h-1 do
-		local chance = c_rand(100)
-		local dice = c_rand(4)
-		if chance > 5 then
+		if c_rand(100) > 5 then
 			-- nothing
-		elseif dice == 1 then
-			place_setaspect(zone, x, y, tileset..":"..soil.."_rare_a")
-		elseif dice == 2 then
-			place_setaspect(zone, x, y, tileset..":"..soil.."_rare_b")
-		elseif dice == 3 then
-			place_setaspect(zone, x, y, tileset..":"..soil.."_rare_c")
-		elseif dice == 4 then
-			place_setaspect(zone, x, y, tileset..":"..soil.."_rare_d")
+		else
+			place_setaspect(zone, x, y, tileset..":"..soil.."_rare_"..c_rand(4))
 		end
 	end
 end
