@@ -5,6 +5,7 @@ local tileset, zone, x, y, w, h, plateau_h, options = ...
 if not options then options = "" end
 local left = not string.match(options, ".*noleft.*")
 local right = not string.match(options, ".*noright.*")
+local bottom = not string.match(options, ".*nobottom.*")
 local roof = string.match(options, ".*roof.*")
 
 for i=0,w-1 do
@@ -25,7 +26,7 @@ for i=0,w-1 do
 			elseif i == w-1 and right then
 				place_setaspect(zone, x+i, y+j, tileset..":roof_botrgt")
 			end
-		elseif j < h-1 then
+		elseif j < h-1 or not bottom then
 			if i == 0 and left then
 				place_setaspect(zone, x+i, y+j, tileset..":wall_lft")
 			elseif i < w-1 or not right then

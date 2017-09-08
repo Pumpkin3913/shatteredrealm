@@ -8,8 +8,6 @@ local tileset = "volcano"
 local w = 23
 local h = 30
 
--- Entrance : 2, 0
-
 new_zone(zone, "Grotte du Rituel", w, h, tileset..":roof")
 
 -- Randomize soil.
@@ -31,6 +29,8 @@ place_setaspect(zone, 2, 4, tileset..":wall_bot_climb")
 place_setpassable(zone, 2, 2)
 place_setpassable(zone, 2, 3)
 place_setpassable(zone, 2, 4)
+
+place_setaspect(zone, 2, 0, tileset..":stairs_up")
 
 -- Plateau.
 place_setaspect(zone, 5, 0, tileset..":block_"..c_rand(4))
@@ -168,3 +168,5 @@ end
 build_room(2,  18, "west", -1)
 build_room(16, 18, "east",  1)
 build_room(9 , 21, "south", 0)
+
+return zone, 2, 0

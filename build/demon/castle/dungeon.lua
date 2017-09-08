@@ -121,6 +121,7 @@ for x=4,6 do
 		end
 	end
 end
+place_setaspect(floor0, 5, 6, "volcano:mosaic_special")
 
 -- Floor -1
 local floor_1 = "demon_dungeon_-1"

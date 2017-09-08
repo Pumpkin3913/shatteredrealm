@@ -59,19 +59,19 @@ build_choice_tree(7, 1, "forest_corrupted", "Sylvain Corrompu", "tree_corrupted"
 build_choice(14, 1, "violetcastle", "Humain", "human", "white_armor", "closed")
 
 -- Shortcut demon.
-place_setaspect(zone, 16, 14, "redruins:mosaic_white")
-place_setlandon(zone, 16, 14, "dofile(\"lobby/choice_demon.lua\")")
+place_setaspect(zone, 16, 12, "redruins:mosaic_white")
+place_setlandon(zone, 16, 12, "player_changezone(Player, \"demon_dungeon_0\", 5, 6)")
 
--- Shortcut power-demon.
-place_setaspect("lobby", 16, 12, "redruins:mosaic_white")
-place_setlandon("lobby", 16, 12, "\
+-- Demon-power.
+place_setaspect("lobby", 16, 14, "volcano:mosaic_special")
+place_setlandon("lobby", 16, 14, "\
 	player_settag(Player, \"race\", \"demon\")\
 	player_setaspect(Player, \"demon\")\
 	new_gauge(Player, \"mana\", 10, 10, \"star\", \"star_empty\")\
 	player_settag(Player, \"have chalk\", \"true\")\
-	player_changezone(Player, \"demon_dungeon_0\", 5, 6)\
 ")
 
+
 -- Shortcut lavacave.
-place_setaspect(zone, 20, 16, "volcano:mosaic_white")
-place_setlandon(zone, 20, 16, "player_changezone(Player, \"ritual_cave\", 11, 29)")
+place_setaspect(zone, 18, 14, "volcano:mosaic_white")
+place_setlandon(zone, 18, 14, "player_changezone(Player, \"cave_hub\", 13, 4)")

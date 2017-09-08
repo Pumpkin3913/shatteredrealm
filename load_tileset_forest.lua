@@ -30,10 +30,10 @@ register_aspect(prefix.."tree_botlft", row+0, false)
 register_aspect(prefix.."tree_botrgt", row+1, false)
 register_aspect(prefix.."tree_botlft_alive", row+2, false)
 register_aspect(prefix.."tree_botrgt_alive", row+3, false)
-register_aspect(prefix.."rock_1", row+4)
-register_aspect(prefix.."rock_2", row+5)
-register_aspect(prefix.."rock_3", row+6)
-register_aspect(prefix.."rock_4", row+7)
+register_aspect(prefix.."rock_1", row+4, false)
+register_aspect(prefix.."rock_2", row+5, false)
+register_aspect(prefix.."rock_3", row+6, false)
+register_aspect(prefix.."rock_4", row+7, false)
 row = row+8
 
 -- Transition grass 1/3
