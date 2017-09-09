@@ -11,11 +11,16 @@ add_action("verrouiller", "dofile(\"actions/lock.lua\")")
 
 add_action("fouiller", "dofile(\"actions/search.lua\")")
 add_action("inventaire", "dofile(\"actions/inventory.lua\")")
+add_action("contenu", "dofile(\"actions/contenu.lua\")")
 add_action("prendre", "dofile(\"actions/take.lua\")")
 add_action("poser", "dofile(\"actions/drop.lua\")")
+add_action("jeter", "dofile(\"actions/discard.lua\")")
+add_action("vider", "dofile(\"actions/empty.lua\")")
 
 add_action("incanter", "dofile(\"actions/cast.lua\")")
 add_action("détecter", "dofile(\"actions/detect.lua\")")
+
+add_action("récolter", "dofile(\"actions/harvest.lua\")")
 
 -- Demon commands.
 add_action("drainer", "dofile(\"actions/demon/crystal_drain.lua\")")

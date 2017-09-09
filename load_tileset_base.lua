@@ -59,6 +59,9 @@ row = row+8
 row = row+8
 
 -- Row 7: Unused
+register_aspect("forest_leavesbag", row+0)
+register_aspect("forest_corrupted_leavesbag", row+1)
+register_aspect("forest_underground_leavesbag", row+2)
 row = row+8
 
 -- Row 8: Daemon character
