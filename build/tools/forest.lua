@@ -1,6 +1,7 @@
 #!/usr/bin/lua
 
-local tileset, zone, lft, top, rgt, bot = ...
+local tileset, zone, lft, top, rgt, bot, n = ...
+if not n then n = 0 end
 
 local L = math.max(0, lft)
 local T = math.max(0, top)
@@ -29,7 +30,7 @@ for x=L,R do
 			tile_even = "trees_rgt"
 		end
 
-		if (x+y)%2 == 0 then
+		if (x+y)%2 == n then
 			if tile_even ~= "" then place_setaspect(zone, x, y, tileset..":"..tile_even) end
 		else
 			if tile_odd  ~= "" then place_setaspect(zone, x, y, tileset..":"..tile_odd) end

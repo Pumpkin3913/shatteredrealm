@@ -5,8 +5,11 @@
 -- - - - - - - - - - - - --
 
 -- Get arguments.
-local tileset, zone, name, w, h, soil = ...
+local tileset, zone, name, w, h, soil, options = ...
 if not soil then soil = "path" end
+if not options then options = "" end
+
+local columns = not string.match(options, ".*nocolumns.*")
 
 new_zone(zone, name, w, h, tileset..":"..soil)
 
@@ -29,19 +32,21 @@ for i=0,w-1 do
 end
 
 -- Add columns on flanks.
-for j=1,h-4 do
-	if j%2 == 0 then
-		place_setaspect(zone, 0,   j, tileset..":pillar")
-		place_setaspect(zone, w-1, j, tileset..":pillar")
-	else
-		place_setaspect(zone, 0,   j, tileset..":slab")
-		place_setaspect(zone, w-1, j, tileset..":slab")
+if columns then
+	for j=1,h-4 do
+		if j%2 == 0 then
+			place_setaspect(zone, 0,   j, tileset..":pillar")
+			place_setaspect(zone, w-1, j, tileset..":pillar")
+		else
+			place_setaspect(zone, 0,   j, tileset..":slab")
+			place_setaspect(zone, w-1, j, tileset..":slab")
+		end
 	end
-end
-if h%2 == 0 then
-	place_setaspect(zone, 0,   h-3, tileset..":pillar_bot")
-	place_setaspect(zone, w-1, h-3, tileset..":pillar_bot")
-else
-	place_setaspect(zone, 0,   h-3, tileset..":pillar")
-	place_setaspect(zone, w-1, h-3, tileset..":pillar")
+	if h%2 == 0 then
+		place_setaspect(zone, 0,   h-3, tileset..":pillar_bot")
+		place_setaspect(zone, w-1, h-3, tileset..":pillar_bot")
+	else
+		place_setaspect(zone, 0,   h-3, tileset..":pillar")
+		place_setaspect(zone, w-1, h-3, tileset..":pillar")
+	end
 end

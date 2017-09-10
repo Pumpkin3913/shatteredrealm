@@ -81,32 +81,18 @@ loadfile("build/tools/bluff.lua")(tileset, zone, 12, 10, 4, 9, 2, "noleft")
 place_setaspect(zone, 11, 12, tileset..":roof_angle_toplft")
 
 local moss_tileset = "forest_underground"
-local function moss_transition(x, y, w, h)
-	place_setaspect(zone, x,     y,     moss_tileset..":grass_toplft")
-	place_setaspect(zone, x+w-1, y,     moss_tileset..":grass_toprgt")
-	place_setaspect(zone, x,     y+h-1, moss_tileset..":grass_botlft")
-	place_setaspect(zone, x+w-1, y+h-1, moss_tileset..":grass_botrgt")
-	for i=x+1,x+w-2 do
-		place_setaspect(zone, i, y,     moss_tileset..":grass_top")
-		place_setaspect(zone, i, y+h-1, moss_tileset..":grass_bot")
-	end
-	for j=y+1,y+h-2 do
-		place_setaspect(zone, x,     j, moss_tileset..":grass_lft")
-		place_setaspect(zone, x+w-1, j, moss_tileset..":grass_rgt")
-	end
-end
 
-moss_transition(6, 9, 3, 3)
+loadfile("build/tools/circle.lua")(moss_tileset..":grass", zone, 6, 9, 3, 3)
 place_setaspect(zone, 7, 10, moss_tileset..":rock_"..c_rand(4))
 
-moss_transition(7, 13, 4, 4)
+loadfile("build/tools/circle.lua")(moss_tileset..":grass", zone, 7, 13, 4, 4)
 place_setaspect(zone, 8, 14, moss_tileset..":tree_toplft")
 place_setaspect(zone, 9, 14, moss_tileset..":tree_toprgt")
 place_setaspect(zone, 8, 15, moss_tileset..":tree_botlft")
 place_setaspect(zone, 9, 15, moss_tileset..":tree_botrgt")
 
-moss_transition(1, 12, 4, 4)
-moss_transition(2, 13, 4, 4)
+loadfile("build/tools/circle.lua")(moss_tileset..":grass", zone, 1, 12, 4, 4)
+loadfile("build/tools/circle.lua")(moss_tileset..":grass", zone, 2, 13, 4, 4)
 place_setaspect(zone, 4, 13, moss_tileset..":grass_angle_botlft")
 place_setaspect(zone, 2, 15, moss_tileset..":grass_angle_toprgt")
 
