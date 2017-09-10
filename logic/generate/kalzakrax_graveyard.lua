@@ -165,10 +165,7 @@ local function place_unique(x, y)
 		for n=1,3 do
 			local artifact
 			local dice = c_rand(3)
-			if dice == 1 then
-				artifact = create_artifact("Crâne")
-				artifact_settag(artifact, "soul_vessel", "full")
-			elseif dice == 2 then
+			if dice <= 2 then
 				artifact = create_artifact("Crâne")
 				artifact_settag(artifact, "soul_vessel", "empty")
 			else -- if dice == 3 then
