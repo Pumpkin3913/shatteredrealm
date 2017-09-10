@@ -13,9 +13,15 @@ if not inventory or inventory == "" then
 end
 
 local list = inventory_get_all(inventory);
-local msg = "Contenu de "..artifact_getname(artifact).." : ";
+local msg = "";
 
 for name, quantity in pairs(list) do
 	msg = msg.. quantity.." "..name.." ; ";
 end
-player_message(Player, msg);
+
+local bagname = artifact_getname(artifact);
+if msg == "" then
+	player_message(Player, bagname.." est vide.");
+else
+	player_message(Player, "Contenu de "..bagname.." : "..msg);
+end

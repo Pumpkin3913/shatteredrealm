@@ -1,6 +1,7 @@
 #!/usr/bin/lua
 
 add_action("nom", "dofile(\"actions/name.lua\")")
+
 add_action("lire", "dofile(\"actions/read.lua\")")
 add_action("écrire", "dofile(\"actions/write.lua\")")
 add_action("effacer", "dofile(\"actions/clear.lua\")")
@@ -11,17 +12,20 @@ add_action("verrouiller", "dofile(\"actions/lock.lua\")")
 
 add_action("fouiller", "dofile(\"actions/search.lua\")")
 add_action("inventaire", "dofile(\"actions/inventory.lua\")")
-add_action("contenu", "dofile(\"actions/contenu.lua\")")
 add_action("prendre", "dofile(\"actions/take.lua\")")
 add_action("poser", "dofile(\"actions/drop.lua\")")
 add_action("jeter", "dofile(\"actions/discard.lua\")")
+add_action("contenu", "dofile(\"actions/contenu.lua\")")
 add_action("vider", "dofile(\"actions/empty.lua\")")
 
 add_action("incanter", "dofile(\"actions/cast.lua\")")
 add_action("détecter", "dofile(\"actions/detect.lua\")")
 
-add_action("récolter", "dofile(\"actions/harvest.lua\")")
-add_action("écraser", "dofile(\"actions/squash.lua\")")
+-- Plant commands.
+add_action("récolter", "dofile(\"actions/plant/harvest.lua\")")
+add_action("écraser", "dofile(\"actions/plant/squash.lua\")")
+add_action("semer", "dofile(\"actions/plant/sow.lua\")")
+add_action("planter", "dofile(\"actions/plant/sow.lua\")")
 
 -- Demon commands.
 add_action("drainer", "dofile(\"actions/demon/crystal_drain.lua\")")

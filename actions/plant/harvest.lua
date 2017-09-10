@@ -7,7 +7,7 @@ local y = player_gety(Player);
 -- Get artifact in player's hands.
 local artifact = player_gettag(Player, "hand");
 if not artifact or artifact == "" then
-	player_message("Tu ne peux pas /récolter.");
+	player_message(Player, "Tu ne peux pas /récolter.");
 	return;
 end
 
@@ -38,13 +38,28 @@ local function fun(x, y)
 
 		-- Harvest plant.
 		local plant = place_gettag(zone, x, y, "plant_name");
+		local aspect = place_gettag(zone, x, y, "plant_aspect");
 		local added = inventory_add(inventory, 1, plant);
-		if added > 0 then
-			player_message(Player, "Tu récoltes "..added.." "..plant.." dans : "..name);
-			-- TODO: get seed item.
-			loadfile("logic/plant/destroy.lua")(zone, x, y);
-		else
+		if added <= 0 then
 			player_message(Player, "Tu n'as plus de place dans : "..name);
+			return true;
+		end
+
+		player_message(Player, "Tu récoltes "..added.." "..plant.." dans : "..name);
+		loadfile("logic/plant/destroy.lua")(zone, x, y);
+
+		-- Give seed.
+		if c_rand(4) ~= 4 then
+			return true;
+		end
+		-- local seed = server_gettag("seedof:"..plant); -- TODO
+		local seed = "Spore rouge"; -- XXX
+		added = inventory_add(inventory, 1, seed)
+		if added <= 0 then
+			player_message(Player, "Oups. "..seed.." déborde de : "..name);
+		else
+			player_message(Player, "Tu récoltes également : "..seed);
+			player_hint(Player, aspect, "/semer "..seed);
 		end
 		return true;
 	end
