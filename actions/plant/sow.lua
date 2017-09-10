@@ -5,16 +5,16 @@ local p_x = player_getx(Player);
 local p_y = player_gety(Player);
 
 -- Check argument.
-if not Arg or Arg == "" then
+local seed = Arg;
+if not seed or seed == "" then
 	player_message(Player, "Tu dois préciser le nom de la graine que tu veux planter.");
 	return;
 end
-local seed = Arg;
 
 -- Get artifact in player's hands.
 local artifact = player_gettag(Player, "hand");
 if not artifact or artifact == "" or artifact == "EMPTY" then
-	player_message(Player, "Tu dois tenir un sac de graines en main pour les /semer.");
+	player_message(Player, "Tu dois tenir ce qui contient ce que tu veux /semer.");
 	return;
 end
 

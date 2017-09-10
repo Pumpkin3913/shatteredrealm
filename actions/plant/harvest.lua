@@ -84,7 +84,7 @@ local function fun(x, y)
 		local bag = create_artifact("Sac de feuilles"..color);
 		artifact_settag(bag, "inventory", create_inventory(3));
 		player_settag(Player, "hand", bag);
-		player_message(Player, "Tu fabriques un sac avec des feuilles.")
+		player_message(Player, "Tu fabriques un sac avec des feuilles.");
 		player_hint(Player, tileset.."_leavesbag", "/contenu");
 		return true;
 	end

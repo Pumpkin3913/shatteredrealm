@@ -1,9 +1,10 @@
 #!/usr/bin/lua
 
+-- Check hand.
 local hand = player_gettag(Player, "hand");
 if not hand or hand == "" then
-	player_message(Player, "Tu n'as pas de main.")
-	return
+	player_message(Player, "Tu n'as pas de main.");
+	return;
 end
 
 local zone = player_getzone(Player)
@@ -53,13 +54,14 @@ local function fun(x, y)
 	end
 
 	-- Take N-th.
-	place_settag(zone, x, y, "content_artifact_"..n, hand)
-	player_settag(Player, "hand", content)
+	place_settag(zone, x, y, "content_artifact_"..n, hand);
+	player_settag(Player, "hand", content);
+	local msg = "Tu as en main : "..artifact_getname(content)..".";
 	if hand ~= "EMPTY" then
-		player_message(Player, "Tu échange avec : "..artifact_getname(hand))
+		msg = msg.." (Tu échanges avec : "..artifact_getname(hand)..".)";
 	end
-	player_message(Player, "Tu as : "..artifact_getname(content))
-	return true
+	player_message(Player, msg);
+	return true;
 end
 
 if not fun(x, y)

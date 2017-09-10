@@ -3,6 +3,7 @@
 player_setaspect(Player, "at")
 player_setwhendeath(Player, "dofile(\"logic/player_clear.lua\")")
 player_settag(Player, "hand", "EMPTY")
+player_settag(Player, "belt", "EMPTY")
 
 new_gauge(Player, "life", 1, 1, "heart", "heart_empty")
 -- gauge_setonempty(Player, "life", "scripts/kill.lua")

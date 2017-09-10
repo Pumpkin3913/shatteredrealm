@@ -23,13 +23,13 @@ local function fun(x, y)
 		return true
 	end
 
-	-- Drop in first non-empty.
+	-- Drop in first empty slot.
 	local n = 1
 	repeat
 		if content == "EMPTY" then
 			place_settag(zone, x, y, "content_artifact_"..n, hand)
 			player_settag(Player, "hand", "EMPTY")
-			player_message(Player, "Tu as posé dans l'emplacement ["..n.."]: "..artifact_getname(hand))
+			player_message(Player, "Tu as posé "..artifact_getname(hand).." dans l'emplacement "..n..".")
 			return true
 		end
 		n = n+1
