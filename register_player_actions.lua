@@ -21,6 +21,7 @@ add_action("incanter", "dofile(\"actions/cast.lua\")")
 add_action("détecter", "dofile(\"actions/detect.lua\")")
 
 add_action("récolter", "dofile(\"actions/harvest.lua\")")
+add_action("écraser", "dofile(\"actions/squash.lua\")")
 
 -- Demon commands.
 add_action("drainer", "dofile(\"actions/demon/crystal_drain.lua\")")
@@ -33,5 +34,6 @@ add_action("set", "dofile(\"actions/debug/settile.lua\")")
 add_action("tp", "dofile(\"actions/debug/tp.lua\")")
 add_action("polymorph", "dofile(\"actions/debug/polymorph.lua\")")
 add_action("whereami", "dofile(\"actions/debug/whereami.lua\")")
+add_action("hop", "dofile(\"actions/debug/hop.lua\")")
 
 info("Player actions loaded.")

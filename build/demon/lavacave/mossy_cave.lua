@@ -19,6 +19,59 @@ for x=0,w-1 do
 	end
 end
 
+-- Patches of moss.
+
+local function patch_o_moss(x, y)
+	for i=x-3,x+3 do
+		for j=y-3,y+3 do
+			place_setaspect(zone, i, j, moss_tileset..":grass_"..c_rand(4));
+		end
+	end
+
+	place_setaspect(zone, x-2, y-4, moss_tileset..":grass_toplft");
+	place_setaspect(zone, x-3, y-3, moss_tileset..":grass_toplft");
+	place_setaspect(zone, x-4, y-2, moss_tileset..":grass_toplft");
+	place_setaspect(zone, x-3, y-2, moss_tileset..":grass_angle_botrgt");
+	place_setaspect(zone, x-2, y-3, moss_tileset..":grass_angle_botrgt");
+
+	place_setaspect(zone, x+2, y-4, moss_tileset..":grass_toprgt");
+	place_setaspect(zone, x+3, y-3, moss_tileset..":grass_toprgt");
+	place_setaspect(zone, x+4, y-2, moss_tileset..":grass_toprgt");
+	place_setaspect(zone, x+3, y-2, moss_tileset..":grass_angle_botlft");
+	place_setaspect(zone, x+2, y-3, moss_tileset..":grass_angle_botlft");
+
+	place_setaspect(zone, x-2, y+4, moss_tileset..":grass_botlft");
+	place_setaspect(zone, x-3, y+3, moss_tileset..":grass_botlft");
+	place_setaspect(zone, x-4, y+2, moss_tileset..":grass_botlft");
+	place_setaspect(zone, x-3, y+2, moss_tileset..":grass_angle_toprgt");
+	place_setaspect(zone, x-2, y+3, moss_tileset..":grass_angle_toprgt");
+
+	place_setaspect(zone, x+2, y+4, moss_tileset..":grass_botrgt");
+	place_setaspect(zone, x+3, y+3, moss_tileset..":grass_botrgt");
+	place_setaspect(zone, x+4, y+2, moss_tileset..":grass_botrgt");
+	place_setaspect(zone, x+3, y+2, moss_tileset..":grass_angle_toplft");
+	place_setaspect(zone, x+2, y+3, moss_tileset..":grass_angle_toplft");
+
+	for n=-1,1 do
+		place_setaspect(zone, x-4, y+n, moss_tileset..":grass_lft");
+		place_setaspect(zone, x+4, y+n, moss_tileset..":grass_rgt");
+		place_setaspect(zone, x+n, y-4, moss_tileset..":grass_top");
+		place_setaspect(zone, x+n, y+4, moss_tileset..":grass_bot");
+	end
+
+end
+
+local function fertilize(zone, x, y, name, aspect);
+	for i = -1,1 do
+		for j = -1,1 do
+			loadfile("build/tools/plant.lua")(zone, x+2*i-j, y+2*j+i, name, aspect);
+		end
+	end
+end
+
+patch_o_moss(13, 10); fertilize(zone, 13, 10);
+patch_o_moss(31, 7);  fertilize(zone, 31, 7, "Amanite", moss_tileset..":plant_1");
+
 -- North-west peak.
 
 for y=0,3 do
@@ -192,6 +245,8 @@ place_setaspect(small, 1,  6, tileset..":wall_botrgt");
 place_setaspect(small, 9,  6, tileset..":wall_botlft");
 place_setaspect(small, 10, 6, moss_tileset..":trees_lft");
 
+fertilize(small, 5, 7);
+
 -- North-west old archway.
 
 for x=7,16 do
@@ -328,51 +383,6 @@ place_setaspect(zone, 22, 16, moss_tileset..":grass_toprgt");
 place_setaspect(zone, 20, 17, moss_tileset..":grass_lft");
 place_setaspect(zone, 21, 17, moss_tileset..":rock_"..c_rand(4));
 place_setaspect(zone, 22, 17, moss_tileset..":grass_rgt");
-
--- Patches of moss.
-
-local function patch_o_moss(x, y)
-	for i=x-3,x+3 do
-		for j=y-3,y+3 do
-			place_setaspect(zone, i, j, moss_tileset..":grass_"..c_rand(4));
-		end
-	end
-
-	place_setaspect(zone, x-2, y-4, moss_tileset..":grass_toplft");
-	place_setaspect(zone, x-3, y-3, moss_tileset..":grass_toplft");
-	place_setaspect(zone, x-4, y-2, moss_tileset..":grass_toplft");
-	place_setaspect(zone, x-3, y-2, moss_tileset..":grass_angle_botrgt");
-	place_setaspect(zone, x-2, y-3, moss_tileset..":grass_angle_botrgt");
-
-	place_setaspect(zone, x+2, y-4, moss_tileset..":grass_toprgt");
-	place_setaspect(zone, x+3, y-3, moss_tileset..":grass_toprgt");
-	place_setaspect(zone, x+4, y-2, moss_tileset..":grass_toprgt");
-	place_setaspect(zone, x+3, y-2, moss_tileset..":grass_angle_botlft");
-	place_setaspect(zone, x+2, y-3, moss_tileset..":grass_angle_botlft");
-
-	place_setaspect(zone, x-2, y+4, moss_tileset..":grass_botlft");
-	place_setaspect(zone, x-3, y+3, moss_tileset..":grass_botlft");
-	place_setaspect(zone, x-4, y+2, moss_tileset..":grass_botlft");
-	place_setaspect(zone, x-3, y+2, moss_tileset..":grass_angle_toprgt");
-	place_setaspect(zone, x-2, y+3, moss_tileset..":grass_angle_toprgt");
-
-	place_setaspect(zone, x+2, y+4, moss_tileset..":grass_botrgt");
-	place_setaspect(zone, x+3, y+3, moss_tileset..":grass_botrgt");
-	place_setaspect(zone, x+4, y+2, moss_tileset..":grass_botrgt");
-	place_setaspect(zone, x+3, y+2, moss_tileset..":grass_angle_toplft");
-	place_setaspect(zone, x+2, y+3, moss_tileset..":grass_angle_toplft");
-
-	for n=-1,1 do
-		place_setaspect(zone, x-4, y+n, moss_tileset..":grass_lft");
-		place_setaspect(zone, x+4, y+n, moss_tileset..":grass_rgt");
-		place_setaspect(zone, x+n, y-4, moss_tileset..":grass_top");
-		place_setaspect(zone, x+n, y+4, moss_tileset..":grass_bot");
-	end
-
-end
-
-patch_o_moss(13, 10);
-patch_o_moss(31, 7);
 
 -- North-east wood.
 
