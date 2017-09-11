@@ -1,11 +1,30 @@
 #!/usr/bin/lua
 
+local function list_inventory(artifact)
+	local inventory = artifact_gettag(artifact, "inventory");
+	if not inventory or inventory == "" then
+		return "";
+	end
+
+	local msg = "";
+	local list = inventory_get_all(inventory);
+	for name, quantity in pairs(list) do
+		msg = msg .. " "..quantity.." "..name.." ;";
+	end
+
+	if msg == "" then
+		msg = "vide";
+	end
+
+	return " ["..msg.."]";
+end
+
 local hand = player_gettag(Player, "hand");
 if hand and hand ~= "" then
 	if hand == "EMPTY" then
 		player_message(Player, "Mains : vide");
 	else
-		player_message(Player, "Mains : "..artifact_getname(hand));
+		player_message(Player, "Mains : "..artifact_getname(hand)..list_inventory(hand));
 	end
 end
 
@@ -23,9 +42,9 @@ if belt and belt ~= "" then
 			if artifact == "EMPTY" then
 				name = "vide";
 			else
-				name = artifact_getname(artifact);
+				name = artifact_getname(artifact)..list_inventory(artifact);
 			end
-			player_message(Player, "     Emplacement "..n.." : "..name..".");
+			player_message(Player, "    ("..n..") "..name..".");
 
 			n = n+1;
 			artifact = artifact_gettag(belt, "content_artifact_"..n);

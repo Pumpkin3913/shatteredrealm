@@ -7,48 +7,48 @@ if not hand or hand == "" then
 	return;
 end
 
-local zone = player_getzone(Player)
-local x = player_getx(Player)
-local y = player_gety(Player)
+local zone = player_getzone(Player);
+local x = player_getx(Player);
+local y = player_gety(Player);
 
-local function fun(x, y)
-	local content = place_gettag(zone, x, y, "content_artifact_1")
+local function coffer(x, y)
+	local content = place_gettag(zone, x, y, "content_artifact_1");
 	if not content or content == "" then
-		return false
+		return false;
 	end
 
 	-- Check if close.
-	local openclose = place_gettag(zone, x, y, "openclose_state")
+	local openclose = place_gettag(zone, x, y, "openclose_state");
 	if openclose == "close" or openclose == "locked" then
-		player_message(Player, "C'est fermé.")
-		return true
+		player_message(Player, "C'est fermé.");
+		return true;
 	end
 
-	local n = 1
+	local n = 1;
 	if Arg and Arg ~= "" then
 		-- Select N-th.
-		n = tonumber(Arg)
+		n = tonumber(Arg);
 		if n ~= 1 then
-			content = place_gettag(zone, x, y, "content_artifact_"..n)
+			content = place_gettag(zone, x, y, "content_artifact_"..n);
 			if not content or content == "" then
-				player_message(Player, "Il n'y a pas d'emplacement "..n..".")
-				return true
+				player_message(Player, "Il n'y a pas d'emplacement "..n..".");
+				return true;
 			end
 		end
 
 		if content == "EMPTY" then
-			player_message(Player, "L'emplacement "..n.." est vide.")
-			return true
+			player_message(Player, "L'emplacement "..n.." est vide.");
+			return true;
 		end
 	else
 		-- Select first non-empty.
 		while content == "EMPTY" do
-			n = n+1
-			content = place_gettag(zone, x, y, "content_artifact_"..n)
+			n = n+1;
+			content = place_gettag(zone, x, y, "content_artifact_"..n);
 			if not content or content == "" then
 				-- End of list and found nothing.
-				player_message(Player, "C'est entièrement vide.")
-				return true
+				player_message(Player, "C'est entièrement vide.");
+				return true;
 			end
 		end
 	end
@@ -64,11 +64,61 @@ local function fun(x, y)
 	return true;
 end
 
-if not fun(x, y)
-and not fun(x, y-1)
-and not fun(x, y+1)
-and not fun(x-1, y)
-and not fun(x+1, y)
+local function belt()
+	-- Check belt.
+	local belt = player_gettag(Player, "belt");
+	if not belt or belt == "" or belt == "EMPTY" then
+		return false;
+	end
+
+	local artifact;
+
+	local n = 1;
+	if Arg and Arg ~= "" then
+		-- Select N-th.
+		n = tonumber(Arg);
+		
+		artifact = artifact_gettag(belt, "content_artifact_"..n);
+		if not artifact or artifact == "" then
+			player_message(Player, "Il n'y a pas d'emplacement "..n.." sur : "..artifact_getname(belt)..".");
+			return true;
+		end
+
+		if artifact == "EMPTY" then
+			player_message(Player, "L'emplacement ("..n..") est vide.");
+			return true;
+		end
+	else
+		-- Select first non-empty.
+		artifact = artifact_gettag(belt, "content_artifact_"..n);
+		while artifact == "EMPTY" do
+			n = n+1;
+			artifact = artifact_gettag(belt, "content_artifact_"..n);
+			if not artifact or artifact == "" then
+				-- End of list and found nothing.
+				player_message(Player, "Il n'y a rien à prendre sur : "..artifact_getname(belt));
+				return true;
+			end
+		end
+	end
+
+	-- Take N-th.
+	player_settag(Player, "hand", artifact);
+	local msg = "Tu as en main : "..artifact_getname(artifact)..".";
+	artifact_settag(belt, "content_artifact_"..n, hand)
+	if hand ~= "EMPTY" then
+		msg = msg.." (Tu échanges avec : "..artifact_getname(hand)..".)";
+	end
+	player_message(Player, msg);
+	return true;
+end
+
+if not coffer(x, y)
+and not coffer(x, y-1)
+and not coffer(x, y+1)
+and not coffer(x-1, y)
+and not coffer(x+1, y)
+and not belt()
 then
-	player_message(Player, "Il n'y a rien à prendre.")
+	player_message(Player, "Tu n'as pas de ceinture.");
 end

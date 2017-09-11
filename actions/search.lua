@@ -34,9 +34,9 @@ local fun = function (x, y)
 		local msg = "Contenu : "
 		repeat
 			if artifact == "EMPTY" then
-				msg = msg.."["..n.."] Vide ; "
+				msg = msg.."("..n..") Vide ; "
 			else
-				msg = msg.."["..n.."] "..artifact_getname(artifact).." ; "
+				msg = msg.."("..n..") "..artifact_getname(artifact).." ; "
 			end
 			n = n+1
 			artifact = place_gettag(zone, x, y, "content_artifact_"..n)
