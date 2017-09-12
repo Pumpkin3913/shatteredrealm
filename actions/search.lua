@@ -46,7 +46,7 @@ local fun = function (x, y)
 	end
 
 	-- Check if contains ore.
-	local ore = place_gettag(zone, x, y, "content_mining")
+	local ore = place_gettag(zone, x, y, "mining_content")
 	if ore and ore ~= "" then
 		player_message(Player, "Ceci peut être miné pour récupérer : "..ore)
 		return true

@@ -118,6 +118,8 @@ local function is_free(x, y)
 	end
 end
 
+-- Create entrance.
+
 local first_free_y = h-2;
 local mid_x = round(w/2);
 while not is_free(mid_x, first_free_y) do
@@ -126,5 +128,30 @@ end
 
 place_setaspect(zone, mid_x, first_free_y, tileset..":mosaic_a");
 loadfile("build/tools/link.lua")(zone, mid_x, first_free_y, origin, origin_x, origin_y);
+
+-- Add minerals.
+
+for x=0,w-1 do
+	for y=0,h-1 do
+		if c_rand(100) <= 15 and is_free(x, y) then
+			local aspect, name, hardness;
+			local dice = c_rand(10);
+			if dice == 1 then
+				name = "Rubis";
+				hardness = 2;
+				aspect = tileset..":ore_nuggets";
+			elseif dice <= 3 then
+				name = "Minerai d'Airin";
+				hardness = 1;
+				aspect = tileset..":ore_strips";
+			else
+				name = "Pierre";
+				hardness = 0;
+				aspect = tileset..":block_"..c_rand(4);
+			end
+			loadfile("build/tools/ore.lua")(zone, x, y, aspect, name, hardness);
+		end
+	end
+end
 
 return zone;

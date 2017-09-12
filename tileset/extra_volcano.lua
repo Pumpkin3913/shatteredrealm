@@ -11,6 +11,7 @@ row = row+8
 register_aspect(prefix.."ore_strips", row+0, false)
 register_aspect(prefix.."ore_nuggets", row+1, false)
 register_aspect(prefix.."ore_black", row+2, false)
+register_aspect(prefix.."rubble", row+3, false)
 row = row+8
 
 row = row+8

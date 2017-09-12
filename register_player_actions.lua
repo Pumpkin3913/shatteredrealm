@@ -11,13 +11,17 @@ add_action("fermer",      "dofile(\"actions/close.lua\")");
 add_action("verrouiller", "dofile(\"actions/lock.lua\")");
 
 add_action("fouiller",   "dofile(\"actions/search.lua\")");
+add_action("examiner",   "dofile(\"actions/search.lua\")");
 add_action("inventaire", "dofile(\"actions/inventory.lua\")");
 add_action("contenu",    "dofile(\"actions/inventory.lua\")");
 add_action("prendre",    "dofile(\"actions/take.lua\")");
 add_action("saisir",     "dofile(\"actions/take.lua\")");
+add_action("dégainer",   "dofile(\"actions/take.lua\")");
+add_action("sortir",     "dofile(\"actions/take.lua\")");
 add_action("poser",      "dofile(\"actions/drop.lua\")");
 add_action("déposer",    "dofile(\"actions/drop.lua\")");
 add_action("rengainer",  "dofile(\"actions/drop.lua\")");
+add_action("ranger",     "dofile(\"actions/drop.lua\")");
 add_action("jeter",      "dofile(\"actions/discard.lua\")");
 add_action("vider",      "dofile(\"actions/empty.lua\")");
 
@@ -25,6 +29,7 @@ add_action("incanter", "dofile(\"actions/cast.lua\")");
 add_action("détecter", "dofile(\"actions/detect.lua\")");
 
 add_action("tresser", "dofile(\"actions/braid.lua\")");
+add_action("miner",   "dofile(\"actions/mine.lua\")");
 
 -- Plant commands.
 add_action("récolter", "dofile(\"actions/plant/harvest.lua\")");
