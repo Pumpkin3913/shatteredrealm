@@ -53,9 +53,9 @@ end
 if name == "Kalzakrax" then
 	local id = loadfile("logic/generate/kalzakrax.lua")(zone, x, y)
 	prepare(id)
---elseif name == "Ashflame Range" then
---	local id = loadfile("logic/generate/ashflame_range.lua")(zone, x, y)
---	prepare(id)
+elseif name == "Empyrithéa" then
+	local id = loadfile("logic/generate/empyrithea.lua")(zone, x, y)
+	prepare(id)
 else
 	player_message(Player, "Ceci n'est pas un nom de fragment.")
 end
