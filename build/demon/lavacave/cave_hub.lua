@@ -51,7 +51,7 @@ place_setaspect(zone, 6, 4, tileset..":wall_bot_decorated")
 place_setaspect(zone, 8, 3, tileset..":roof_bot_climb"); place_setpassable(zone, 8, 3)
 place_setaspect(zone, 8, 4, tileset..":wall_bot_climb"); place_setpassable(zone, 8, 4)
 
-place_setaspect(zone, 6, 5, tileset..":misc_3") -- misc_3 = fire floor.
+place_setaspect(zone, 6, 5, tileset..":cracks")
 place_setpassable(zone, 6, 5)
 -- TODO: do walkon damages.
 

@@ -116,15 +116,15 @@ register_aspect(prefix.."roof_angle_botlft", row+6, false)
 register_aspect(prefix.."roof_angle_botrgt", row+7, false)
 row = row+8
 
--- Mosaic, Tombs.
+-- Mosaic, Stairs
 register_aspect(prefix.."mosaic_white", row+0)
 register_aspect(prefix.."mosaic_black", row+1)
 register_aspect(prefix.."mosaic_a", row+2)
 register_aspect(prefix.."mosaic_b", row+3)
 register_aspect(prefix.."mosaic_c", row+4)
 register_aspect(prefix.."mosaic_special", row+5)
-register_aspect(prefix.."tombstone_cross", row+6, false)
-register_aspect(prefix.."tombstone_slab", row+7, false)
+register_aspect(prefix.."stairs_up", row+6)
+register_aspect(prefix.."stairs_down", row+7)
 row = row+8
 
 -- Coffers
@@ -149,26 +149,22 @@ register_aspect(prefix.."crystal_6", row+6, false)
 register_aspect(prefix.."crystal_7", row+7, false)
 row = row+8
 
--- Books, Stairs
+-- Books
 register_aspect(prefix.."book_a_open", row+0, false)
 register_aspect(prefix.."book_a_close", row+1, false)
 register_aspect(prefix.."book_b_open", row+2, false)
 register_aspect(prefix.."book_b_close", row+3, false)
-register_aspect(prefix.."stairs_up", row+4)
-register_aspect(prefix.."stairs_down", row+5)
-register_aspect(prefix.."hatch", row+6)
-register_aspect(prefix.."slab", row+7, false)
+register_aspect(prefix.."sign_lft", row+4, false)
+register_aspect(prefix.."sign", row+5, false)
+register_aspect(prefix.."sign_rgt", row+6, false)
 row = row+8
 
--- Blocks & Misc
+-- Blocks
 register_aspect(prefix.."block_1", row+0, false)
 register_aspect(prefix.."block_2", row+1, false)
 register_aspect(prefix.."block_3", row+2, false)
 register_aspect(prefix.."block_4", row+3, false)
-register_aspect(prefix.."misc_1", row+4, false)
-register_aspect(prefix.."misc_2", row+5, false)
-register_aspect(prefix.."misc_3", row+6, false)
-register_aspect(prefix.."misc_4", row+7, false)
+register_aspect(prefix.."slab", row+4, false)
 row = row+8
 
 info("Tileset '"..file.."' loaded.")

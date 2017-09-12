@@ -20,7 +20,7 @@ local key_hidden = "Clef du coffre caché"
 local key_ziggurat = "Clef du Ziggurat"
 
 -- Well.
-place_setaspect(zone, 25, 34, tileset..":misc_1") -- misc_1 = well
+place_setaspect(zone, 25, 34, tileset..":well")
 place_settag(zone, 25, 34, "content_key", key_roof)
 
 -- Tower roof's coffer.

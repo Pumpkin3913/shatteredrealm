@@ -123,6 +123,18 @@ for x=4,6 do
 end
 place_setaspect(floor0, 5, 6, "volcano:mosaic_special")
 
+place_setaspect(floor0, 4, 1, tileset..":throne_toplft")
+place_setaspect(floor0, 5, 1, tileset..":throne_top")
+place_setaspect(floor0, 6, 1, tileset..":throne_toprgt")
+
+place_setaspect(floor0, 4, 2, tileset..":throne_lft")
+place_setaspect(floor0, 5, 2, tileset..":throne")
+place_setaspect(floor0, 6, 2, tileset..":throne_rgt")
+
+place_setaspect(floor0, 4, 3, tileset..":throne_botlft")
+place_setaspect(floor0, 5, 3, tileset..":throne_bot")
+place_setaspect(floor0, 6, 3, tileset..":throne_botrgt")
+
 -- Floor -1
 local floor_1 = "demon_dungeon_-1"
 loadfile("build/tools/interior.lua")(tileset, floor_1, name.." : Sous-sol", w, h)

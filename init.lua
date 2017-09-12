@@ -4,14 +4,14 @@ setverbose()
 info("Lua Init...")
 
 row = 0
-dofile("load_tileset_base.lua")
-loadfile("load_tileset_standard.lua")("redruins")
-loadfile("load_tileset_standard.lua")("violetcastle")
-loadfile("load_tileset_standard.lua")("volcano")
-loadfile("load_tileset_standard.lua")("bluesunken")
-loadfile("load_tileset_forest.lua")("forest")
-loadfile("load_tileset_forest.lua")("forest_corrupted")
-loadfile("load_tileset_forest.lua")("forest_underground")
+dofile("tileset/base.lua")
+loadfile("tileset/standard.lua")("redruins"); loadfile("tileset/extra_redruins.lua")("redruins");
+loadfile("tileset/standard.lua")("violetcastle")
+loadfile("tileset/standard.lua")("volcano"); loadfile("tileset/extra_volcano.lua")("volcano");
+loadfile("tileset/standard.lua")("bluesunken")
+loadfile("tileset/forest.lua")("forest")
+loadfile("tileset/forest.lua")("forest_corrupted")
+loadfile("tileset/forest.lua")("forest_underground")
 
 dofile("register_player_actions.lua")
 dofile("lobby/build_lobby.lua")
