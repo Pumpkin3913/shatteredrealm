@@ -24,12 +24,12 @@ for x=6,44 do
 end
 
 -- Build towers.
-loadfile("build/demon/castle/tower_rampart.lua")(tileset, zone, 1,  18, "middle_west", "north,south")
-loadfile("build/demon/castle/tower_rampart.lua")(tileset, zone, 45, 18, "middle_east", "north,south")
-loadfile("build/demon/castle/tower_rampart.lua")(tileset, zone, 1,  33, "south_west",  "north,east")
-loadfile("build/demon/castle/tower_rampart.lua")(tileset, zone, 16, 33, "south_left",  "east,west")
-loadfile("build/demon/castle/tower_rampart.lua")(tileset, zone, 30, 33, "south_right", "east,west")
-loadfile("build/demon/castle/tower_rampart.lua")(tileset, zone, 45, 33, "south_east",  "north,west")
+loadfile("build/tools/tower.lua")(tileset, zone, 1,  18, "middle_west", "north,south")
+loadfile("build/tools/tower.lua")(tileset, zone, 45, 18, "middle_east", "north,south")
+loadfile("build/tools/tower.lua")(tileset, zone, 1,  33, "south_west",  "north,east")
+loadfile("build/tools/tower.lua")(tileset, zone, 16, 33, "south_left",  "east,west")
+loadfile("build/tools/tower.lua")(tileset, zone, 30, 33, "south_right", "east,west")
+loadfile("build/tools/tower.lua")(tileset, zone, 45, 33, "south_east",  "north,west")
 
 -- Add lore in wall engravings.
 local texts = {

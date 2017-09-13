@@ -16,28 +16,19 @@ local build_wall = function(x, y, h)
 	end
 end
 
-loadfile("build/demon/castle/tower_rampart.lua")(tileset, zone, 1,  3, "northwest", "south,east")
 build_wall(6, 6, 5)
-loadfile("build/demon/castle/tower.lua")(tileset, zone, 12, 3, "left")
 build_wall(17, 4, 7)
-loadfile("build/demon/castle/tower_tall.lua")(tileset, zone, 23, 1)
 build_wall(28, 4, 7)
-loadfile("build/demon/castle/tower.lua")(tileset, zone, 34, 3, "right")
 build_wall(39, 6, 5)
-loadfile("build/demon/castle/tower_rampart.lua")(tileset, zone, 45,  3, "northeast", "south,west")
+loadfile("build/tools/tower.lua")(tileset, zone, 1,  3, "northwest", "south,east")
+loadfile("build/tools/tower.lua")(tileset, zone, 12, 3, "left", "west,ground")
+loadfile("build/demon/castle/tower_tall.lua")(tileset, zone, 23, 1)
+loadfile("build/tools/tower.lua")(tileset, zone, 34, 3, "right", "east,ground")
+loadfile("build/tools/tower.lua")(tileset, zone, 45,  3, "northeast", "south,west")
 
+-- Passage from roof to high walls.
 place_setaspect(zone, 16, 5, tileset..":roof")
 place_setaspect(zone, 34, 5, tileset..":roof")
-
-place_setaspect("northwest_floor_1", 8, 3, tileset..":pillar_bot")
-place_setaspect("northwest_floor_1", 8, 4, tileset..":mosaic_a")
-place_setaspect(zone, 6, 7, tileset..":mosaic_a")
-loadfile("build/tools/link.lua")("northwest_floor_1", 8, 4, zone, 6, 7)
-
-place_setaspect("left_floor_1", 0, 3, tileset..":pillar_bot")
-place_setaspect("left_floor_1", 0, 4, tileset..":mosaic_a")
-place_setaspect(zone, 11, 7, tileset..":mosaic_a")
-loadfile("build/tools/link.lua")("left_floor_1", 0, 4, zone, 11, 7)
 
 place_setaspect("tall_tower_2", 0, 3, tileset..":pillar_bot")
 place_setaspect("tall_tower_2", 0, 4, tileset..":mosaic_a")
@@ -48,16 +39,6 @@ place_setaspect("tall_tower_2", 8, 3, tileset..":pillar_bot")
 place_setaspect("tall_tower_2", 8, 4, tileset..":mosaic_a")
 place_setaspect(zone, 28, 5, tileset..":mosaic_a")
 loadfile("build/tools/link.lua")("tall_tower_2", 8, 4, zone, 28, 5)
-
-place_setaspect("right_floor_1", 8, 3, tileset..":pillar_bot")
-place_setaspect("right_floor_1", 8, 4, tileset..":mosaic_a")
-place_setaspect(zone, 39, 7, tileset..":mosaic_a")
-loadfile("build/tools/link.lua")("right_floor_1", 8, 4, zone, 39, 7)
-
-place_setaspect("northeast_floor_1", 0, 3, tileset..":pillar_bot")
-place_setaspect("northeast_floor_1", 0, 4, tileset..":mosaic_a")
-place_setaspect(zone, 44, 7, tileset..":mosaic_a")
-loadfile("build/tools/link.lua")("northeast_floor_1", 0, 4, zone, 44, 7)
 
 -- Add puzzle to light up the crystal.
 local master_zone = "tall_tower_2"
