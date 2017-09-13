@@ -5,7 +5,7 @@ local zone, x, y, w, h = ...
 local tileset = "redruins"
 local minsize = 10
 -- TODO: horizontal minsize > vertical minsize.
--- TODO: track artifacts and clear remaining ones.
+-- TODO: ensure hard borders (see how kalzakrax_castle.lua do this).
 
 -- Prepare walls' positions.
 
@@ -155,10 +155,9 @@ local function place_unique(x, y)
 		-- Spellbook.
 		loadfile("build/tools/book.lua")(tileset, zone, x, y, "close", "b")
 		place_settag(zone, x, y, "openclose_selfclose", 30)
-		place_settag(zone, x, y, "text", "Les démons oublient peu à peu comment /dévorer les âmes.")
+		place_settag(zone, x, y, "text", "Les démons peuvent /dévorer les âmes.")
 		place_settag(zone, x, y, "text_hint", "/dévorer")
 		place_settag(zone, x, y, "text_hint_aspect", tileset..":tombstone_slab")
-		place_settag(zone, x, y, "title", "Chroniques de la Chute")
 	else -- if dice <= 3 then
 		-- Coffer of skulls.
 		loadfile("build/tools/coffer.lua")(tileset, zone, x, y, "rare")
@@ -178,16 +177,33 @@ end
 
 -- Place tombs.
 
+local sorrow = {
+	"Le Créateur nous a abandonné.",
+	"Les Horreurs rôdent et nous tueront tous.",
+	"Impossible de rejoindre le chateau du Roi des Démons.",
+	"Kalzakrax est disloqué et en ruine.",
+	"Il n'y a plus d'espoir.",
+	"Je suis le dernier.",
+	"Que cherchent les Horreurs ?",
+	"Les Horreurs ne sont pas des créatures du Créateur.",
+	"Le chateau du centre de Kalzakrax est-il tombé, lui aussi ?",
+	"Le Grand Vide est partour entre les Fragments."
+};
+
 local function place_one_tomb(x, y)
 	local dice = c_rand(3)
 	if dice == 1 then
 		place_setaspect(zone, x, y, tileset..":tombstone_cross")
 		if c_rand(6) == 1 then
 			place_settag(zone, x, y, "soul_vessel", "full")
-			-- place_setaspect(zone, x, y, "violetcastle:tombstone_cross") -- XXX -- DEBUG
+			-- place_setaspect(zone, x, y, "violetcastle:tombstone_cross") -- DEBUG
+		else
+			place_settag(zone, x, y, "soul_vessel", "empty")
 		end
 	elseif dice == 2 then
 		place_setaspect(zone, x, y, tileset..":tombstone_slab")
+		place_settag(zone, x, y, "text_type", "engraving")
+		place_settag(zone, x, y, "text", sorrow[c_rand(#sorrow)])
 	else -- if dice == 3 then
 		place_setaspect(zone, x, y, tileset..":path_lone")
 	end
