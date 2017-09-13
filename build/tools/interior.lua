@@ -16,9 +16,7 @@ new_zone(zone, name, w, h, tileset..":"..soil)
 -- Randomize soil.
 for x=0,w-1 do
 	for y=0,h-1 do
-		if c_rand(100) > 5 then
-			-- nothing
-		else
+		if c_rand(100) <= 5 then
 			place_setaspect(zone, x, y, tileset..":"..soil.."_rare_"..c_rand(4))
 		end
 	end

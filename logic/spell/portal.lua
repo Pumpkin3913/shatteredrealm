@@ -22,7 +22,7 @@ if openat and openat ~= "" then
 		place_setaspect(zone, x, y, tileset..":wall_bot")
 		place_deltag(zone, x, y, "portal_openat")
 	else
-		info("Was not a success?")
+		warning("Portal Spell: Error while closing a portal to "..openat);
 	end
 	return
 end

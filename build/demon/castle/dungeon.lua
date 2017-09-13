@@ -192,9 +192,9 @@ loadfile("build/tools/door.lua")(tileset, floor1, 5, 6)
 
 place_setaspect(floor1, 5, 6, tileset..":wall_bot_written");
 place_settag(floor1, 5, 6, "text", "Kalzarak") -- Intentionally misspell.
-place_settag(floor1, 5, 6, "text_type", "chalk") -- Intentionally misspell.
+place_settag(floor1, 5, 6, "text_type", "chalk")
 place_setaspect(floor1, 5, 7, tileset..":mosaic_b")
-place_settag(floor1, 5, 7, "portal", "true") -- Intentionally misspell.
+place_settag(floor1, 5, 7, "portal", "true")
 
 local function add_stash(x, y)
 	loadfile("build/tools/coffer.lua")(tileset, floor1, x, y, "hard")
