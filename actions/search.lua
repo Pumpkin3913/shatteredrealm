@@ -81,7 +81,7 @@ local function fun(x, y);
 	elseif place_gettag(zone, x, y, "text_type") == "chalk" then
 		player_message(Player, "Ceci est une inscription tracée à la craie.");
 	elseif place_gettag(zone, x, y, "text_type") == "engraving" then
-		player_message(Player, "Ceci est une inscription gravée.");
+		player_message(Player, "Ceci est une très ancienne inscription gravée.");
 	else
 		nodescription = true;
 	end
