@@ -31,7 +31,7 @@ local fun = function (x, y)
 		player_hint(Player, aspect, hint);
 	end
 
-	player_message(Player, text)
+	player_message(Player, '"'..text..'"')
 	return true
 
 end

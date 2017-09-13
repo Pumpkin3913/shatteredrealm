@@ -8,7 +8,6 @@ dofile("tileset/base.lua")
 loadfile("tileset/standard.lua")("redruins"); loadfile("tileset/extra_redruins.lua")("redruins");
 loadfile("tileset/standard.lua")("violetcastle")
 loadfile("tileset/standard.lua")("volcano"); loadfile("tileset/extra_volcano.lua")("volcano");
-loadfile("tileset/standard.lua")("bluesunken")
 loadfile("tileset/forest.lua")("forest")
 loadfile("tileset/forest.lua")("forest_corrupted")
 loadfile("tileset/forest.lua")("forest_underground")
