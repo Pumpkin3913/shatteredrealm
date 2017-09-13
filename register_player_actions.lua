@@ -12,6 +12,7 @@ add_action("verrouiller", "dofile(\"actions/lock.lua\")");
 
 add_action("fouiller",   "dofile(\"actions/search.lua\")");
 add_action("examiner",   "dofile(\"actions/search.lua\")");
+add_action("inspecter",   "dofile(\"actions/search.lua\")");
 add_action("inventaire", "dofile(\"actions/inventory.lua\")");
 add_action("contenu",    "dofile(\"actions/inventory.lua\")");
 add_action("prendre",    "dofile(\"actions/take.lua\")");

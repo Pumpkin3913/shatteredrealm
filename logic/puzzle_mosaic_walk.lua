@@ -13,4 +13,6 @@ elseif tile == "mosaic_white" then
 end
 
 local master_zone, master_x, master_y = string.match(place_gettag(zone, x, y, "puzzle_master"), "(.*)/(.*)-(.*)")
-loadfile("logic/puzzle_mosaic_check.lua")(master_zone, master_x, master_y)
+if master_zone and master_zone ~= "" then
+	loadfile("logic/puzzle_mosaic_check.lua")(master_zone, master_x, master_y)
+end

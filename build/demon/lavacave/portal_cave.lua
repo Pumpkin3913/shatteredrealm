@@ -137,6 +137,7 @@ local function translate(zone, level, w, h)
 				elseif not bot then
 					place_setaspect(zone, x, y, tileset..":wall_bot_written");
 					place_settag(zone, x, y, "text", table.remove(texts, c_rand(#texts)));
+					place_settag(zone, x, y, "text_type", "engraving");
 				else
 					place_setaspect(zone, x, y, tileset..":wall_written");
 				end

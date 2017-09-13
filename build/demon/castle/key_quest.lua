@@ -22,6 +22,7 @@ local key_ziggurat = "Clef du Ziggurat"
 -- Well.
 place_setaspect(zone, 25, 34, tileset..":well")
 place_settag(zone, 25, 34, "content_key", key_roof)
+place_settag(zone, 25, 34, "description", "Ceci est un ancien puits.")
 
 -- Tower roof's coffer.
 loadfile("build/tools/coffer.lua")(tileset, zone, 25, 2, "common", key_roof)

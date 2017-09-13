@@ -5,7 +5,7 @@ local prefix = file..":"
 
 register_aspect(prefix.."tombstone_cross", row+0, false)
 register_aspect(prefix.."tombstone_slab", row+1, false)
-register_aspect(prefix.."well", row+2)
+register_aspect(prefix.."well", row+2, false)
 register_aspect(prefix.."hatch", row+3)
 row = row+8
 

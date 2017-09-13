@@ -43,9 +43,9 @@ player_message(Player, \"Essaye de marcher sur ces dalles, puis va jusqu'à la s
 y = y-3
 
 place_setaspect  (zone, 2,   y, tileset..":mosaic_white")
-place_setlandon(zone, 2,   y, "dofile(\"logic/switch_bw_mosaic.lua\")")
+place_setlandon(zone, 2,   y, "dofile(\"logic/puzzle_mosaic_walk.lua\")")
 place_setaspect  (zone, w-3, y, tileset..":mosaic_black")
-place_setlandon(zone, w-3, y, "dofile(\"logic/switch_bw_mosaic.lua\")")
+place_setlandon(zone, w-3, y, "dofile(\"logic/puzzle_mosaic_walk.lua\")")
 
 y = y-3
 
@@ -60,8 +60,8 @@ build_horizontal_wall(y)
 place_setlandon(zone, x_mid, y, "\
 player_message(Player, \"* * *\")\
 player_message(Player, \"Pour interagir avec un objet, mets-toi devant et entre une commande.\")\
-player_message(Player, \"Les commandes commencent par \"/\". Essaye de /lire ce livre.\")\
-player_message(Player, \"Tiens-toi devant ce livre, entre '/lire' et valide avec Entrée.\")\
+player_message(Player, \"Les commandes commencent par \'/\'. Essaye de /lire ce livre.\")\
+player_message(Player, \"Tiens-toi devant ce livre, entre '/lire' et valide avec la touche Entrée.\")\
 ")
 
 y = y-4
@@ -76,7 +76,7 @@ place_setlandon(zone, x_mid, y, "\
 player_message(Player, \"* * *\")\
 player_message(Player, \"Les commandes peuvent être enregistrées dans les touches Fx et rapidement réutilisées.\")\
 player_message(Player, \"Appuyer sur shift + F1 sauvegarde la commande courante dans F1.\")\
-player_message(Player, \"F1 ajoute le texte sauvegardé dans la commande. (Échap nettoie la ligne de commande.\")\
+player_message(Player, \"F1 ajoute le texte sauvegardé dans la commande. (Échap nettoie la ligne de commande.)\")\
 player_message(Player, \"Sauvegarde la commande '/lire' pour lire rapidement ces livres, de gauche à droite. \")\
 ")
 
@@ -116,8 +116,8 @@ place_settag(zone, 3, y, "openclose_selfclose", selfclose_duration)
 place_settag(zone, 3, y, "text", "Tu peux /fouiller les coffres.")
 
 loadfile("build/tools/coffer.lua")(tileset, zone, w-4, y)
+loadfile("build/tools/give_empty_inventory.lua")(zone, w-4, y, 1)
 place_settag (zone, w-4, y, "openclose_selfclose", selfclose_duration)
-place_settag (zone, w-4, y, "content", "Cookie!")
 
 place_setaspect(zone, 1, y-2, tileset..":roof_lone")
 place_setaspect(zone, 1, y-1, tileset..":pillar")

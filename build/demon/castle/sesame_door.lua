@@ -14,3 +14,8 @@ local target = zone.."/"..x.."-"..y
 place_settag(zone, x, y-2, "sesame", target)
 place_settag(zone, x, y-1, "sesame", target)
 place_settag(zone, x, y+1, "sesame", target)
+
+-- Add description.
+local description = "Ceci est une porte magique. Un sortilège peut l'ouvrir.";
+place_settag(zone, x, y,   "description", description);
+place_settag(zone, x, y-1, "description", description);
