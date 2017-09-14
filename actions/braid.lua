@@ -46,5 +46,6 @@ inventory_del(inventory, quantity, ingredient);
 local name = "Tresse de "..ingredient
 local new_artifact = create_artifact(name);
 artifact_settag(new_artifact, "content_artifact_1", "EMPTY");
+artifact_settag(new_artifact, "equipment", "belt");
 player_settag(Player, "belt", new_artifact);
 player_message(Player, "Tu as créé : "..name);

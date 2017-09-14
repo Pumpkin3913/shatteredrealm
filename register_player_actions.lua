@@ -23,6 +23,10 @@ add_action("poser",      "dofile(\"actions/drop.lua\")");
 add_action("déposer",    "dofile(\"actions/drop.lua\")");
 add_action("rengainer",  "dofile(\"actions/drop.lua\")");
 add_action("ranger",     "dofile(\"actions/drop.lua\")");
+add_action("équiper",    "dofile(\"actions/equip.lua\")");
+add_action("mettre",     "dofile(\"actions/equip.lua\")");
+add_action("déséquiper", "dofile(\"actions/unequip.lua\")");
+add_action("enlever",    "dofile(\"actions/unequip.lua\")");
 add_action("jeter",      "dofile(\"actions/discard.lua\")");
 add_action("vider",      "dofile(\"actions/empty.lua\")");
 

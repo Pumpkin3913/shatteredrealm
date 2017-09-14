@@ -48,6 +48,15 @@ local function belt()
 		return false;
 	end
 
+	-- Check if hand doesn't contain an equipment.
+	if hand ~= "EMPTY" then
+		local equipment = artifact_gettag(hand, "equipment");
+		if equipment and equipment ~= "" then
+			player_message(Player, "L'objet tenu en main est un équipement et ne peut pas être accroché à une ceinture.");
+			return true;
+		end
+	end
+
 	-- Sheathe in first empty slot.
 	local n = 1;
 	local artifact = artifact_gettag(belt, "content_artifact_"..n);
