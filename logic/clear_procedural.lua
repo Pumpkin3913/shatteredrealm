@@ -2,7 +2,7 @@
 
 local id = ...
 
--- TODO: abort if there are players in.
+-- TODO: abort if there are characters in.
 -- TODO: delete subzones.
 -- TODO: delete contained artifacts.
 

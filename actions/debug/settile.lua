@@ -1,16 +1,16 @@
 #!/usr/bin/lua
 
 if not Arg then
-	player_message(Player, "Set Tile Command: provide tile ID as argument")
+	character_message(Character, "Set Tile Command: provide tile ID as argument")
 else
 	if assert_tile(Arg) then
 		place_setaspect(
-			player_getzone(Player),
-			player_getx(Player),
-			player_gety(Player),
+			character_getzone(Character),
+			character_getx(Character),
+			character_gety(Character),
 			Arg
 		)
 	else
-		player_message(Player, "Tile '"..Arg.."' doesn't exist.")
+		character_message(Character, "Tile '"..Arg.."' doesn't exist.")
 	end
 end

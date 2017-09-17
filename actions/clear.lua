@@ -1,8 +1,8 @@
 #!/usr/bin/lua
 
-local zone = player_getzone(Player)
-local x = player_getx(Player)
-local y = player_gety(Player)
+local zone = character_getzone(Character)
+local x = character_getx(Character)
+local y = character_gety(Character)
 
 local fun = function (x, y)
 	local tileset, tile = string.match(place_getaspect(zone, x, y), "(.*):(.*)")
@@ -16,7 +16,7 @@ local fun = function (x, y)
 				loadstring(script)()
 			end
 		else
-			player_message(Player, "Ce message n'est pas écrit à la craie et ne peut pas être /effacer.")
+			character_message(Character, "Ce message n'est pas écrit à la craie et ne peut pas être /effacer.")
 		end
 		return true
 	else
@@ -30,5 +30,5 @@ and not fun(x, y+1)
 and not fun(x-1, y)
 and not fun(x+1, y)
 then
-	player_message(Player, "Il n'y a aucun écrit à /effacer.")
+	character_message(Character, "Il n'y a aucun écrit à /effacer.")
 end

@@ -12,7 +12,7 @@ loadfile("tileset/forest.lua")("forest")
 loadfile("tileset/forest.lua")("forest_corrupted")
 loadfile("tileset/forest.lua")("forest_underground")
 
-dofile("register_player_actions.lua")
+dofile("register_character_actions.lua")
 dofile("lobby/build_lobby.lua")
 dofile("build/demon/build.lua")
 dofile("build/forest/build.lua")

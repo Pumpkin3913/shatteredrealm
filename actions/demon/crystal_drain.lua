@@ -1,12 +1,12 @@
 #!/usr/bin/lua
 
-local zone = player_getzone(Player)
-local x = player_getx(Player)
-local y = player_gety(Player)
+local zone = character_getzone(Character)
+local x = character_getx(Character)
+local y = character_gety(Character)
 
--- Check if Player is a daemon.
-if player_gettag(Player, "race") ~= "demon" then
-	player_message(Player, "Tu n'es pas un démon.")
+-- Check if Character is a daemon.
+if character_gettag(Character, "race") ~= "demon" then
+	character_message(Character, "Tu n'es pas un démon.")
 	return
 end
 
@@ -17,21 +17,21 @@ local fun = function (x, y)
 	end
 	n = tonumber(n)
 	if n <= 2 then
-		player_message(Player, "Ce cristal n'est pas chargé. Il n'y a pas de pouvoir à /drainer.")
+		character_message(Character, "Ce cristal n'est pas chargé. Il n'y a pas de pouvoir à /drainer.")
 	elseif n <= 5 then
-		player_message(Player, "Ce cristal n'est pas assez chargé. Il doit encore être chargé.")
+		character_message(Character, "Ce cristal n'est pas assez chargé. Il doit encore être chargé.")
 	elseif n >= 6 then
 		loadfile("logic/puzzle_mosaic_reset.lua")(zone, x, y)
-		local max = gauge_getmax(Player, "mana")
-		if n == 7 and player_gettag(Player, "has_drained_crystal") ~= "true" then
-			player_message(Player, "Tu sens tes pouvoirs magiques augmenter !")
+		local max = gauge_getmax(Character, "mana")
+		if n == 7 and character_gettag(Character, "has_drained_crystal") ~= "true" then
+			character_message(Character, "Tu sens tes pouvoirs magiques augmenter !")
 			max = max+1
-			gauge_setmax(Player, "mana", max)
-			player_settag(Player, "has_drained_crystal", "true")
+			gauge_setmax(Character, "mana", max)
+			character_settag(Character, "has_drained_crystal", "true")
 		else
-			player_message(Player, "Tu sens tes pouvoirs magiques renouvellés.")
+			character_message(Character, "Tu sens tes pouvoirs magiques renouvellés.")
 		end
-		gauge_setval(Player, "mana", max)
+		gauge_setval(Character, "mana", max)
 
 		if n == 6 then
 			n = 2
@@ -49,5 +49,5 @@ and not fun(x, y+1)
 and not fun(x-1, y)
 and not fun(x+1, y)
 then
-	player_message(Player, "Il n'y a pas de cristal à /drainer.")
+	character_message(Character, "Il n'y a pas de cristal à /drainer.")
 end

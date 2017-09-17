@@ -2,23 +2,23 @@
 
 -- Check text argument.
 if not Arg or Arg == "" then
-	player_message(Player, "Tu dois spécifier ce que tu veux écrire après la commande.")
+	character_message(Character, "Tu dois spécifier ce que tu veux écrire après la commande.")
 	return
 end
 
--- Check if Player has a chalk.
-if player_gettag(Player, "have chalk") ~= "true" then
-	player_message(Player, "Tu ne peux pas écrire avec tes ongles.")
+-- Check if Character has a chalk.
+if character_gettag(Character, "have chalk") ~= "true" then
+	character_message(Character, "Tu ne peux pas écrire avec tes ongles.")
 	return
 end
 
 -- Check if appropriate wall.
-local zone = player_getzone(Player)
-local x = player_getx(Player)
-local y = player_gety(Player)-1
+local zone = character_getzone(Character)
+local x = character_getx(Character)
+local y = character_gety(Character)-1
 local tileset, tile = string.match(place_getaspect(zone, x, y), "(.*):(.*)")
 if tile ~= "wall_bot" then
-	player_message(Player, "Tu ne peux pas écrire ici. Il faut un mur dégagé.")
+	character_message(Character, "Tu ne peux pas écrire ici. Il faut un mur dégagé.")
 	return
 end
 

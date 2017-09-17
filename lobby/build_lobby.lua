@@ -14,7 +14,7 @@ local x = 16
 local y = 20
 place_setaspect(zone, x, y, "violetcastle:mosaic_a")
 local tuto_zone, tuto_x, tuto_y = loadfile("lobby/build_tutorial.lua")(zone, x, y)
-place_setlandon(zone, x, y, "player_changezone(Player, \""..tuto_zone.."\", "..tuto_x..", "..tuto_y..")")
+place_setlandon(zone, x, y, "character_changezone(Character, \""..tuto_zone.."\", "..tuto_x..", "..tuto_y..")")
 
 -- Start choices
 
@@ -60,18 +60,18 @@ build_choice(14, 1, "violetcastle", "Humain", "human", "white_armor", "closed")
 
 -- Shortcut demon.
 place_setaspect(zone, 16, 12, "redruins:mosaic_white")
-place_setlandon(zone, 16, 12, "player_changezone(Player, \"demon_dungeon_0\", 5, 6)")
+place_setlandon(zone, 16, 12, "character_changezone(Character, \"demon_dungeon_0\", 5, 6)")
 
 -- Demon-power.
 place_setaspect("lobby", 16, 14, "volcano:mosaic_special")
 place_setlandon("lobby", 16, 14, "\
-	player_settag(Player, \"race\", \"demon\")\
-	player_setaspect(Player, \"demon\")\
-	new_gauge(Player, \"mana\", 10, 10, \"star\", \"star_empty\")\
-	player_settag(Player, \"have chalk\", \"true\")\
+	character_settag(Character, \"race\", \"demon\")\
+	character_setaspect(Character, \"demon\")\
+	new_gauge(Character, \"mana\", 10, 10, \"star\", \"star_empty\")\
+	character_settag(Character, \"have chalk\", \"true\")\
 ")
 
 
 -- Shortcut lavacave.
 place_setaspect(zone, 18, 14, "volcano:mosaic_white")
-place_setlandon(zone, 18, 14, "player_changezone(Player, \"cave_hub\", 13, 4)")
+place_setlandon(zone, 18, 14, "character_changezone(Character, \"cave_hub\", 13, 4)")

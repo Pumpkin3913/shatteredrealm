@@ -1,8 +1,8 @@
 #!/usr/bin/lua
 
-local zone = player_getzone(Player)
-local x = player_getx(Player)
-local y = player_gety(Player)
+local zone = character_getzone(Character)
+local x = character_getx(Character)
+local y = character_gety(Character)
 
 local file, tile = string.match(place_getaspect(zone, x, y), "(.*):(.*)")
 

@@ -122,7 +122,7 @@ local function tell_story(zone, x, y)
 			"Le Créateur façonna des lieux secrets, inaccessibles aux mortels comme aux immortels."
 		};
 	end
-	-- TODO: give titles with chapter numbers to these books. (Players can reorder them if they /close them and /read their titles.)
+	-- TODO: give titles with chapter numbers to these books. (Characters can reorder them if they /close them and /read their titles.)
 
 	loadfile("build/tools/book.lua")(tileset, zone, x-2, y-1);
 	place_settag(zone, x-2, y-1, "text", table.remove(story, c_rand(#story)));

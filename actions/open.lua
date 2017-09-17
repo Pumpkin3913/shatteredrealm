@@ -1,8 +1,8 @@
 #!/usr/bin/lua
 
-local zone = player_getzone(Player)
-local x = player_getx(Player)
-local y = player_gety(Player)
+local zone = character_getzone(Character)
+local x = character_getx(Character)
+local y = character_gety(Character)
 
 local function fun(zone, x, y)
 	-- Check if slave.
@@ -21,13 +21,13 @@ local function fun(zone, x, y)
 
 	-- If open, do nothing.
 	if state == "open" then
-		player_message(Player, "C'est déjà ouvert.")
+		character_message(Character, "C'est déjà ouvert.")
 		return true
 	end
 
 	-- If trigger-only, do nothing.
 	if place_gettag(zone, x, y, "openclose_triggeronly") == "true" then
-		player_message(Player, "Ça ne s'ouvre pas de cette façon.")
+		character_message(Character, "Ça ne s'ouvre pas de cette façon.")
 		return true
 	end
 
@@ -37,14 +37,14 @@ local function fun(zone, x, y)
 		return true
 	end
 
-	-- If locked, check if player has key.
+	-- If locked, check if character has key.
 	if state == "locked" then
 		local key = place_gettag(zone, x, y, "openclose_key")
-		if player_gettag(Player, "have "..key) == "true" then
-			player_message(Player, "Tu utilise : "..key)
+		if character_gettag(Character, "have "..key) == "true" then
+			character_message(Character, "Tu utilise : "..key)
 			loadfile("logic/openclose.lua")(zone, x, y, "open")
 		else
-			player_message(Player, "C'est verrouillé avec : "..key)
+			character_message(Character, "C'est verrouillé avec : "..key)
 		end
 		return true
 	end
@@ -60,5 +60,5 @@ and not fun(zone, x, y+1)
 and not fun(zone, x-1, y)
 and not fun(zone, x+1, y)
 then
-	player_message(Player, "Il n'y a rien à /ouvrir.")
+	character_message(Character, "Il n'y a rien à /ouvrir.")
 end

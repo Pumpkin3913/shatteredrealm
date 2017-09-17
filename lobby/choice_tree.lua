@@ -1,8 +1,8 @@
 #!/usr/bin/lua
 
-player_settag(Player, "race", "treefolk")
--- player_setaspect(Player, "???")
+character_settag(Character, "race", "treefolk")
+-- character_setaspect(Character, "???")
 
-player_changezone(Player, "forest_south", 9, 9)
-player_message(Player, "Tu es un sylvain, né de la terre, chargé de protéger la forêt...")
-player_message(Player, "... car un mal mystérieux la corromp lentement.")
+character_changezone(Character, "forest_south", 9, 9)
+character_message(Character, "Tu es un sylvain, né de la terre, chargé de protéger la forêt...")
+character_message(Character, "... car un mal mystérieux la corromp lentement.")

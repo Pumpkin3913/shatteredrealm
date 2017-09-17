@@ -65,14 +65,14 @@ place_settag(floor0, 4, 2, "openclose_trigger_open", reset_script)
 place_settag(floor0, 4, 2, "openclose_trigger_close", reset_script)
 place_setlandon(floor0, 4, 2, "\
 if place_gettag(\""..floor0.."\", 4, 2, \"openclose_state\") == \"open\" then\
-	player_changezone(Player, \""..floor_1.."\", 4, 2)\
+	character_changezone(Character, \""..floor_1.."\", 4, 2)\
 end")
 
 loadfile("build/tools/openclose_addslave.lua")(floor0, 4, 2, floor_1, 4, 2, 1, tileset..":stairs_up", tileset..":mosaic_special")
 place_settag(floor_1, 4, 2, "openclose_triggeronly", "true")
 place_setlandon(floor_1, 4, 2, "\
 if place_gettag(\""..floor0.."\", 4, 2, \"openclose_state\") == \"open\" then\
-	player_changezone(Player, \""..floor0.."\", 4, 2)\
+	character_changezone(Character, \""..floor0.."\", 4, 2)\
 end")
 
 -- Pattern puzzle

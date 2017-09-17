@@ -1,4 +1,4 @@
 #!/usr/bin/lua
 
-player_message(Player, "Polymorph: "..Arg)
-player_setaspect(Player, Arg)
+character_message(Character, "Polymorph: "..Arg)
+character_setaspect(Character, Arg)

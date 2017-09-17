@@ -1,8 +1,8 @@
 #!/usr/bin/lua
 
-local zone = player_getzone(Player)
-local x = player_getx(Player)
-local y = player_gety(Player)
+local zone = character_getzone(Character)
+local x = character_getx(Character)
+local y = character_gety(Character)
 
 local function fun(zone, x, y)
 	-- Check if slave.
@@ -20,13 +20,13 @@ local function fun(zone, x, y)
 
 	-- If trigger-only, do nothing.
 	if place_gettag(zone, x, y, "openclose_triggeronly") == "true" then
-		player_message(Player, "Ça ne se ferme pas de cette façon.")
+		character_message(Character, "Ça ne se ferme pas de cette façon.")
 		return true
 	end
 
 	-- If close or locked, do nothing.
 	if state == "close" or state == "locked" then
-		player_message(Player, "C'est déjà fermé.")
+		character_message(Character, "C'est déjà fermé.")
 		return true
 	end
 
@@ -47,5 +47,5 @@ and not fun(zone, x, y+1)
 and not fun(zone, x-1, y)
 and not fun(zone, x+1, y)
 then
-	player_message(Player, "Il n'y a rien à /fermer.")
+	character_message(Character, "Il n'y a rien à /fermer.")
 end

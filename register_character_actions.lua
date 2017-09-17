@@ -55,4 +55,4 @@ add_action("polymorph", "dofile(\"actions/debug/polymorph.lua\")");
 add_action("whereami",  "dofile(\"actions/debug/whereami.lua\")");
 add_action("hop",       "dofile(\"actions/debug/hop.lua\")");
 
-info("Player actions loaded.");
+info("Character actions loaded.");

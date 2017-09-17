@@ -1,14 +1,14 @@
 #!/usr/bin/lua
 
-local name = player_getname(Player)
+local name = character_getname(Character)
 if name ~= "_" then
-	player_message(Player, "Ton nom est "..name..".")
+	character_message(Character, "Ton nom est "..name..".")
 end
 
 if not Arg then
-	player_message(Player, "Tu dois spécifier ton nom après la commande.")
+	character_message(Character, "Tu dois spécifier ton nom après la commande.")
 	return
 end
 
-player_setname(Player, Arg)
-player_message(Player, "Ton nom est désormais "..Arg..".")
+character_setname(Character, Arg)
+character_message(Character, "Ton nom est désormais "..Arg..".")

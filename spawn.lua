@@ -1,15 +1,15 @@
 #!/usr/bin/lua
 
-player_setaspect(Player, "at")
-player_setwhendeath(Player, "dofile(\"logic/player_clear.lua\")")
-player_settag(Player, "hand", "EMPTY")
-player_settag(Player, "belt", "EMPTY")
+character_setaspect(Character, "at")
+character_setwhendeath(Character, "dofile(\"logic/character_clear.lua\")")
+character_settag(Character, "hand", "EMPTY")
+character_settag(Character, "belt", "EMPTY")
 
-new_gauge(Player, "life", 1, 1, "heart", "heart_empty")
--- gauge_setonempty(Player, "life", "scripts/kill.lua")
+new_gauge(Character, "life", 1, 1, "heart", "heart_empty")
+-- gauge_setonempty(Character, "life", "scripts/kill.lua")
 
-player_spawn(Player, "lobby", 16, 16)
+character_spawn(Character, "lobby", 16, 16)
 
-player_message(Player, "Tu es '@'. Déplace-toi avec les flèches.")
-player_message(Player, "Marche sur la dalle au sud pour accéder au tutorial.")
-player_message(Player, "Entre dans un batiment pour choisir comment commencer.")
+character_message(Character, "Tu es '@'. Déplace-toi avec les flèches.")
+character_message(Character, "Marche sur la dalle au sud pour accéder au tutorial.")
+character_message(Character, "Entre dans un batiment pour choisir comment commencer.")

@@ -23,7 +23,7 @@ loadfile("build/demon/castle/sesame_door.lua")(tileset, zone, 11, 24)
 
 -- One-way exit.
 place_setaspect(zone, 17, 31, tileset..":mosaic_a")
-place_setlandon(zone, 17, 31, "player_setxy(Player, 19, 31)")
+place_setlandon(zone, 17, 31, "character_setxy(Character, 19, 31)")
 
 -- Path to book.
 for y=25,29 do

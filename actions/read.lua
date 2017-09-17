@@ -1,8 +1,8 @@
 #!/usr/bin/lua
 
-local zone = player_getzone(Player)
-local x = player_getx(Player)
-local y = player_gety(Player)
+local zone = character_getzone(Character)
+local x = character_getx(Character)
+local y = character_gety(Character)
 
 local fun = function (x, y)
 	local text = place_gettag(zone, x, y, "text")
@@ -16,9 +16,9 @@ local fun = function (x, y)
 	if state == "close" then
 		local title = place_gettag(zone, x, y, "title")
 		if title and title ~= "" then
-			player_message(Player, title)
+			character_message(Character, title)
 		else
-			player_message(Player, "Ce livre est fermé.")
+			character_message(Character, "Ce livre est fermé.")
 		end
 		return true
 	end
@@ -28,10 +28,10 @@ local fun = function (x, y)
 	if hint ~= "" then
 		local aspect = place_gettag(zone, x, y, "text_hint_aspect")
 		if aspect == "" then aspect = "void" end
-		player_hint(Player, aspect, hint);
+		character_hint(Character, aspect, hint);
 	end
 
-	player_message(Player, '"'..text..'"')
+	character_message(Character, '"'..text..'"')
 	return true
 
 end
@@ -42,5 +42,5 @@ and not fun(x, y+1)
 and not fun(x-1, y)
 and not fun(x+1, y)
 then
-	player_message(Player, "Il n'y a rien à /lire.")
+	character_message(Character, "Il n'y a rien à /lire.")
 end

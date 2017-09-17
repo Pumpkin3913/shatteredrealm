@@ -1,7 +1,7 @@
 #!/usr/bin/lua
 
 if not Arg or Arg == "" then
-	player_message(Player, "Tu dois préciser quel sort incanter.")
+	character_message(Character, "Tu dois préciser quel sort incanter.")
 elseif Arg == "Invocatio" then
 	dofile("logic/spell/invoke.lua")
 elseif Arg == "Sésame" then
@@ -11,5 +11,5 @@ elseif Arg == "Transfragmentum" then
 elseif Arg == "Aetheria" then
 	dofile("logic/spell/aether.lua")
 else
-	player_message(Player, "Rien ne se produit...")
+	character_message(Character, "Rien ne se produit...")
 end

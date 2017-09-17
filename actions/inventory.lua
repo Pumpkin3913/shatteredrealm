@@ -19,21 +19,21 @@ local function list_inventory(artifact)
 	return " ["..msg.."]";
 end
 
-local hand = player_gettag(Player, "hand");
+local hand = character_gettag(Character, "hand");
 if hand and hand ~= "" then
 	if hand == "EMPTY" then
-		player_message(Player, "Mains : vide");
+		character_message(Character, "Mains : vide");
 	else
-		player_message(Player, "Mains : "..artifact_getname(hand)..list_inventory(hand));
+		character_message(Character, "Mains : "..artifact_getname(hand)..list_inventory(hand));
 	end
 end
 
-local belt = player_gettag(Player, "belt");
+local belt = character_gettag(Character, "belt");
 if belt and belt ~= "" then
 	if belt == "EMPTY" then
-		player_message(Player, "Ceinture : aucune");
+		character_message(Character, "Ceinture : aucune");
 	else
-		player_message(Player, "Ceinture : "..artifact_getname(belt));
+		character_message(Character, "Ceinture : "..artifact_getname(belt));
 		
 		local n = 1;
 		local artifact = artifact_gettag(belt, "content_artifact_"..n);
@@ -44,7 +44,7 @@ if belt and belt ~= "" then
 			else
 				name = artifact_getname(artifact)..list_inventory(artifact);
 			end
-			player_message(Player, "    ("..n..") "..name..".");
+			character_message(Character, "    ("..n..") "..name..".");
 
 			n = n+1;
 			artifact = artifact_gettag(belt, "content_artifact_"..n);

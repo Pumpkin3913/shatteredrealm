@@ -44,7 +44,7 @@ place_setaspect(zone, 8,  2, tileset..":tree_botlft_alive")
 place_setaspect(zone, 9,  2, tileset..":tree_botrgt_alive")
 place_setaspect(zone, 10, 2, tileset..":tree_botlft")
 
-local script = "player_changezone(Player, \"forest_southwest\", 0, player_gety(Player))"
+local script = "character_changezone(Character, \"forest_southwest\", 0, character_gety(Character))"
 for y=13,15 do
 	place_setlandon(zone, 18, y, script)
 end

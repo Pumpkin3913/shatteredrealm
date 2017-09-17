@@ -1,27 +1,27 @@
 #!/usr/bin/lua
 
-local zone = player_getzone(Player)
-local x = player_getx(Player)
-local y = player_gety(Player)
+local zone = character_getzone(Character)
+local x = character_getx(Character)
+local y = character_gety(Character)
 
 -- Check mana.
 local gauge = "mana"
 local cost = 1
-if gauge_getval(Player, gauge) < cost then
-	player_message(Player, "Tu n'as pas assez de "..gauge..".")
+if gauge_getval(Character, gauge) < cost then
+	character_message(Character, "Tu n'as pas assez de "..gauge..".")
 	return
 end
 
 -- Check if soul-vessel in hand.
-local hand = player_gettag(Player, "hand")
+local hand = character_gettag(Character, "hand")
 if not hand or hand == "" or hand == "EMPTY" then
-	player_message(Player, "Tu dois tenir un réceptacle d'âme en main.")
+	character_message(Character, "Tu dois tenir un réceptacle d'âme en main.")
 	return
 end
 
 local state = artifact_gettag(hand, "soul_vessel")
 if state ~= "full" and state ~= "empty" then
-	player_message(Player, "L'objet tenu en main n'est pas un réceptacle d'âme.")
+	character_message(Character, "L'objet tenu en main n'est pas un réceptacle d'âme.")
 	return
 end
 
@@ -37,20 +37,20 @@ local function fun(x, y, vessel, vessel_content)
 			-- Capture soul.
 			place_settag(zone, x, y, "soul_vessel", "empty")
 			artifact_settag(vessel, "soul_vessel", "full")
-			gauge_decrease(Player, gauge, cost)
-			player_message(Player, "L'âme est prise à ce lieu.")
+			gauge_decrease(Character, gauge, cost)
+			character_message(Character, "L'âme est prise à ce lieu.")
 		else
-			player_message(Player, "Il n'y a pas d'âme à capturer, ici.")
+			character_message(Character, "Il n'y a pas d'âme à capturer, ici.")
 		end
 	else -- vessel is full
 		if place_content == "empty" then
 			-- Bind soul.
 			artifact_settag(vessel, "soul_vessel", "empty")
 			place_settag(zone, x, y, "soul_vessel", "full")
-			gauge_decrease(Player, gauge, cost)
-			player_message(Player, "L'âme est liée à ce lieu.")
+			gauge_decrease(Character, gauge, cost)
+			character_message(Character, "L'âme est liée à ce lieu.")
 		else
-			player_message(Player, "Il y a déjà une âme, ici.")
+			character_message(Character, "Il y a déjà une âme, ici.")
 		end
 	end
 	
@@ -63,5 +63,5 @@ and not fun(x, y+1, hand, state)
 and not fun(x-1, y, hand, state)
 and not fun(x+1, y, hand, state)
 then
-	player_message(Player, "Il n'y a pas de réceptacle d'âme, ici.")
+	character_message(Character, "Il n'y a pas de réceptacle d'âme, ici.")
 end

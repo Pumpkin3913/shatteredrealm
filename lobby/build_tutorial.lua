@@ -35,9 +35,9 @@ y = y-3
 
 build_horizontal_wall(y)
 place_setlandon(zone, x_mid, y, "\
-player_message(Player, \"* * *\")\
-player_message(Player, \"Pour interagir avec certains éléments, il suffit de marcher dessus.\")\
-player_message(Player, \"Essaye de marcher sur ces dalles, puis va jusqu'à la salle suivante.\")\
+character_message(Character, \"* * *\")\
+character_message(Character, \"Pour interagir avec certains éléments, il suffit de marcher dessus.\")\
+character_message(Character, \"Essaye de marcher sur ces dalles, puis va jusqu'à la salle suivante.\")\
 ")
 
 y = y-3
@@ -50,18 +50,18 @@ place_setlandon(zone, w-3, y, "dofile(\"logic/puzzle_mosaic_walk.lua\")")
 y = y-3
 
 place_setaspect  (zone, 2,   y, tileset..":mosaic_b")
-place_setlandon(zone, 2,   y, "player_setxy(Player, "..w-3 ..", "..y..")")
+place_setlandon(zone, 2,   y, "character_setxy(Character, "..w-3 ..", "..y..")")
 place_setaspect  (zone, w-3, y, tileset..":mosaic_b")
-place_setlandon(zone, w-3, y, "player_setxy(Player, 2, "..y..")")
+place_setlandon(zone, w-3, y, "character_setxy(Character, 2, "..y..")")
 
 y = y-2
 
 build_horizontal_wall(y)
 place_setlandon(zone, x_mid, y, "\
-player_message(Player, \"* * *\")\
-player_message(Player, \"Pour interagir avec un objet, mets-toi devant et entre une commande.\")\
-player_message(Player, \"Les commandes commencent par \'/\'. Essaye de /lire ce livre.\")\
-player_message(Player, \"Tiens-toi devant ce livre, entre '/lire' et valide avec la touche Entrée.\")\
+character_message(Character, \"* * *\")\
+character_message(Character, \"Pour interagir avec un objet, mets-toi devant et entre une commande.\")\
+character_message(Character, \"Les commandes commencent par \'/\'. Essaye de /lire ce livre.\")\
+character_message(Character, \"Tiens-toi devant ce livre, entre '/lire' et valide avec la touche Entrée.\")\
 ")
 
 y = y-4
@@ -73,11 +73,11 @@ y = y-3
 
 build_horizontal_wall(y)
 place_setlandon(zone, x_mid, y, "\
-player_message(Player, \"* * *\")\
-player_message(Player, \"Les commandes peuvent être enregistrées dans les touches Fx et rapidement réutilisées.\")\
-player_message(Player, \"Appuyer sur shift + F1 sauvegarde la commande courante dans F1.\")\
-player_message(Player, \"F1 ajoute le texte sauvegardé dans la commande. (Échap nettoie la ligne de commande.)\")\
-player_message(Player, \"Sauvegarde la commande '/lire' pour lire rapidement ces livres, de gauche à droite. \")\
+character_message(Character, \"* * *\")\
+character_message(Character, \"Les commandes peuvent être enregistrées dans les touches Fx et rapidement réutilisées.\")\
+character_message(Character, \"Appuyer sur shift + F1 sauvegarde la commande courante dans F1.\")\
+character_message(Character, \"F1 ajoute le texte sauvegardé dans la commande. (Échap nettoie la ligne de commande.)\")\
+character_message(Character, \"Sauvegarde la commande '/lire' pour lire rapidement ces livres, de gauche à droite. \")\
 ")
 
 y = y-4
@@ -101,10 +101,10 @@ y = y-3
 
 build_horizontal_wall(y)
 place_setlandon(zone, x_mid, y, "\
-player_message(Player, \"* * *\")\
-player_message(Player, \"Il est possible d'interagir avec certains éléments de façon plus complexe.\")\
-player_message(Player, \"Essaye d'/ouvrir et de /fermer ces objets.\")\
-player_message(Player, \"Recherche des indices sur les commandes à travers le jeu.\")\
+character_message(Character, \"* * *\")\
+character_message(Character, \"Il est possible d'interagir avec certains éléments de façon plus complexe.\")\
+character_message(Character, \"Essaye d'/ouvrir et de /fermer ces objets.\")\
+character_message(Character, \"Recherche des indices sur les commandes à travers le jeu.\")\
 ")
 
 y = y-4
@@ -150,6 +150,6 @@ place_setaspect(zone, x_mid+2, y-2, tileset..":roof_endrgt")
 loadfile("build/tools/openclose_build.lua")(zone, x_mid, y, "close", tileset..":bigdoor", tileset..":bigdoor_closed")
 place_settag(zone, x_mid, y, "openclose_selfclose", selfclose_duration)
 
-place_setlandon(zone, x_mid, y, "player_changezone(Player, \""..lobby_zone.."\", "..lobby_x..", "..lobby_y..")")
+place_setlandon(zone, x_mid, y, "character_changezone(Character, \""..lobby_zone.."\", "..lobby_x..", "..lobby_y..")")
 
 return zone, entrance_x, entrance_y

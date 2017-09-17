@@ -2,4 +2,4 @@
 
 local zone, x, y = string.match(Arg, "(.*) (.*) (.*)")
 
-player_changezone(Player, zone, x, y)
+character_changezone(Character, zone, x, y)

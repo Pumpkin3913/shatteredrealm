@@ -1,26 +1,26 @@
 #!/usr/bin/lua
 
-local zone = player_getzone(Player)
-local x = player_getx(Player)
-local y = player_gety(Player)
+local zone = character_getzone(Character)
+local x = character_getx(Character)
+local y = character_gety(Character)
 
 -- Check mana.
 local gauge = "mana"
 local cost = 1
-if gauge_getval(Player, gauge) < cost then
-	player_message(Player, "Tu n'as pas assez de "..gauge..".")
+if gauge_getval(Character, gauge) < cost then
+	character_message(Character, "Tu n'as pas assez de "..gauge..".")
 	return
 end
 
 -- Check place.
 local tag = place_gettag(zone, x, y, "sesame")
 if not tag or tag == "" then
-	player_message(Player, "Ce sort n'a aucun effet ici.")
+	character_message(Character, "Ce sort n'a aucun effet ici.")
 	return
 end
 
 -- Spend mana.
-gauge_decrease(Player, gauge, cost)
+gauge_decrease(Character, gauge, cost)
 
 -- Do the effect.
 zone, x, y = string.match(tag, "(.*)/(.*)-(.*)")

@@ -50,7 +50,7 @@ place_setaspect(zone, 8,  4, tileset..":trees_rgt")
 place_setaspect(zone, 9,  4, tileset..":trees_lft")
 place_setaspect(zone, 10, 4, tileset..":trees_rgt")
 
-local script = "player_changezone(Player, \"forest_south\", 18, player_gety(Player))"
+local script = "character_changezone(Character, \"forest_south\", 18, character_gety(Character))"
 for y=13,15 do
 	place_setlandon(zone, 0, y, script)
 end

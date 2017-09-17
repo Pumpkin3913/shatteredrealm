@@ -1,6 +1,6 @@
 #!/usr/bin/lua
 
-local zone = player_getzone(Player)
+local zone = character_getzone(Character)
 local filename = "saved_zone_"..zone..".txt"
 if Arg then
 	filename = Arg
@@ -8,7 +8,7 @@ end
 
 local file, message = io.open(filename, "r")
 if not file then
-	player_message(Player, "/load command: " .. message)
+	character_message(Character, "/load command: " .. message)
 else
 	local w = zone_getwidth(zone)
 	local h = zone_getheight(zone)
@@ -22,7 +22,7 @@ else
 
 	local message = "Screen '"..zone.."' loaded from file '"..filename.."'."
 	info(message)
-	player_message(Player, message)
+	character_message(Character, message)
 	file:close()
 end
 

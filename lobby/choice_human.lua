@@ -1,3 +1,3 @@
 #!/usr/bin/lua
 
-player_message(Player, "Ce choix n'est pas encore disponible.")
+character_message(Character, "Ce choix n'est pas encore disponible.")

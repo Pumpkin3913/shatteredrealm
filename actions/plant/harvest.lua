@@ -1,13 +1,13 @@
 #!/usr/bin/lua
 
-local zone = player_getzone(Player);
-local x = player_getx(Player);
-local y = player_gety(Player);
+local zone = character_getzone(Character);
+local x = character_getx(Character);
+local y = character_gety(Character);
 
--- Get artifact in player's hands.
-local artifact = player_gettag(Player, "hand");
+-- Get artifact in character's hands.
+local artifact = character_gettag(Character, "hand");
 if not artifact or artifact == "" then
-	player_message(Player, "Tu ne peux pas /récolter.");
+	character_message(Character, "Tu ne peux pas /récolter.");
 	return;
 end
 
@@ -26,13 +26,13 @@ local function fun(x, y)
 	if place_gettag(zone, x, y, "plant_state") == "mature" then
 		-- Check if artifact held in hand.
 		if artifact == "EMPTY" then
-			player_message(Player, "Tu dois tenir un conteneur en main.");
+			character_message(Character, "Tu dois tenir un conteneur en main.");
 			return true;
 		end
 
 		-- Check if container.
 		if not inventory then
-			player_message(Player, name.." n'est pas un conteneur.");
+			character_message(Character, name.." n'est pas un conteneur.");
 			return true;
 		end
 
@@ -41,11 +41,11 @@ local function fun(x, y)
 		local aspect = place_gettag(zone, x, y, "plant_aspect");
 		local added = inventory_add(inventory, 1, plant);
 		if added <= 0 then
-			player_message(Player, "Tu n'as plus de place dans : "..name);
+			character_message(Character, "Tu n'as plus de place dans : "..name);
 			return true;
 		end
 
-		player_message(Player, "Tu récoltes "..added.." "..plant.." dans : "..name);
+		character_message(Character, "Tu récoltes "..added.." "..plant.." dans : "..name);
 		loadfile("logic/plant/destroy.lua")(zone, x, y);
 
 		-- Give seed.
@@ -56,10 +56,10 @@ local function fun(x, y)
 		local seed = "Spore rouge"; -- XXX
 		added = inventory_add(inventory, 1, seed)
 		if added <= 0 then
-			player_message(Player, "Oups. "..seed.." déborde de : "..name);
+			character_message(Character, "Oups. "..seed.." déborde de : "..name);
 		else
-			player_message(Player, "Tu récoltes également : "..seed);
-			player_hint(Player, aspect, "/semer "..seed);
+			character_message(Character, "Tu récoltes également : "..seed);
+			character_hint(Character, aspect, "/semer "..seed);
 		end
 		return true;
 	end
@@ -83,15 +83,15 @@ local function fun(x, y)
 		-- Make leaves bag.
 		local bag = create_artifact("Sac de feuilles"..color);
 		artifact_settag(bag, "inventory", create_inventory(3));
-		player_settag(Player, "hand", bag);
-		player_message(Player, "Tu fabriques un sac avec des feuilles.");
-		player_hint(Player, tileset.."_leavesbag", "/contenu");
+		character_settag(Character, "hand", bag);
+		character_message(Character, "Tu fabriques un sac avec des feuilles.");
+		character_hint(Character, tileset.."_leavesbag", "/contenu");
 		return true;
 	end
 
 	-- Check if container.
 	if not inventory then
-		player_message(Player, name.." n'est pas un conteneur.");
+		character_message(Character, name.." n'est pas un conteneur.");
 		return true;
 	end
 	
@@ -99,9 +99,9 @@ local function fun(x, y)
 	local item = "Feuilles"..color;
 	local added = inventory_add(inventory, 1, item);
 	if added > 0 then
-		player_message(Player, "Tu récoltes "..added.." "..item.." dans : "..name);
+		character_message(Character, "Tu récoltes "..added.." "..item.." dans : "..name);
 	else
-		player_message(Player, "Tu n'as plus de place dans : "..name);
+		character_message(Character, "Tu n'as plus de place dans : "..name);
 	end
 	return true;
 end
@@ -112,5 +112,5 @@ and not fun(x, y+1)
 and not fun(x-1, y)
 and not fun(x+1, y)
 then
-	player_message(Player, "Il n'y a rien à /récolter.");
+	character_message(Character, "Il n'y a rien à /récolter.");
 end

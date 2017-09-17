@@ -1,12 +1,12 @@
 #!/usr/bin/lua
 
-local zone = player_getzone(Player)
-local x = player_getx(Player)
-local y = player_gety(Player)
+local zone = character_getzone(Character)
+local x = character_getx(Character)
+local y = character_gety(Character)
 
 -- Check place.
 if place_gettag(zone, x, y, "portal") ~= "true" then
-	player_message(Player, "Ce sort n'a aucun effet ici.")
+	character_message(Character, "Ce sort n'a aucun effet ici.")
 	return
 end
 
@@ -30,20 +30,20 @@ end
 -- Check mana.
 local gauge = "mana"
 local cost = 2
-if gauge_getval(Player, gauge) < cost then
-	player_message(Player, "Tu n'as pas assez de "..gauge..".")
+if gauge_getval(Character, gauge) < cost then
+	character_message(Character, "Tu n'as pas assez de "..gauge..".")
 	return
 end
 
 -- Check name.
 local name = place_gettag(zone, x, y, "text")
 if not name or name == "" then
-	player_message(Player, "Il n'y a pas de nom de fragment inscrit ici.")
+	character_message(Character, "Il n'y a pas de nom de fragment inscrit ici.")
 	return
 end
 
 local prepare = function(id)
-	gauge_decrease(Player, gauge, cost)
+	gauge_decrease(Character, gauge, cost)
 	place_setaspect(zone, x, y, tileset..":bigdoor")
 	place_deltag(zone, x, y, "text")
 	place_deltag(zone, x, y, "text_type")
@@ -57,5 +57,5 @@ elseif name == "Empyrithéa" then
 	local id = loadfile("logic/generate/empyrithea.lua")(zone, x, y)
 	prepare(id)
 else
-	player_message(Player, "Ceci n'est pas un nom de fragment.")
+	character_message(Character, "Ceci n'est pas un nom de fragment.")
 end

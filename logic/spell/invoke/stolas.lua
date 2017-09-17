@@ -1,16 +1,16 @@
 #!/usr/bin/lua
 
-player_message(Player, "Tu sens une présence démoniaque près de toi.")
+character_message(Character, "Tu sens une présence démoniaque près de toi.")
 
 local whisp = function(msg)
-	player_message(Player, "Stolas te murmure: \""..msg.."\"")
+	character_message(Character, "Stolas te murmure: \""..msg.."\"")
 end
 
-local race = player_gettag(Player, "race")
+local race = character_gettag(Character, "race")
 
-if race == "demon" and player_gettag(Player, "have chalk") ~= "true" then
+if race == "demon" and character_gettag(Character, "have chalk") ~= "true" then
 	whisp("Tu n'as même pas de craie. Tiens. Fais-en bon usage.")
-	player_settag(Player, "have chalk", "true")
+	character_settag(Character, "have chalk", "true")
 else
 	local dice = c_rand(3)
 	if dice == 1 then
@@ -22,4 +22,4 @@ else
 	end
 end
 
-player_message(Player, "La présence démoniaque disparait.")
+character_message(Character, "La présence démoniaque disparait.")

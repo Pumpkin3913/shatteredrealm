@@ -1,8 +1,8 @@
 #!/usr/bin/lua
 
-local zone = player_getzone(Player);
-local x = player_getx(Player);
-local y = player_gety(Player);
+local zone = character_getzone(Character);
+local x = character_getx(Character);
+local y = character_gety(Character);
 
 local function fun(x, y);
 
@@ -17,7 +17,7 @@ local function fun(x, y);
 	local nodescription = false;
 	local description = place_gettag(zone, x, y, "description");
 	if description and description ~= "" then
-		player_message(Player, description);
+		character_message(Character, description);
 	-- Else, automatically create a description.
 	elseif string.match(tile, "tombstone") then
 		local msg = "Ceci est une pierre tombale.";
@@ -25,7 +25,7 @@ local function fun(x, y);
 		if text and text ~= "" then
 			msg = msg.." Elle porte une inscription gravée.";
 		end
-		player_message(Player, msg);
+		character_message(Character, msg);
 	elseif string.match(tile, "coffer") then
 		local msg = "Ceci est un coffre ";
 
@@ -39,7 +39,7 @@ local function fun(x, y);
 		if not notclose then
 			msg = msg.." Il est fermé.";
 		end
-		player_message(Player, msg);
+		character_message(Character, msg);
 	elseif string.match(tile, "book") then
 		local msg = "Ceci est un livre";
 		if string.match(tile, "book_b") then
@@ -51,11 +51,11 @@ local function fun(x, y);
 		else
 			msg = msg.." Il est ouvert.";
 		end
-		player_message(Player, msg);
+		character_message(Character, msg);
 	elseif string.match(tile, "crystal") then
 		local level = string.match(tile, "crystal_(.*)");
 		if level == "empty" then
-			player_message(Player, "Ceci est un emplacement de cristal, mais il est vide.");
+			character_message(Character, "Ceci est un emplacement de cristal, mais il est vide.");
 		else
 			local msg = "Ceci est un cristal";
 			if tileset == "volcano" then
@@ -76,12 +76,12 @@ local function fun(x, y);
 			else -- if level >= 7 then
 				msg = msg.." Il est surchargé !";
 			end
-			player_message(Player, msg);
+			character_message(Character, msg);
 		end
 	elseif place_gettag(zone, x, y, "text_type") == "chalk" then
-		player_message(Player, "Ceci est une inscription tracée à la craie.");
+		character_message(Character, "Ceci est une inscription tracée à la craie.");
 	elseif place_gettag(zone, x, y, "text_type") == "engraving" then
-		player_message(Player, "Ceci est une très ancienne inscription gravée.");
+		character_message(Character, "Ceci est une très ancienne inscription gravée.");
 	else
 		nodescription = true;
 	end
@@ -89,15 +89,15 @@ local function fun(x, y);
 	-- Check if contains key.
 	local key = place_gettag(zone, x, y, "content_key");
 	if notclose and key and key ~= "" then
-		-- Check if player already has it.
-		if player_gettag(Player, "have "..key) == "true" then
-			player_message(Player, "Tu as déjà : "..key);
+		-- Check if character already has it.
+		if character_gettag(Character, "have "..key) == "true" then
+			character_message(Character, "Tu as déjà : "..key);
 			return true;
 		end
 
 		-- Add key to keyring.
-		player_settag(Player, "have "..key, "true");
-		player_message(Player, "La clef se copie magiquement à ton trousseau : "..key);
+		character_settag(Character, "have "..key, "true");
+		character_message(Character, "La clef se copie magiquement à ton trousseau : "..key);
 		return true;
 	end
 
@@ -115,14 +115,14 @@ local function fun(x, y);
 			n = n+1;
 			artifact = place_gettag(zone, x, y, "content_artifact_"..n);
 		until(not artifact or artifact == "");
-		player_message(Player, msg);
+		character_message(Character, msg);
 		return true;
 	end
 
 	-- Check if contains ore.
 	local ore = place_gettag(zone, x, y, "mining_content");
 	if ore and ore ~= "" then
-		player_message(Player, "Ce rocher peut être miné pour récupérer : "..ore);
+		character_message(Character, "Ce rocher peut être miné pour récupérer : "..ore);
 		return true;
 	end
 
@@ -135,5 +135,5 @@ and not fun(x, y+1)
 and not fun(x-1, y)
 and not fun(x+1, y)
 then
-	player_message(Player, "Tu ne trouves rien.");
+	character_message(Character, "Tu ne trouves rien.");
 end

@@ -1,14 +1,14 @@
 #!/usr/bin/lua
 
-local artifact = player_gettag(Player, "hand");
+local artifact = character_gettag(Character, "hand");
 if not artifact or artifact == "" or artifact == "EMPTY" then
-	player_message(Player, "Tu n'as rien en main à /jeter.");
+	character_message(Character, "Tu n'as rien en main à /jeter.");
 	return;
 end
 
 local name = artifact_getname(artifact);
 if Arg ~= name then
-	player_message(Player, "Es-tu sûr ? Confirme avec /jeter "..name);
+	character_message(Character, "Es-tu sûr ? Confirme avec /jeter "..name);
 	return;
 end
 
@@ -18,5 +18,5 @@ if inventory and inventory ~= "" then
 end
 
 delete_artifact(artifact);
-player_settag(Player, "hand", "EMPTY");
-player_message(Player, "Tu as /jeté : "..name..".");
+character_settag(Character, "hand", "EMPTY");
+character_message(Character, "Tu as /jeté : "..name..".");
