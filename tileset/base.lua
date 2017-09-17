@@ -1,5 +1,8 @@
 #!/usr/bin/lua
 
+-- Default tile.
+register_aspect("_", row+0)
+
 -- Row 1: Icons
 register_aspect("void", row+0)
 register_aspect("at", row+1)

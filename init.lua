@@ -17,6 +17,6 @@ dofile("lobby/build_lobby.lua")
 dofile("build/demon/build.lua")
 dofile("build/forest/build.lua")
 
-open(31337)
+open(31337, "lobby", 16, 16)
 info("Lua Init OK.")
 
