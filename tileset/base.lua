@@ -58,10 +58,13 @@ register_aspect("black_armor", row+3)
 -- register_aspect("", row+7)
 row = row+8
 
--- Row 6: Unused
+-- Row 6: Tree character
+register_aspect("treefolk", row+0)
+register_aspect("treefolk_corrupted", row+1)
+register_aspect("treefolk_underground", row+2)
 row = row+8
 
--- Row 7: Unused
+-- Row 7: Bags
 register_aspect("forest_leavesbag", row+0)
 register_aspect("forest_corrupted_leavesbag", row+1)
 register_aspect("forest_underground_leavesbag", row+2)
