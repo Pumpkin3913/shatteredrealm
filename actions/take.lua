@@ -51,7 +51,13 @@ if not Arg or Arg == "" then
 	name = artifact_getname(inventory, first);
 	returned = artifact_move(inventory, first, hand);
 else
-	return; -- TODO
+	local i, a = loadfile("logic/recursive_inventory_search.lua")(Arg, inventory);
+	if not i or not a then
+		character_message(Character, Arg.." : pas trouvé.");
+		return;
+	end
+	name = artifact_getname(i, a);
+	returned = artifact_move(i, a, hand);
 end
 
 if returned then

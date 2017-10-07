@@ -13,7 +13,7 @@ end
 
 -- If arg: try to store in target container.
 if Arg and Arg ~= "" then
-	local inventory, artifact = loadfile("logic/recursive_inventory_search.lua")(Arg);
+	local inventory, artifact = loadfile("logic/recursive_character_search.lua")(Arg);
 	if not inventory or not artifact then
 		character_message(Character, Arg.." : pas trouvé dans ton inventaire.");
 		return;

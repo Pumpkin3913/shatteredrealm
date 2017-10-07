@@ -11,7 +11,7 @@ if not seed or seed == "" then
 	return;
 end
 
-local inventory, artifact = loadfile("logic/recursive_inventory_search.lua")(seed);
+local inventory, artifact = loadfile("logic/recursive_character_search.lua")(seed);
 if not inventory or not artifact then
 	character_message(Character, "Il n'y a pas de "..seed.." dans ton inventaire.");
 	return;

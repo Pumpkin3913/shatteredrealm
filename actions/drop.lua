@@ -56,7 +56,7 @@ end
 
 -- Else: recursively search character's inventory.
 
-local inventory, artifact = loadfile("logic/recursive_inventory_search.lua")(Arg);
+local inventory, artifact = loadfile("logic/recursive_character_search.lua")(Arg);
 if not inventory or not artifact then
 	character_message(Character, Arg.." : pas trouvé dans ton inventaire.");
 	return;

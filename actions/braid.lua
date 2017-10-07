@@ -9,7 +9,7 @@ if not ingredient or ingredient == "" then
 	return;
 end
 
-local inventory, artifact = loadfile("logic/recursive_inventory_search.lua")(ingredient);
+local inventory, artifact = loadfile("logic/recursive_character_search.lua")(ingredient);
 if not inventory or not artifact then
 	character_message(Character, ingredient.." : pas trouvé dans ton inventaire.");
 	return;
