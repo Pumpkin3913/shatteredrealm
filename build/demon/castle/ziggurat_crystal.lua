@@ -29,7 +29,7 @@ loadfile("build/tools/openclose_addslave.lua")(zone, x, y, interior, 4, 9, 1,
 
 -- Add writing on the wall.
 place_setaspect(interior, 3, 1, tileset..":wall_bot_written")
-place_settag(interior, 3, 1, "text", "To change the color of the crystal, set the floor tiles to the same color.")
+place_settag(interior, 3, 1, "text", "Pour charger le cristal, illumine les dalles en marchant dessus.");
 place_settag(interior, 3, 1, "text_type", "chalk")
 
 -- Add puzzle to light up the crystal.

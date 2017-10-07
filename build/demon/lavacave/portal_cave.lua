@@ -73,9 +73,9 @@ local texts = {
 	"Que le monde ait été fragmenté ne nous empèchera pas de voyager.",
 	"Il n'y a plus rien à /miner, ici. Nous avons creusé aussi profondément que nous l'osions.",
 	"Ne creusez pas trop profondément, sous peine de tomber dans le Grand Vide !",
-	"Le Créateur nous a laissé des ressources limités, mais nous pouvons en prendre ailleurs.",
+	"Le Créateur nous a laissé des ressources limitées, mais nous pouvons en prendre ailleurs.",
 	"Les volcans d'Empyrithéa ont été séparés de Kalzakrax par le Cataclysme.",
-	"Nous pouvons trouver du minerai d'Airin et des pierres précieuses dans les volcans."
+	"Nous pouvons toujours trouver du minerai d'Airin et des pierres précieuses dans les volcans."
 };
 
 local function get(level, x, y)
