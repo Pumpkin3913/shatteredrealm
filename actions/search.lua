@@ -102,19 +102,13 @@ local function fun(x, y);
 	end
 
 	-- Check if contains artifact.
-	local artifact = place_gettag(zone, x, y, "content_artifact_1");
-	if notclose and artifact and artifact ~= "" then
-		local n = 1;
-		local msg = "Contenu : ";
-		repeat
-			if artifact == "EMPTY" then
-				msg = msg.."("..n..") Vide ; ";
-			else
-				msg = msg.."("..n..") "..artifact_getname(artifact).." ; ";
-			end
-			n = n+1;
-			artifact = place_gettag(zone, x, y, "content_artifact_"..n);
-		until(not artifact or artifact == "");
+	local inventory = place_gettag(zone, x, y, "inventory");
+	if notclose and inventory and inventory ~= "" then
+		local msg = "Contenu ["..inventory_total(inventory).."/"..inventory_size(inventory).."] : ";
+		local content = inventory_get_all(inventory);
+		for _, artifact in ipairs(content) do
+			msg = msg..artifact_getname(inventory, artifact).." ; ";
+		end
 		character_message(Character, msg);
 		return true;
 	end

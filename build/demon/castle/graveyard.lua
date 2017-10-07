@@ -53,19 +53,19 @@ place_settag(zone, x, y, "title", "Grimoire d'Animancie")
 place_settag(zone, x, y, "openclose_selfclose", 30)
 
 -- Coffer of skulls.
-local function new_skull()
-	local id = create_artifact("Crâne")
-	artifact_settag(id, "soul_vessel", "empty")
-	return id
+local function new_skull(inventory)
+	local id = create_artifact(inventory, "Crâne", "hung");
+	artifact_settag(inventory, id, "soul_vessel", "empty");
+	return id;
 end
 
-x = 8
-y = 31
-loadfile("build/tools/coffer.lua")(tileset, zone, x, y, "unique")
-place_settag(zone, x, y, "content_artifact_1", new_skull())
-place_settag(zone, x, y, "content_artifact_2", new_skull())
-place_settag(zone, x, y, "content_artifact_3", "EMPTY")
-place_settag(zone, x, y, "content_artifact_4", "EMPTY")
+x = 8;
+y = 31;
+loadfile("build/tools/coffer.lua")(tileset, zone, x, y, "unique");
+local inventory = create_inventory(4);
+place_settag(zone, x, y, "inventory", inventory);
+new_skull(inventory);
+new_skull(inventory);
 
 -- Soul-vessel graves.
 local function put_cross(x, y, soul)

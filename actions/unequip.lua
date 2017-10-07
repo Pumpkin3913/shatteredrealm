@@ -1,14 +1,16 @@
 #!/usr/bin/lua
 
+-- TODO: REVAMP
+
 -- Check hand.
 local hand = character_gettag(Character, "hand");
 if not hand or hand == "" then
-	character_message(Character, "Tu n'as pas de main.");
+	warning("Equioment slot 'hand' invalid.");
 	return;
 end
 
 -- Check if hand is empty.
-if hand ~= "EMPTY" then
+if inventory_available(hand) <= 0 then
 	character_message(Character, "Tu dois avoir les mains vides.");
 	return;
 end
@@ -32,13 +34,18 @@ if not slot or slot == "" then
 	return;
 end
 
-local artifact = character_gettag(Character, slot);
-if not artifact or artifact == "" or artifact == "EMPTY" then
+local inventory, artifact = loadfile("logic/get_equipment.lua")(slot);
+if not inventory or not artifact then
 	character_message(Character, "Tu n'as pas de : "..slot);
 	return;
 end
 
 -- Move equipment to hand.
-character_settag(Character, slot, hand);
-character_settag(Character, "hand", artifact);
-character_message(Character, "Tu enlèves : "..artifact_getname(artifact));
+local name = artifact_getname(inventory, artifact);
+local success = artifact_move(inventory, artifact, hand);
+if success then
+	character_message(Character, "Tu enlèves : "..name);
+else
+	warning("Unequip: inventory prediction error.");
+end
+-- TODO: prevent unequiping non-empty belt.

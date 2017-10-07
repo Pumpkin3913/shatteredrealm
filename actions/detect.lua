@@ -13,7 +13,7 @@ local function fun(x, y)
 	if content == "full" then
 		character_message(Character, "Ce lieu contient une âme.")
 	elseif content == "empty" then
-		character_message(Character, "Ce lieu peut contenir une âme.")
+		character_message(Character, "Ce lieu peut contenir une âme mais n'en contient pas.")
 	else
 		return false
 	end
@@ -31,12 +31,21 @@ then
 end
 
 -- Also check held item.
+
 local hand = character_gettag(Character, "hand")
-if hand ~= "EMPTY" then
-	local vessel = artifact_gettag(hand, "soul_vessel")
-	if vessel == "full" then
-		character_message(Character, "L'objet en main contient une âme.")
-	elseif vessel == "empty" then
-		character_message(Character, "L'objet en main peut contenir une âme.")
-	end
+if not hand or hand == "" then
+	return;
+end
+
+local hand_content = inventory_get_all(hand);
+if #hand_content <= 0 then
+	return;
+end
+
+local artifact = hand_content[1];
+local vessel = artifact_gettag(hand, artifact, "soul_vessel")
+if vessel == "full" then
+	character_message(Character, "L'objet en main contient une âme.")
+elseif vessel == "empty" then
+	character_message(Character, "L'objet en main peut contenir une âme mais n'en contient pas.")
 end

@@ -8,58 +8,58 @@ local tileset = "redruins"
 
 local function recursive_1D_split(left, right, list, minsize)
 	if right - left > minsize*2 then
-		local middle = left + c_rand(right-left-minsize*2)-1 + minsize
-		table.insert(list, middle)
+		local middle = left + c_rand(right-left-minsize*2)-1 + minsize;
+		table.insert(list, middle);
 
-		recursive_1D_split(left,  middle, list, minsize)
-		recursive_1D_split(middle, right, list, minsize)
+		recursive_1D_split(left,  middle, list, minsize);
+		recursive_1D_split(middle, right, list, minsize);
 	end
 end
 
 -- Buildings are 7 * 9 at most and are built from top-left.
 
-local Xs = { x, x+w-7 }
-recursive_1D_split(x, x+w-7, Xs, 8)
-table.sort(Xs)
+local Xs = { x, x+w-7 };
+recursive_1D_split(x, x+w-7, Xs, 8);
+table.sort(Xs);
 
-local Ys = { y, y+h-9 }
-recursive_1D_split(y, y+h-9, Ys, 10)
-table.sort(Ys)
+local Ys = { y, y+h-9 };
+recursive_1D_split(y, y+h-9, Ys, 10);
+table.sort(Ys);
 
 -- TODO: random puzzle.
 -- TODO: rare basement for towers.
 
 -- Treasures.
 
-local function random_artifact()
+local function random_artifact(inventory)
 	local dice = c_rand(10);
 
 	-- Belt.
 	if dice == 1 then
-		local artifact = create_artifact("Ancienne ceinture");
-		artifact_settag(artifact, "content_artifact_1", "EMPTY");
-		artifact_settag(artifact, "equipment", "belt");
+		local artifact = create_artifact(inventory, "Ancienne ceinture", "belt");
+		artifact_settag(inventory, artifact, "equipment", "belt");
+		artifact_settag(inventory, artifact, "inventory", create_inventory(1, "hung"));
 		return artifact;
 	end
 
 	-- Bag.
 	if dice == 2 then
-		local artifact = create_artifact("Ancien sac de cuir");
-		artifact_settag(artifact, "inventory", create_inventory(4));
+		local artifact = create_artifact(inventory, "Ancien sac de cuir", "hung");
+		artifact_settag(inventory, artifact, "inventory", create_inventory(4, "ingredient"));
 		return artifact;
 	end
 
 	-- Trident.
 	if dice <= 4 then
-		local artifact = create_artifact("Trident d'Airin");
-		artifact_settag(artifact, "damage", "physical:1");
+		local artifact = create_artifact(inventory, "Trident d'Airin", "hung");
+		artifact_settag(inventory, artifact, "damage", "physical:1");
 		return artifact;
 	end
 
 	-- Pickaxe.
 	if dice <= 6 then
-		local artifact = create_artifact("Pioche d'Airin");
-		artifact_settag(artifact, "mining_power", 1);
+		local artifact = create_artifact(inventory, "Pioche d'Airin", "hung");
+		artifact_settag(inventory, artifact, "mining_power", 1);
 		return artifact;
 	end
 
@@ -70,14 +70,18 @@ end
 local function treasure_small_coffer(zone, x, y, alt_tileset)
 	if not alt_tileset then alt_tileset = tileset; end
 	loadfile("build/tools/coffer.lua")(alt_tileset, zone, x, y, "common");
-	place_settag(zone, x, y, "content_artifact_1", random_artifact());
+	local inventory = create_inventory(1);
+	place_settag(zone, x, y, "inventory", inventory);
+	random_artifact(inventory);
 end
 
 local function treasure_big_coffer(zone, x, y, alt_tileset)
 	if not alt_tileset then alt_tileset = tileset; end
 	loadfile("build/tools/coffer.lua")(alt_tileset, zone, x, y, "rare");
-	for n=1,3 do
-		place_settag(zone, x, y, "content_artifact_"..n, random_artifact());
+	local inventory = create_inventory(3);
+	place_settag(zone, x, y, "inventory", inventory);
+	for _=1,3 do
+		random_artifact(inventory);
 	end
 end
 

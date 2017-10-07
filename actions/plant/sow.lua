@@ -11,26 +11,14 @@ if not seed or seed == "" then
 	return;
 end
 
--- Get artifact in character's hands.
-local artifact = character_gettag(Character, "hand");
-if not artifact or artifact == "" or artifact == "EMPTY" then
-	character_message(Character, "Tu dois tenir ce qui contient ce que tu veux /semer.");
+local inventory, artifact = loadfile("logic/recursive_inventory_search.lua")(seed);
+if not inventory or not artifact then
+	character_message(Character, "Il n'y a pas de "..seed.." dans ton inventaire.");
 	return;
 end
+local quantity = artifact_getquantity(inventory, artifact);
 
--- Get inventory from artifact.
-local inventory = artifact_gettag(artifact, "inventory");
-if not inventory or inventory == "" then
-	character_message(Character, "L'objet tenu en main n'est pas un conteneur.");
-	return;
-end
-
--- Get available seeds.
-local quantity = inventory_get(inventory, seed);
-if quantity <= 0 then
-	character_message(Character, "Il n'y a pas de "..seed.." dans "..artifact_getname(artifact)..".");
-	return;
-end
+-- TODO: REVAMP
 
 -- Get plant from seed.
 local name;
@@ -45,22 +33,22 @@ aspect = "forest_underground:plant_1";
 
 -- TODO: check plant-to-grass compatibility. (Compare tilesets?)
 
-local n = 0;
+local count = 0;
 for x = p_x-1,p_x+1 do
 	for y = p_y-1,p_y+1 do
 		if quantity > 0 and place_gettag(zone, x, y, "plant_state") == "free" then;
 			loadfile("logic/plant/seed.lua")(zone, x, y, name, aspect);
-			n = n+1;
+			count = count+1;
 			quantity = quantity-1;
-			inventory_del(inventory, 1, seed);
+			delete_artifact(inventory, artifact, 1);
 		end
 	end
 end
 
-if n == 0 then
+if count == 0 then
 	character_message(Character, seed.." ne peut pas être planté ici.");
-elseif n == 1 then
-	character_message(Character, n.." "..seed.." prend racine.");
+elseif count == 1 then
+	character_message(Character, count.." "..seed.." prend racine.");
 else
-	character_message(Character, n.." "..seed.." prennent racine.");
+	character_message(Character, count.." "..seed.." prennent racine.");
 end

@@ -161,16 +161,15 @@ local function place_unique(x, y)
 	else -- if dice <= 3 then
 		-- Coffer of skulls.
 		loadfile("build/tools/coffer.lua")(tileset, zone, x, y, "rare")
-		for n=1,3 do
-			local artifact
+		local inventory = create_inventory(3);
+		place_settag(zone, x, y, "inventory", inventory);
+		for _=1,3 do
 			local dice = c_rand(3)
 			if dice <= 2 then
-				artifact = create_artifact("Crâne")
-				artifact_settag(artifact, "soul_vessel", "empty")
-			else -- if dice == 3 then
-				artifact = "EMPTY"
+				local id = create_artifact(inventory, "Crâne", "hung");
+				artifact_settag(inventory, id, "soul_vessel", "empty");
+			-- elseif dice == 3 then NOTHING
 			end
-			place_settag(zone, x, y, "content_artifact_"..n, artifact)
 		end
 	end
 end

@@ -1,53 +1,36 @@
 #!/usr/bin/lua
 
-local function list_inventory(artifact)
-	local inventory = artifact_gettag(artifact, "inventory");
-	if not inventory or inventory == "" then
+local function list_inventory(inventory)
+	if not inventory or inventory == "" or inventory == "0.0" then
 		return "";
 	end
 
-	local msg = "";
+	local msg = " ["..inventory_total(inventory).."/"..inventory_size(inventory).."]";
+	if inventory_total(inventory) <= 0 then
+		return msg.." Vide";
+	end
+
 	local list = inventory_get_all(inventory);
-	for name, quantity in pairs(list) do
-		msg = msg .. " "..quantity.." "..name.." ;";
+	for _, artifact in ipairs(list) do
+		local name = artifact_getname(inventory, artifact);
+		local quantity = artifact_getquantity(inventory, artifact);
+		if quantity == 0 then quantity = 1 end;
+		local subinventory = list_inventory(artifact_gettag(inventory, artifact, "inventory"));
+		if subinventory ~= "" then
+			subinventory = " ("..subinventory..")";
+		end
+		msg = msg.." "..quantity.." "..name..subinventory.." ;";
 	end
 
-	if msg == "" then
-		msg = "vide";
-	end
-
-	return " ["..msg.."]";
+	return msg;
 end
 
 local hand = character_gettag(Character, "hand");
 if hand and hand ~= "" then
-	if hand == "EMPTY" then
-		character_message(Character, "Mains : vide");
-	else
-		character_message(Character, "Mains : "..artifact_getname(hand)..list_inventory(hand));
-	end
+	character_message(Character, "Mains"..list_inventory(character_gettag(Character, "hand")));
 end
 
 local belt = character_gettag(Character, "belt");
 if belt and belt ~= "" then
-	if belt == "EMPTY" then
-		character_message(Character, "Ceinture : aucune");
-	else
-		character_message(Character, "Ceinture : "..artifact_getname(belt));
-		
-		local n = 1;
-		local artifact = artifact_gettag(belt, "content_artifact_"..n);
-		while artifact and artifact ~= "" do
-			local name;
-			if artifact == "EMPTY" then
-				name = "vide";
-			else
-				name = artifact_getname(artifact)..list_inventory(artifact);
-			end
-			character_message(Character, "    ("..n..") "..name..".");
-
-			n = n+1;
-			artifact = artifact_gettag(belt, "content_artifact_"..n);
-		end
-	end
+	character_message(Character, "Ceinture"..list_inventory(character_gettag(Character, "belt")));
 end

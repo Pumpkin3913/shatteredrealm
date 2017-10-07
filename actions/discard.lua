@@ -1,22 +1,18 @@
 #!/usr/bin/lua
 
-local artifact = character_gettag(Character, "hand");
-if not artifact or artifact == "" or artifact == "EMPTY" then
+-- Get artifact in character's hands.
+local hand, held = loadfile("logic/get_equipment.lua")("hand");
+if not hand or not held then
 	character_message(Character, "Tu n'as rien en main à /jeter.");
 	return;
 end
 
-local name = artifact_getname(artifact);
+local name = artifact_getname(hand, held);
 if Arg ~= name then
 	character_message(Character, "Es-tu sûr ? Confirme avec /jeter "..name);
 	return;
 end
 
-local inventory = artifact_gettag(artifact, "inventory");
-if inventory and inventory ~= "" then
-	delete_inventory(inventory);
-end
-
-delete_artifact(artifact);
-character_settag(Character, "hand", "EMPTY");
+loadfile("logic/recursive_inventory_delete.lua")(artifact_gettag(hand, held, "inventory"));
+delete_artifact(hand, held);
 character_message(Character, "Tu as /jeté : "..name..".");

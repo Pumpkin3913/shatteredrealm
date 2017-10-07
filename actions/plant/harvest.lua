@@ -4,20 +4,24 @@ local zone = character_getzone(Character);
 local x = character_getx(Character);
 local y = character_gety(Character);
 
--- Get artifact in character's hands.
-local artifact = character_gettag(Character, "hand");
-if not artifact or artifact == "" then
+-- Check hand.
+local hand = character_gettag(Character, "hand");
+if not hand or hand == "" then
 	character_message(Character, "Tu ne peux pas /récolter.");
 	return;
 end
 
-local name
-local inventory
+local name;
+local inventory;
+
+-- Get artifact in character's hands.
+local hand_content = inventory_get_all(hand);
+local artifact = hand_content[1];
 
 -- Get inventory from artifact.
-if artifact ~= "EMPTY" then
-	name = artifact_getname(artifact);
-	inventory = artifact_gettag(artifact, "inventory");
+if artifact then
+	name = artifact_getname(hand, artifact);
+	inventory = artifact_gettag(hand, artifact, "inventory");
 	if inventory == "" then inventory = nil; end
 end
 
@@ -25,7 +29,7 @@ local function fun(x, y)
 	-- Check if target is a plant.
 	if place_gettag(zone, x, y, "plant_state") == "mature" then
 		-- Check if artifact held in hand.
-		if artifact == "EMPTY" then
+		if not artifact then
 			character_message(Character, "Tu dois tenir un conteneur en main.");
 			return true;
 		end
@@ -39,13 +43,14 @@ local function fun(x, y)
 		-- Harvest plant.
 		local plant = place_gettag(zone, x, y, "plant_name");
 		local aspect = place_gettag(zone, x, y, "plant_aspect");
-		local added = inventory_add(inventory, 1, plant);
-		if added <= 0 then
+		local qtt = 1;
+		local added = create_artifact(inventory, plant, "ingredient", qtt);
+		if not added then
 			character_message(Character, "Tu n'as plus de place dans : "..name);
 			return true;
 		end
 
-		character_message(Character, "Tu récoltes "..added.." "..plant.." dans : "..name);
+		character_message(Character, "Tu récoltes "..qtt.." "..plant.." dans : "..name);
 		loadfile("logic/plant/destroy.lua")(zone, x, y);
 
 		-- Give seed.
@@ -54,12 +59,12 @@ local function fun(x, y)
 		end
 		-- local seed = server_gettag("seedof:"..plant); -- TODO
 		local seed = "Spore rouge"; -- XXX
-		added = inventory_add(inventory, 1, seed)
-		if added <= 0 then
-			character_message(Character, "Oups. "..seed.." déborde de : "..name);
-		else
+		added = create_artifact(inventory, seed, "ingredient");
+		if added then
 			character_message(Character, "Tu récoltes également : "..seed);
 			character_hint(Character, aspect, "/semer "..seed);
+		else
+			character_message(Character, "Oups. "..seed.." déborde de : "..name);
 		end
 		return true;
 	end
@@ -79,12 +84,12 @@ local function fun(x, y)
 		color = " violettes";
 	end
 
-	if artifact == "EMPTY" then
-		-- Make leaves bag.
-		local bag = create_artifact("Sac de feuilles"..color);
-		artifact_settag(bag, "inventory", create_inventory(3));
-		character_settag(Character, "hand", bag);
-		character_message(Character, "Tu fabriques un sac avec des feuilles.");
+	-- Make leaves bag.
+	if not artifact then
+		local bag_name = "Sac de feuilles"..color;
+		local bag = create_artifact(hand, bag_name, "hung");
+		artifact_settag(hand, bag, "inventory", create_inventory(3, "ingredient"));
+		character_message(Character, "Tu fabriques : "..bag_name);
 		character_hint(Character, tileset.."_leavesbag", "/contenu");
 		return true;
 	end
@@ -97,9 +102,10 @@ local function fun(x, y)
 	
 	-- Fill container with leaves.
 	local item = "Feuilles"..color;
-	local added = inventory_add(inventory, 1, item);
-	if added > 0 then
-		character_message(Character, "Tu récoltes "..added.." "..item.." dans : "..name);
+	local qtt = 1;
+	local added = create_artifact(inventory, item, "ingredient", qtt);
+	if added then
+		character_message(Character, "Tu récoltes "..qtt.." "..item.." dans : "..name);
 	else
 		character_message(Character, "Tu n'as plus de place dans : "..name);
 	end

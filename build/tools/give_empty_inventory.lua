@@ -1,7 +1,5 @@
 #!/usr/bin/lua
 
-local zone, x, y, size = ...
-
-for n=1,size do
-	place_settag(zone, x, y, "content_artifact_"..n, "EMPTY")
-end
+local zone, x, y, size, type_ = ...
+local inventory = create_inventory(size, type_);
+place_settag(zone, x, y, "inventory", inventory);

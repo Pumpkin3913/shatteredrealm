@@ -1,45 +1,43 @@
 #!/usr/bin/lua
 
 -- Get artifact in character's hands.
-local artifact = character_gettag(Character, "hand");
-if not artifact or artifact == "" or artifact == "EMPTY" then
-	character_message(Character, "Tu dois tenir une piochee en main.");
+local hand, held = loadfile("logic/get_equipment.lua")("hand");
+if not hand or not held then
+	character_message(Character, "Tu dois tenir une pioche en main.");
 	return;
 end
 
-local artifact_name = artifact_getname(artifact);
+local artifact_name = artifact_getname(hand, held);
 
 -- Check if artifact can mine.
-local power = tonumber(artifact_gettag(artifact, "mining_power"));
+local power = tonumber(artifact_gettag(hand, held, "mining_power"));
 if not power or power < 0 then
 	character_message(Character, artifact_name.." n'est pas une pioche.");
 	return;
 end
 
--- Check belt.
-local belt = character_gettag(Character, "belt");
-if not belt or belt == "" or belt == "EMPTY" then
+-- Get belt.
+local belt_slot, belt = loadfile("logic/get_equipment.lua")("belt");
+if not belt_slot or not belt then
 	character_message(Character, "Tu n'as pas de ceinture ni de quoi transporter du minerai.");
 	return;
 end
 
--- Get available inventory.
-local inventory;
-local found = false;
-local n = 1;
-local container = artifact_gettag(belt, "content_artifact_"..n);
-while not found and container and container ~= "" do
-	if container ~= "EMPTY" then
-		inventory = artifact_gettag(container, "inventory");
-		if inventory and inventory ~= "" and inventory_available(inventory) > 0 then
-			found = true;
+local target_inventory;
+
+local belt_inventory = artifact_gettag(belt_slot, belt, "inventory");
+for _, artifact in ipairs(inventory_get_all(belt_inventory)) do
+	local target = artifact_gettag(belt_inventory, artifact, "inventory");
+	if target and target ~= "" then
+		-- if inventory_gettype(target) == "ingredient" and inventory_available(target) > 0 then -- TODO
+		if inventory_available(target) > 0 then
+			target_inventory = target;
+			break;
 		end
 	end
-	n = n+1;
-	container = artifact_gettag(belt, "content_artifact_"..n);
 end
 
-if not found then
+if not target_inventory then
 	character_message(Character, "Tu n'as pas de place dans ton inventaire pour du minerai.");
 	return;
 end
@@ -78,8 +76,13 @@ local function mine(x, y)
 
 	-- Give ore.
 	local quantity = 1;
-	inventory_add(inventory, quantity, ore_name);
-	character_message(Character, "Tu obtiens "..quantity.." "..ore_name..".");
+	local added = create_artifact(target_inventory, ore_name, "ingredient", quantity);
+	if added then
+		character_message(Character, "Tu obtiens "..quantity.." "..ore_name..".");
+	else
+		warning("/mine error in inventory prediction.");
+		return true;
+	end
 
 	-- Reduce block to rubble.
 	local tileset = string.match(place_getaspect(zone, x, y), "(.*):.*");
