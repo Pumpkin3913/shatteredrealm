@@ -58,6 +58,7 @@ else
 	end
 	name = artifact_getname(i, a);
 	returned = artifact_move(i, a, hand);
+	-- TODO: recursively try to insert artifact into inventory.
 end
 
 if returned then
@@ -67,4 +68,5 @@ else
 end
 
 -- TODO: swap if hand contains something.
--- TODO: use argument, recursively search the coffer, asked quantity = 1 (because hand size is always 1).
+-- TODO: use argument, recursively search the coffer.
+-- TODO: extract quantity from argument.

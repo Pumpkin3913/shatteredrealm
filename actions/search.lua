@@ -107,7 +107,7 @@ local function fun(x, y);
 		local msg = "Contenu ["..inventory_total(inventory).."/"..inventory_size(inventory).."] : ";
 		local content = inventory_get_all(inventory);
 		for _, artifact in ipairs(content) do
-			msg = msg..artifact_getname(inventory, artifact).." ; ";
+			msg = msg..artifact_getquantity(inventory, artifact).." "..artifact_getname(inventory, artifact).." ; ";
 		end
 		character_message(Character, msg);
 		return true;

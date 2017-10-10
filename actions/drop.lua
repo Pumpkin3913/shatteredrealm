@@ -54,19 +54,23 @@ if not Arg or Arg == "" then
 	end
 end
 
--- Else: recursively search character's inventory.
+-- Extract eventual quantity from Arg.
+local quantity, pattern = string.match(Arg, "^(%d+) (.*)$");
+if not quantity or not pattern then
+	quantity = 1;
+	pattern = Arg;
+end
 
-local inventory, artifact = loadfile("logic/recursive_character_search.lua")(Arg);
+-- Recursively search character's inventory.
+local inventory, artifact = loadfile("logic/recursive_character_search.lua")(pattern);
 if not inventory or not artifact then
-	character_message(Character, Arg.." : pas trouvé dans ton inventaire.");
+	character_message(Character, pattern.." : pas trouvé dans ton inventaire.");
 	return;
 end
 
 local name = artifact_getname(inventory, artifact);
-if artifact_move(inventory, artifact, target_container)  then
-	character_message(Character, name.." posé.");
+if artifact_move(inventory, artifact, target_container, quantity)  then
+	character_message(Character, quantity.." "..name.." posé.");
 else
-	character_message(Character, "Impossible de poser : "..name);
+	character_message(Character, "Impossible de poser : "..quantity.." "..name);
 end
-
--- TODO: ask quantity.
